@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#521810"/>
+      <stop offset="100%" stop-color="#080706"/>
+    </linearGradient>
+    <radialGradient id="r" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#c9a45c" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#080706" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#g)"/>
+  <rect width="1920" height="1080" fill="url(#r)"/>
+  <text x="960" y="540" text-anchor="middle" fill="#e8d4a8" fill-opacity="0.35" font-family="Georgia,serif" font-size="28" letter-spacing="8">SLIDE 4 — YOUR PHOTO</text>
+</svg>

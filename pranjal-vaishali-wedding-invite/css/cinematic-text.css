@@ -1,0 +1,89 @@
+/* One HTML copy — identical layout in intro stage and on paused hero video */
+:root {
+  --cinematic-pad-top: clamp(2.75rem, 10vh, 4.25rem);
+  --cinematic-pad-x: 1.25rem;
+  --cinematic-pad-bottom: clamp(4.5rem, 12vh, 6rem);
+  --cinematic-col-width: min(92vw, 20.5rem);
+  --cinematic-shift-y: -2.5vh;
+}
+
+.cinematic-text-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 2600;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s var(--ease-out), visibility 0s linear 0.45s;
+}
+
+.cinematic-text-stage--visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.45s var(--ease-out), visibility 0s;
+}
+
+.cinematic-text-stage--instant,
+.cinematic-text-stage--instant.cinematic-text-stage--visible {
+  transition: none;
+}
+
+/* Same rules whether parent is fixed stage or scrolling hero */
+.cinematic-text-stage .hero__content--cinematic,
+.hero--video > .hero__content--cinematic {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: var(--cinematic-pad-top) var(--cinematic-pad-x) var(--cinematic-pad-bottom);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(var(--cinematic-shift-y));
+  opacity: 1;
+  text-align: center;
+  min-height: 0;
+  pointer-events: none;
+}
+
+.cinematic-text-stage .hero__content--cinematic .hero__scroll--cinematic,
+.hero--video > .hero__content--cinematic .hero__scroll--cinematic {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1rem, 3.5vh, 1.75rem);
+  transform: translateX(-50%);
+  margin: 0;
+  padding-top: 0;
+  pointer-events: auto;
+}
+
+.hero__content--cinematic .hero__cinematic-inner {
+  width: var(--cinematic-col-width);
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__content--cinematic .hero__welcome {
+  max-width: 18.5rem;
+  margin-inline: auto;
+  font-size: clamp(1.2rem, 4.6vw, 1.55rem);
+  line-height: 1.48;
+}
+
+/* Video file already contains names — hide HTML duplicate; keep scroll CTA */
+.hero--baked-video-text > .hero__content--cinematic .hero__cinematic-inner {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.hero--baked-video-text > .hero__content--cinematic .hero__scroll--cinematic {
+  visibility: visible;
+  pointer-events: auto;
+}

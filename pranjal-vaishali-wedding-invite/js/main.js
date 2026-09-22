@@ -6,6 +6,10 @@ import { initMusicControl } from './music.js';
 import { initShare } from './share.js';
 import { initScrollReveals } from './animations.js';
 import { initBackToTop } from './navigation.js';
+import { initHeroSlideshow, initHeroVideoPaused } from './hero.js';
+import { initEnvelope } from './envelope.js';
+import { initDateReveal } from './date-reveal.js';
+import { mountCinematicContentInStage } from './cinematic-text.js';
 
 function el(tag, className, html) {
   const node = document.createElement(tag);
@@ -14,23 +18,93 @@ function el(tag, className, html) {
   return node;
 }
 
+function royalCornersHtml() {
+  return `
+    <img class="royal-card__corner royal-card__corner--tl" src="assets/decorations/corner-top-left.svg" alt="" width="56" height="56">
+    <img class="royal-card__corner royal-card__corner--tr" src="assets/decorations/corner-top-left.svg" alt="" width="56" height="56">
+    <img class="royal-card__corner royal-card__corner--bl" src="assets/decorations/corner-top-left.svg" alt="" width="56" height="56">
+    <img class="royal-card__corner royal-card__corner--br" src="assets/decorations/corner-top-left.svg" alt="" width="56" height="56">
+  `;
+}
+
+function sectionHeader(eyebrow, title) {
+  return `
+    <div class="royal-section-head reveal text-center">
+      <p class="royal-flourish" aria-hidden="true">✦</p>
+      <p class="eyebrow">${eyebrow}</p>
+      <h2 class="heading-lg royal-title">${title}</h2>
+      <div class="royal-title-line line-reveal" aria-hidden="true"></div>
+    </div>
+  `;
+}
+
 function renderHero() {
   const hero = document.getElementById('hero');
   if (!hero) return;
 
-  const heroSrc = weddingConfig.images.hero;
-  const heroMobile = weddingConfig.images.heroMobile;
+  const heroVideo = weddingConfig.theme?.heroVideo;
+  const mediaHtml = heroVideo
+    ? `<video class="hero__video" playsinline webkit-playsinline muted preload="none" aria-hidden="true"></video>`
+    : (() => {
+        const slides = weddingConfig.images.heroSlides?.length
+          ? weddingConfig.images.heroSlides
+          : [weddingConfig.images.hero];
+        const slidesHtml = slides
+          .map(
+            (src, i) => `
+      <div class="hero__slide${i === 0 ? ' is-active' : ''}">
+        <img src="${src}" alt="" width="1920" height="1080" ${i === 0 ? 'fetchpriority="high"' : ''} loading="${i === 0 ? 'eager' : 'lazy'}">
+      </div>`
+          )
+          .join('');
+        return `<div class="hero__slideshow">${slidesHtml}</div>`;
+      })();
 
   hero.className = 'hero';
+  if (heroVideo) {
+    hero.classList.add('hero--video');
+    if (weddingConfig.theme?.heroVideoBurnedInText === true) {
+      hero.classList.add('hero--baked-video-text');
+    }
+  }
   hero.innerHTML = `
     <div class="hero__media" aria-hidden="true">
-      <picture>
-        <source media="(max-width: 767px)" srcset="${heroMobile}">
-        <img src="${heroSrc}" alt="" width="1920" height="1080" fetchpriority="high">
-      </picture>
+      ${mediaHtml}
+      <div class="hero__vignette"></div>
       <div class="hero__overlay"></div>
     </div>
-    <div class="hero__content reveal">
+    <div class="hero__frame" aria-hidden="true"></div>
+    <div class="hero__content ${heroVideo ? 'hero__content--cinematic' : 'reveal royal-hero-card'}">
+      ${heroVideo ? '' : royalCornersHtml()}
+      ${
+        heroVideo
+          ? `
+      <div class="hero__cinematic-inner">
+        <p class="hero__welcome">${weddingConfig.hero?.welcomeMessage || 'We are honored to welcome you to the Wedding ceremony of..'}</p>
+        <div class="hero__divider" aria-hidden="true"><span></span><span class="hero__divider-heart">♥</span><span></span></div>
+        <div class="hero__couple-block">
+          <h1 class="script-names hero__name" data-couple-name="groom">${weddingConfig.couple.groom}</h1>
+          ${(weddingConfig.couple.groomLines || [])
+            .map((line, i, arr) =>
+              `<p class="hero__subline${i === arr.length - 1 ? ' hero__subline--role' : ''}">${line}</p>`
+            )
+            .join('')}
+        </div>
+        <p class="hero__amp script-amp" data-couple-amp>&</p>
+        <div class="hero__couple-block">
+          <h1 class="script-names hero__name" data-couple-name="bride">${weddingConfig.couple.bride}</h1>
+          ${(weddingConfig.couple.brideLines || [])
+            .map((line, i, arr) =>
+              `<p class="hero__subline${i === arr.length - 1 ? ' hero__subline--role' : ''}">${line}</p>`
+            )
+            .join('')}
+        </div>
+      </div>
+      <a href="#invitation" class="hero__scroll scroll-hint hero__scroll--cinematic">
+        <span>SCROLL</span>
+        <img src="assets/icons/arrow-down.svg" alt="" width="24" height="24">
+      </a>`
+          : `
       <p class="eyebrow">Together with their families</p>
       <div class="hero__names">
         <h1 class="script-names">${weddingConfig.couple.groom}</h1>
@@ -43,9 +117,15 @@ function renderHero() {
       <a href="#invitation" class="hero__scroll scroll-hint">
         <span>Scroll to Begin</span>
         <img src="assets/icons/arrow-down.svg" alt="" width="28" height="28">
-      </a>
+      </a>`
+      }
     </div>
   `;
+
+  if (heroVideo) {
+    const content = hero.querySelector('.hero__content--cinematic');
+    mountCinematicContentInStage(content);
+  }
 }
 
 function renderInvitation() {
@@ -58,14 +138,12 @@ function renderInvitation() {
 
   section.className = 'section invitation';
   section.innerHTML = `
-    <div class="container text-center reveal">
-      <div class="divider" aria-hidden="true">
-        <span class="divider__line line-reveal"></span>
-        <img class="divider__icon" src="assets/decorations/floral-divider.svg" alt="">
-        <span class="divider__line line-reveal"></span>
+    <div class="container">
+      ${sectionHeader('With Love', 'Invitation')}
+      <div class="royal-card reveal text-center">
+        ${royalCornersHtml()}
+        <div class="invitation__poem body-lg">${lines}</div>
       </div>
-      <h2 class="heading-lg">Invitation</h2>
-      <div class="invitation__poem body-lg" style="margin-top:2rem">${lines}</div>
     </div>
   `;
 }
@@ -76,10 +154,9 @@ function renderCountdown() {
 
   section.className = 'section section--alt countdown';
   section.innerHTML = `
-    <div class="container reveal">
-      <p class="eyebrow text-center">Mark Your Calendar</p>
-      <h2 class="heading-lg text-center" style="margin-top:0.75rem">Counting Down</h2>
-      <div class="countdown__grid" aria-live="polite">
+    <div class="container">
+      ${sectionHeader('Mark Your Calendar', 'Counting Down')}
+      <div class="countdown__grid reveal" aria-live="polite">
         <div class="countdown__unit"><div class="countdown__value" data-unit="days">00</div><div class="countdown__label">Days</div></div>
         <div class="countdown__unit"><div class="countdown__value" data-unit="hours">00</div><div class="countdown__label">Hours</div></div>
         <div class="countdown__unit"><div class="countdown__value" data-unit="minutes">00</div><div class="countdown__label">Minutes</div></div>
@@ -90,115 +167,6 @@ function renderCountdown() {
   `;
 }
 
-function initDateReveal() {
-  const section = document.getElementById('date-reveal');
-  if (!section) return;
-
-  section.className = 'section date-reveal';
-  section.innerHTML = `
-    <div class="container reveal-scale">
-      <p class="eyebrow text-center">Save the Date</p>
-      <div class="date-reveal__card" style="margin-top:2rem">
-        <div class="date-reveal__canvas-wrap" id="date-reveal-wrap">
-          <div class="date-reveal__content" aria-hidden="false">
-            <p class="eyebrow">Save the Date</p>
-            <p class="date-reveal__day">15</p>
-            <p class="date-reveal__month">FEBRUARY 2027</p>
-            <p class="date-reveal__city">BILASPUR</p>
-          </div>
-          <canvas class="date-reveal__canvas" id="date-reveal-canvas" aria-label="Scratch to reveal the wedding date"></canvas>
-        </div>
-        <p class="date-reveal__hint" id="date-reveal-hint">Scratch or tap to reveal</p>
-      </div>
-    </div>
-  `;
-
-  const wrap = section.querySelector('#date-reveal-wrap');
-  const canvas = section.querySelector('#date-reveal-canvas');
-  const hint = section.querySelector('#date-reveal-hint');
-  if (!wrap || !canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  let revealed = false;
-
-  function sizeCanvas() {
-    const rect = wrap.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    canvas.style.width = `${rect.width}px`;
-    canvas.style.height = `${rect.height}px`;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = '#8e6a32';
-    ctx.fillRect(0, 0, rect.width, rect.height);
-    ctx.fillStyle = 'rgba(201,164,92,0.35)';
-    for (let i = 0; i < rect.width; i += 12) {
-      ctx.fillRect(i, 0, 2, rect.height);
-    }
-    ctx.globalCompositeOperation = 'destination-out';
-  }
-
-  function scratch(x, y) {
-    const radius = 28;
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  function checkReveal() {
-    const { width, height } = canvas;
-    const data = ctx.getImageData(0, 0, width, height).data;
-    let transparent = 0;
-    const step = 32;
-    for (let i = 3; i < data.length; i += 4 * step) {
-      if (data[i] === 0) transparent += 1;
-    }
-    const samples = data.length / (4 * step);
-    if (transparent / samples > 0.45) {
-      revealed = true;
-      canvas.classList.add('is-hidden');
-      if (hint) hint.textContent = 'See you in Bilaspur!';
-    }
-  }
-
-  function pointerPos(e) {
-    const rect = canvas.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    return { x: clientX - rect.left, y: clientY - rect.top };
-  }
-
-  function onStart(e) {
-    if (revealed) return;
-    e.preventDefault();
-    canvas.setPointerCapture?.(e.pointerId);
-  }
-
-  function onMove(e) {
-    if (revealed) return;
-    if (e.buttons === 0 && e.type === 'pointermove') return;
-    const { x, y } = pointerPos(e);
-    scratch(x, y);
-    checkReveal();
-  }
-
-  sizeCanvas();
-  window.addEventListener('resize', sizeCanvas);
-
-  canvas.addEventListener('pointerdown', onStart);
-  canvas.addEventListener('pointermove', onMove);
-  canvas.addEventListener('pointerup', onMove);
-
-  wrap.addEventListener('click', () => {
-    if (!revealed) {
-      revealed = true;
-      canvas.classList.add('is-hidden');
-      if (hint) hint.textContent = 'See you in Bilaspur!';
-    }
-  });
-}
-
 function renderStory() {
   const section = document.getElementById('story');
   if (!section) return;
@@ -207,13 +175,13 @@ function renderStory() {
   section.className = 'section section--alt story';
   section.innerHTML = `
     <div class="container">
+      ${sectionHeader('Forever', storyCopy.heading)}
       <div class="story__grid">
         <div class="story__image reveal" data-side="left">
           <img src="${imgs[0]}" alt="Placeholder for couple photo" loading="lazy" width="600" height="750">
         </div>
-        <div class="story__text reveal">
-          <p class="eyebrow">${storyCopy.heading}</p>
-          <h2 class="heading-lg" style="margin-top:0.5rem">${storyCopy.heading}</h2>
+        <div class="story__text reveal royal-card">
+          ${royalCornersHtml()}
           ${storyCopy.paragraphs.map((p) => `<p>${p}</p>`).join('')}
         </div>
         <div class="story__image reveal" data-side="right">
@@ -265,12 +233,7 @@ function renderEvents() {
   });
 
   section.className = 'section events';
-  section.innerHTML = `
-    <div class="container">
-      <p class="eyebrow text-center">Celebrations</p>
-      <h2 class="heading-lg text-center" style="margin-top:0.75rem">Wedding Events</h2>
-    </div>
-  `;
+  section.innerHTML = `<div class="container">${sectionHeader('Celebrations', 'Wedding Events')}</div>`;
   section.querySelector('.container').appendChild(timeline);
 }
 
@@ -291,8 +254,7 @@ function renderGallery() {
   section.className = 'section section--alt gallery';
   section.innerHTML = `
     <div class="container">
-      <p class="eyebrow text-center">Memories</p>
-      <h2 class="heading-lg text-center" style="margin-top:0.75rem">Gallery</h2>
+      ${sectionHeader('Memories', 'Gallery')}
       <div class="gallery__grid" id="gallery-grid">${items}</div>
     </div>
   `;
@@ -323,9 +285,9 @@ function renderVenue() {
         <div class="venue__image">
           <img src="${v.image}" alt="Venue placeholder — add your venue photo" loading="lazy" width="800" height="500">
         </div>
-        <div>
-          <p class="eyebrow">Location</p>
-          <h2 class="heading-lg" style="margin-top:0.5rem">Venue</h2>
+        <div class="royal-card">
+          ${royalCornersHtml()}
+          ${sectionHeader('Location', 'Venue')}
           ${nameBlock}
           ${addressBlock}
           <p class="body-lg" style="margin-top:1rem">${v.city}, ${weddingConfig.location.country}</p>
@@ -366,12 +328,14 @@ Number of guests:`;
 
   section.className = 'section section--alt rsvp';
   section.innerHTML = `
-    <div class="container reveal">
-      <p class="eyebrow">We Would Love To</p>
-      <h2 class="heading-lg">Celebrate With You</h2>
-      <p class="body-lg" style="margin-top:1rem">Please join us for the celebration.</p>
-      <div class="rsvp__actions">${rsvpBtn}${contactBtn}</div>
-      ${!rsvpBtn && !contactBtn ? '<p class="body-muted" style="margin-top:1rem">RSVP details will be shared soon.</p>' : ''}
+    <div class="container">
+      <div class="royal-card reveal text-center">
+        ${royalCornersHtml()}
+        ${sectionHeader('We Would Love To', 'Celebrate With You')}
+        <p class="body-lg">Please join us for the celebration.</p>
+        <div class="rsvp__actions">${rsvpBtn}${contactBtn}</div>
+        ${!rsvpBtn && !contactBtn ? '<p class="body-muted" style="margin-top:1rem">RSVP details will be shared soon.</p>' : ''}
+      </div>
     </div>
   `;
 }
@@ -423,6 +387,29 @@ function applyMeta() {
   document.title = `${weddingConfig.couple.displayName} | Wedding Invitation`;
 }
 
+function bootSite(musicController, videoHandoffTime) {
+  const heroEl = document.getElementById('hero');
+  const heroVideo = weddingConfig.theme?.heroVideo;
+  if (heroVideo) {
+    initHeroVideoPaused(heroEl, heroVideo, videoHandoffTime);
+  } else {
+    initHeroSlideshow(heroEl, weddingConfig.theme?.heroSlideshowIntervalMs);
+  }
+  initCountdown(document.getElementById('countdown'), weddingConfig);
+  initGallery(document.getElementById('gallery-grid'), weddingConfig.images.gallery);
+  initScrollReveals();
+
+  const heroReveal = document.getElementById('hero')?.querySelector('.reveal');
+  heroReveal?.classList.add('is-visible');
+
+  if (musicController?.startAfterInteraction) {
+    musicController.startAfterInteraction();
+  }
+
+  document.getElementById('main-content')?.style.removeProperty('visibility');
+  window.scrollTo(0, 0);
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   applyMeta();
   renderHero();
@@ -436,9 +423,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderRsvp();
   renderFooter();
 
-  await initControls();
+  const musicController = await initControls();
 
-  initCountdown(document.getElementById('countdown'), weddingConfig);
-  initGallery(document.getElementById('gallery-grid'), weddingConfig.images.gallery);
-  initScrollReveals();
+  initEnvelope(weddingConfig, () => bootSite(musicController));
 });

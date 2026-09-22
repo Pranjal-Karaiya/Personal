@@ -5,6 +5,7 @@
   --gold: #c9a45c;
   --gold-light: #e7c98b;
   --gold-dark: #8e6a32;
+  --gold-deep: #5c4522;
   --ivory: #f5efe3;
   --cream: #ded4c3;
   --text-primary: #f5efe3;
@@ -16,7 +17,39 @@
   --font-script: 'Great Vibes', 'Dancing Script', cursive;
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'Lora', Georgia, serif;
+  --font-decorative: 'Italianno', 'Great Vibes', cursive;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --section-pad: clamp(4rem, 10vw, 7rem);
   --control-size: 48px;
+}
+
+/* Zareqia Royal Prestige template tokens (HSL → hex from their theme config) */
+body.theme-royal-prestige {
+  --bg-primary: #f9f0f1;
+  --bg-secondary: #f7e8ea;
+  --bg-card: #f7e8ea;
+  --gold: #b0253c;
+  --gold-light: #e5a8b2;
+  --gold-dark: #9b263a;
+  --gold-deep: #8a2237;
+  --ivory: #f5e6e0;
+  --cream: #5a3d44;
+  --text-primary: #3b161d;
+  --text-secondary: #764b54;
+  --border-gold: rgba(176, 37, 60, 0.35);
+  --shadow: rgba(59, 22, 29, 0.12);
+  --hero-surface: #0f0f0f;
+  --envelope-blush-start: #fde2e8;
+  --envelope-blush-mid: #f7c2cf;
+  --welcome-accent: #c98a98;
+  --scratch-mid: #c97a8c;
+  --scratch-start: #fbe2e8;
+  --scratch-end: #4a1525;
+  --scratch-heart-center: #e8b4c0;
+  --scratch-heart-edge: #d68ea2;
+  --scratch-heart-deep: #c97a8c;
+  --scratch-sparkle: 252, 235, 240;
+  --date-reveal-surface: #fdf2f4;
+  --date-reveal-panel-top: #282e39;
+  --date-reveal-panel-bottom: #f5e5e8;
 }

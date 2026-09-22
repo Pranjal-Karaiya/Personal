@@ -1,0 +1,277 @@
+/* Royal Prestige — palette aligned with Zareqia royal-prestige theme tokens */
+
+body.theme-royal-prestige {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body.theme-royal-prestige::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+body.theme-royal-prestige #invitation {
+  background: linear-gradient(
+    to bottom,
+    var(--hero-surface) 0%,
+    #282e39 12%,
+    #8e8990 42%,
+    #f5e5e8 100%
+  );
+  padding-top: 0;
+}
+
+body.theme-royal-prestige #invitation .container {
+  padding-top: var(--section-pad);
+}
+
+body.theme-royal-prestige .heading-xl,
+body.theme-royal-prestige .heading-lg,
+body.theme-royal-prestige .heading-md {
+  color: var(--text-primary);
+}
+
+.royal-section-head {
+  margin-bottom: 2.5rem;
+}
+
+.royal-flourish {
+  font-family: var(--font-decorative);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+  opacity: 0.9;
+}
+
+.royal-title {
+  letter-spacing: 0.06em;
+}
+
+.royal-title-line {
+  width: min(200px, 50%);
+  height: 1px;
+  margin: 1rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+}
+
+.royal-card {
+  position: relative;
+  padding: clamp(2rem, 5vw, 3rem);
+  border: 1px solid var(--border-gold);
+  background: linear-gradient(145deg, #fcf8f9 0%, var(--bg-card) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.65),
+    0 20px 40px var(--shadow);
+}
+
+.royal-card__corner {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.royal-card__corner--tl {
+  top: 10px;
+  left: 10px;
+}
+
+.royal-card__corner--tr {
+  top: 10px;
+  right: 10px;
+  transform: scaleX(-1);
+}
+
+.royal-card__corner--bl {
+  bottom: 10px;
+  left: 10px;
+  transform: scaleY(-1);
+}
+
+.royal-card__corner--br {
+  bottom: 10px;
+  right: 10px;
+  transform: scale(-1);
+}
+
+/* Hero slideshow */
+.hero__slideshow {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s var(--ease-out);
+}
+
+.hero__slide.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+}
+
+.hero__slide.is-active img {
+  animation: kenBurns 14s var(--ease-out) forwards;
+}
+
+.hero__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.65) 100%);
+}
+
+.theme-royal-prestige .hero {
+  background-color: var(--hero-surface);
+}
+
+.theme-royal-prestige .hero__overlay {
+  z-index: 3;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.15) 45%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+.hero__frame {
+  position: absolute;
+  inset: clamp(12px, 3vw, 28px);
+  z-index: 4;
+  pointer-events: none;
+  border: 1px solid rgba(245, 230, 224, 0.22);
+}
+
+.hero__frame::before,
+.hero__frame::after {
+  content: '';
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border: 1px solid rgba(245, 230, 224, 0.45);
+}
+
+.hero__frame::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.hero__frame::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+.royal-hero-card {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid rgba(245, 230, 224, 0.25);
+  background: rgba(15, 15, 15, 0.2);
+  backdrop-filter: blur(6px);
+}
+
+.theme-royal-prestige .hero .eyebrow,
+.theme-royal-prestige .hero .hero__meta,
+.theme-royal-prestige .hero .script-amp,
+.theme-royal-prestige .hero .scroll-hint {
+  color: var(--ivory);
+}
+
+.theme-royal-prestige .hero .script-amp {
+  color: rgba(245, 230, 224, 0.85);
+}
+
+.theme-royal-prestige .hero--video .script-names {
+  color: var(--ivory);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
+}
+
+.theme-royal-prestige .countdown__unit {
+  position: relative;
+  background: linear-gradient(180deg, #fcf6f7, var(--bg-card));
+  box-shadow: inset 0 0 20px rgba(176, 37, 60, 0.06);
+}
+
+.theme-royal-prestige .countdown__unit::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(176, 37, 60, 0.18);
+  pointer-events: none;
+}
+
+.theme-royal-prestige .event-card {
+  background: linear-gradient(160deg, #fcf8f9, var(--bg-card));
+}
+
+.theme-royal-prestige .floating-btn {
+  background: rgba(249, 240, 241, 0.92);
+  color: var(--text-primary);
+}
+
+.theme-royal-prestige .gallery__item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(59, 22, 29, 0.45));
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.theme-royal-prestige .gallery__item {
+  position: relative;
+}
+
+.theme-royal-prestige .gallery__item:hover::after {
+  opacity: 1;
+}
+
+.theme-royal-prestige .site-footer {
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+}
+
+.theme-royal-prestige .floating-btn {
+  border-color: rgba(176, 37, 60, 0.35);
+  box-shadow: 0 0 20px rgba(176, 37, 60, 0.12);
+}
+
+@keyframes kenBurns {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.14);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__slide.is-active img {
+    animation: none;
+    transform: scale(1.05);
+  }
+
+  .hero__slide {
+    transition: none;
+  }
+}

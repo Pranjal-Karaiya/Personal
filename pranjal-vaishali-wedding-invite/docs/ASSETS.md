@@ -11,6 +11,12 @@ Replace placeholders with your licensed files. Paths referenced in `js/config.js
 
 Current placeholders: `hero-main.svg`, `hero-mobile.svg`
 
+Royal Prestige cinematic video (`assets/video/royal-prestige.mp4`): tap landing screen to play once; hero holds the final frame (no loop).
+
+Royal Prestige–style hero slideshow (replace with `slide-01.jpg` … `slide-04.jpg` and update `heroSlides` in `js/config.js`):
+
+`assets/images/hero/slide-01.svg` … `slide-04.svg`
+
 ## Couple & story
 
 `assets/images/couple/couple-01.jpg` … `couple-04.jpg`
