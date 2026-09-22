@@ -14,28 +14,6 @@ function el(tag, className, html) {
   return node;
 }
 
-function renderOpening() {
-  const screen = document.getElementById('opening-screen');
-  if (!screen) return;
-
-  screen.innerHTML = `
-    <div class="opening-screen__grain" aria-hidden="true"></div>
-    <div class="opening-screen__inner opening-screen__content">
-      <p class="eyebrow reveal is-visible">With the blessings of our families</p>
-      <p class="body-lg" style="margin-top:1.5rem">You are invited to celebrate</p>
-      <p class="body-muted">the beginning of a beautiful journey</p>
-      <div class="opening-screen__names">
-        <p class="script-names script-names--sm">${weddingConfig.couple.groom.toUpperCase()}</p>
-        <p class="script-amp">&</p>
-        <p class="script-names script-names--sm">${weddingConfig.couple.bride.toUpperCase()}</p>
-      </div>
-      <p class="opening-screen__meta">${weddingConfig.wedding.displayDate}</p>
-      <p class="opening-screen__meta">${weddingConfig.wedding.displayLocation}</p>
-      <button type="button" class="btn btn--primary" id="enter-invitation">Enter Invitation</button>
-    </div>
-  `;
-}
-
 function renderHero() {
   const hero = document.getElementById('hero');
   if (!hero) return;
@@ -414,21 +392,6 @@ function renderFooter() {
   `;
 }
 
-function initOpening(musicController) {
-  const screen = document.getElementById('opening-screen');
-  const btn = document.getElementById('enter-invitation');
-  const main = document.getElementById('main-content');
-
-  btn?.addEventListener('click', async () => {
-    screen?.classList.add('is-hidden');
-    main?.removeAttribute('hidden');
-    document.getElementById('hero')?.querySelector('.reveal')?.classList.add('is-visible');
-    if (musicController?.startAfterInteraction) {
-      await musicController.startAfterInteraction();
-    }
-  });
-}
-
 async function initControls() {
   const musicBtn = document.getElementById('music-control');
   const shareBtn = document.getElementById('share-control');
@@ -462,7 +425,6 @@ function applyMeta() {
 
 document.addEventListener('DOMContentLoaded', async () => {
   applyMeta();
-  renderOpening();
   renderHero();
   renderInvitation();
   renderCountdown();
@@ -474,14 +436,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderRsvp();
   renderFooter();
 
-  const musicController = await initControls();
-  initOpening(musicController || {});
+  await initControls();
 
   initCountdown(document.getElementById('countdown'), weddingConfig);
   initGallery(document.getElementById('gallery-grid'), weddingConfig.images.gallery);
   initScrollReveals();
-
-  requestAnimationFrame(() => {
-    document.getElementById('hero')?.querySelector('.reveal')?.classList.remove('is-visible');
-  });
 });

@@ -6,14 +6,18 @@ No build step is required. The site is plain HTML, CSS, and JavaScript (ES modul
 
 ## Local preview
 
+From **this project folder** (not the parent `Personal` folder):
+
 ```bash
-npm install   # optional — only needed for the dev server helper
+cd pranjal-vaishali-wedding-invite
 npm run dev
 ```
 
-Open `http://localhost:3000` in your browser.
+Open **http://localhost:3000** — the invitation loads directly.
 
-You can also open `index.html` through any static server (not `file://` URLs, because ES modules need HTTP).
+If you run `python3 -m http.server 3000` from the parent `Personal` folder instead, open **http://localhost:3000** and you will be redirected into this site automatically.
+
+Do not open `index.html` via `file://` — ES modules require HTTP.
 
 ## Configuration
 
