@@ -54,7 +54,7 @@ export const weddingConfig = {
      * Seconds from intro play start before HTML copy begins its reveal.
      * The small delay keeps the text aligned with the video timing.
      */
-    heroTextRevealAt: 2.5,
+    heroTextRevealAt: 3.5,
     /** If true, HTML copy is hidden until heroTextRevealAt. */
     heroHtmlSyncedToVideo: true,
     /**
