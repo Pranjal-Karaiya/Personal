@@ -4,7 +4,7 @@ export const weddingConfig = {
     bride: 'Vaishali',
     displayName: 'Pranjal & Vaishali',
     groomLines: ['Son of Mr Ajay Kumar Karaiya & Mrs Archana Karaiya'],
-    brideLines: ['Daughter of Kanhaiya Lal Saha & Mrs Sunita Saha']
+    brideLines: ['Daughter of Mr Kanhaiya Lal Saha & Mrs Sunita Saha']
   },
   hero: {
     welcomeMessage: 'We are honored to welcome you to the Wedding ceremony of..'
