@@ -1,27 +1,15 @@
 const STORAGE_KEY = 'pv-wedding-music-playing';
 
 export async function initMusicControl(button, config) {
-  if (!button || !config.music?.enabled) {
+  if (!button || !config.music?.enabled || !config.music?.source) {
     button?.remove();
     return null;
   }
 
-  const audio = new Audio(config.music.source);
+  const audio = new Audio();
   audio.loop = true;
-  audio.preload = 'none';
-
-  let available = true;
-  try {
-    const res = await fetch(config.music.source, { method: 'HEAD' });
-    if (!res.ok) available = false;
-  } catch {
-    available = false;
-  }
-
-  if (!available) {
-    button.remove();
-    return null;
-  }
+  audio.preload = 'auto';
+  audio.src = config.music.source;
 
   const labelOn = 'Pause background music';
   const labelOff = 'Play background music';
@@ -32,18 +20,25 @@ export async function initMusicControl(button, config) {
     button.classList.toggle('is-playing', playing);
   }
 
-  button.addEventListener('click', async () => {
+  async function startMusic() {
     try {
-      if (audio.paused) {
-        await audio.play();
-        localStorage.setItem(STORAGE_KEY, '1');
-        setPlaying(true);
-      } else {
-        audio.pause();
-        localStorage.setItem(STORAGE_KEY, '0');
-        setPlaying(false);
-      }
+      audio.volume = 1;
+      await audio.play();
+      localStorage.setItem(STORAGE_KEY, '1');
+      setPlaying(true);
+      return true;
     } catch {
+      setPlaying(false);
+      return false;
+    }
+  }
+
+  button.addEventListener('click', async () => {
+    if (audio.paused) {
+      await startMusic();
+    } else {
+      audio.pause();
+      localStorage.setItem(STORAGE_KEY, '0');
       setPlaying(false);
     }
   });
@@ -52,14 +47,16 @@ export async function initMusicControl(button, config) {
 
   return {
     async startAfterInteraction() {
-      if (localStorage.getItem(STORAGE_KEY) === '0') return;
-      try {
-        await audio.play();
-        setPlaying(true);
-      } catch {
-        setPlaying(false);
-      }
+      if (localStorage.getItem(STORAGE_KEY) === '0') return false;
+      return startMusic();
     },
+
+    // Explicit user gesture: always start music, regardless of the
+    // previous music-control preference stored in localStorage.
+    async startFromUserGesture() {
+      return startMusic();
+    },
+
     pause() {
       audio.pause();
       setPlaying(false);

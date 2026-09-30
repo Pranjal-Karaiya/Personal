@@ -78,7 +78,7 @@ function primeVideoFrame(video) {
   else video.addEventListener('loadeddata', seek, { once: true });
 }
 
-export function initEnvelope(config, onOpened) {
+export function initEnvelope(config, onOpened, onTapToOpen) {
   const enabled = config.envelope?.enabled !== false;
   const screen = document.getElementById('envelope-screen');
   if (!enabled || !screen) {
@@ -173,6 +173,7 @@ export function initEnvelope(config, onOpened) {
       if (opened) return;
       opened = true;
       openBtn.disabled = true;
+      onTapToOpen?.();
 
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reduced) {
@@ -206,12 +207,6 @@ export function initEnvelope(config, onOpened) {
     if (opened) return;
     opened = true;
     if (!heroTextShown) showCinematicTextStage({ instant: true });
-    /*
-     * Do not park the hero on the video's final frame. The MP4's final
-     * frames contain a darker transition and a baked-in SCROLL mask.
-     * Freeze on the same frame that was visible when the cinematic text
-     * appeared so the running and stopped states look identical.
-     */
     const endTime =
       heroVisualHoldTime > 0
         ? heroVisualHoldTime
@@ -224,6 +219,7 @@ export function initEnvelope(config, onOpened) {
   function playIntro() {
     if (opened || introStarted || !video) return;
     introStarted = true;
+    onTapToOpen?.();
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) {

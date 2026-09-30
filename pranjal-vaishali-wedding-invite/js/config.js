@@ -3,8 +3,8 @@ export const weddingConfig = {
     groom: 'Pranjal',
     bride: 'Vaishali',
     displayName: 'Pranjal & Vaishali',
-    groomLines: ['Son of Mr Ajay Kumar Karaiya & Mrs Archana Karaiya', 'M.Tech, Phd', 'Software Engineer'],
-    brideLines: ['Daughter of Kanhaiya Lal Saha & Mrs Sunita Saha', 'B.Tech, MBA', 'Advocate, High Court']
+    groomLines: ['Son of Mr Ajay Kumar Karaiya & Mrs Archana Karaiya'],
+    brideLines: ['Daughter of Mr Kanhaiya Lal Saha & Mrs Sunita Saha']
   },
   hero: {
     welcomeMessage: 'We are honored to welcome you to the Wedding ceremony of..'
@@ -35,7 +35,7 @@ export const weddingConfig = {
   },
   music: {
     enabled: true,
-    source: 'assets/audio/wedding-music.mp3'
+    source: 'assets/video/1000265702.mp3'
   },
   share: {
     title: 'Pranjal & Vaishali — Wedding Invitation',
