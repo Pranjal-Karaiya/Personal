@@ -50,6 +50,13 @@ export async function initMusicControl(button, config) {
       if (localStorage.getItem(STORAGE_KEY) === '0') return false;
       return startMusic();
     },
+
+    // Explicit user gesture: always start music, regardless of the
+    // previous music-control preference stored in localStorage.
+    async startFromUserGesture() {
+      return startMusic();
+    },
+
     pause() {
       audio.pause();
       setPlaying(false);
