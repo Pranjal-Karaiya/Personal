@@ -80,26 +80,52 @@
   }
 }
 
-/* Smooth intro reveal: fade and lift the text after the video timing threshold. */
-.cinematic-text-stage .hero__content--cinematic {
+/* Delayed, staggered cinematic reveal after the video timing threshold. */
+.cinematic-text-stage .hero__cinematic-inner > * {
   opacity: 0;
-  transform: translateY(calc(var(--cinematic-shift-y) + 12px));
-  transition:
-    opacity var(--cinematic-reveal-duration) var(--ease-out),
-    transform var(--cinematic-reveal-duration) var(--ease-out);
-  transition-delay: var(--cinematic-reveal-delay);
+  transform: translateY(18px);
 }
 
-.cinematic-text-stage--visible .hero__content--cinematic {
-  opacity: 1;
-  transform: translateY(var(--cinematic-shift-y));
+.cinematic-text-stage--visible .hero__cinematic-inner > * {
+  animation: cinematicItemReveal 0.9s var(--ease-out) both;
 }
 
-.cinematic-text-stage--instant .hero__content--cinematic,
-.cinematic-text-stage--instant.cinematic-text-stage--visible .hero__content--cinematic {
+.cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(1) {
+  animation-delay: 0.30s;
+}
+
+.cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(2) {
+  animation-delay: 0.42s;
+}
+
+.cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(3) {
+  animation-delay: 0.54s;
+}
+
+.cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(4) {
+  animation-delay: 0.66s;
+}
+
+.cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(5) {
+  animation-delay: 0.78s;
+}
+
+@keyframes cinematicItemReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cinematic-text-stage--instant .hero__cinematic-inner > *,
+.cinematic-text-stage--instant.cinematic-text-stage--visible .hero__cinematic-inner > * {
   opacity: 1;
-  transform: translateY(var(--cinematic-shift-y));
-  transition: none;
+  transform: none;
+  animation: none;
 }
 
 .hero__content--cinematic .hero__cinematic-inner {
@@ -167,12 +193,3 @@
   justify-content: center;
 }
 
-@keyframes cinematicScrollFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(6px);
-  }
-}
