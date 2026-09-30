@@ -116,7 +116,7 @@ export function initEnvelope(config, onOpened) {
   function revealHeroTextNow() {
     if (heroTextShown) return;
     heroTextShown = true;
-    showCinematicTextStage({ instant: true });
+    showCinematicTextStage();
     stopWatchers();
   }
 
