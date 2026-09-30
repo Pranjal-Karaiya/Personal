@@ -128,6 +128,19 @@
   animation: none;
 }
 
+/* Keep the couple visually ordered as VAISHALI → & → PRANJAL. */
+.hero__content--cinematic .hero__cinematic-inner .hero__couple-block:first-of-type {
+  order: 3;
+}
+
+.hero__content--cinematic .hero__cinematic-inner .hero__amp {
+  order: 4;
+}
+
+.hero__content--cinematic .hero__cinematic-inner .hero__couple-block:last-of-type {
+  order: 5;
+}
+
 .hero__content--cinematic .hero__cinematic-inner {
   width: var(--cinematic-col-width);
   max-width: 100%;
