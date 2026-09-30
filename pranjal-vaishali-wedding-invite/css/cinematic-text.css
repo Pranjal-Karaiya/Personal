@@ -59,6 +59,17 @@
   margin: 0;
   padding-top: 0;
   pointer-events: auto;
+  animation: cinematicScrollFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes cinematicScrollFloat {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
 }
 
 .hero__content--cinematic .hero__cinematic-inner {
