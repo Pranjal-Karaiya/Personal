@@ -5,6 +5,8 @@
   --cinematic-pad-bottom: clamp(4.5rem, 12vh, 6rem);
   --cinematic-col-width: min(92vw, 20.5rem);
   --cinematic-shift-y: -2.5vh;
+  --cinematic-reveal-delay: 0.2s;
+  --cinematic-reveal-duration: 1.4s;
 }
 
 .cinematic-text-stage {
@@ -78,6 +80,67 @@
   }
 }
 
+/* Delayed, staggered cinematic reveal after the video timing threshold. */
+.cinematic-text-stage .hero__cinematic-inner > * {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.cinematic-text-stage--visible .hero__cinematic-inner > * {
+  animation: cinematicItemReveal var(--cinematic-reveal-duration) var(--ease-out) both;
+}
+
+.cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(1) {
+  animation-delay: 0.30s;
+}
+
+.cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(2) {
+  animation-delay: 0.70s;
+}
+
+.cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(3) {
+  animation-delay: 1.10s;
+}
+
+.cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(4) {
+  animation-delay: 1.50s;
+}
+
+.cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(5) {
+  animation-delay: 1.90s;
+}
+
+@keyframes cinematicItemReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cinematic-text-stage--instant .hero__cinematic-inner > *,
+.cinematic-text-stage--instant.cinematic-text-stage--visible .hero__cinematic-inner > * {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+/* Keep the couple visually ordered as VAISHALI → & → PRANJAL. */
+.hero__content--cinematic .hero__cinematic-inner .hero__couple-block:first-of-type {
+  order: 3;
+}
+
+.hero__content--cinematic .hero__cinematic-inner .hero__amp {
+  order: 4;
+}
+
+.hero__content--cinematic .hero__cinematic-inner .hero__couple-block:last-of-type {
+  order: 5;
+}
+
 .hero__content--cinematic .hero__cinematic-inner {
   width: var(--cinematic-col-width);
   max-width: 100%;
@@ -106,30 +169,7 @@
 }
 
 
-/*
- * The source MP4 contains a baked-in SCROLL label/arrow.
- * Mask only that small area so the HTML scroll control is the single
- * visible control and can be centered responsively.
- */
-.hero--video .hero__media::after {
-  content: '';
-  position: absolute;
-  z-index: 4;
-  left: 50%;
-  bottom: clamp(2.75rem, 7vh, 4.5rem);
-  width: min(13rem, 46vw);
-  height: clamp(5.5rem, 12vh, 7.5rem);
-  transform: translateX(-50%);
-  pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(12, 10, 9, 0.96) 0%,
-    rgba(12, 10, 9, 0.88) 45%,
-    rgba(12, 10, 9, 0.35) 72%,
-    rgba(12, 10, 9, 0) 100%
-  );
-}
+/* The HTML SCROLL control is the only visible scroll control; no dark mask is applied. */
 
 .hero--video > .hero__content--cinematic .hero__scroll--cinematic {
   left: 0 !important;
@@ -143,12 +183,3 @@
   justify-content: center;
 }
 
-@keyframes cinematicScrollFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(6px);
-  }
-}

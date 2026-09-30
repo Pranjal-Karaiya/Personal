@@ -3,8 +3,8 @@ export const weddingConfig = {
     groom: 'Pranjal',
     bride: 'Vaishali',
     displayName: 'Pranjal & Vaishali',
-    groomLines: ['Son of Mr. & Mrs. Khan', 'M.Tech, Phd', 'Software Engineer'],
-    brideLines: ['Daughter of Mr. & Mrs. Pathan', 'B.Tech, MBA', 'Advocate, High Court']
+    groomLines: ['Son of Mr Ajay Kumar Karaiya & Mrs Archana Karaiya', 'M.Tech, Phd', 'Software Engineer'],
+    brideLines: ['Daughter of Kanhaiya Lal Saha & Mrs Sunita Saha', 'B.Tech, MBA', 'Advocate, High Court']
   },
   hero: {
     welcomeMessage: 'We are honored to welcome you to the Wedding ceremony of..'
@@ -51,10 +51,10 @@ export const weddingConfig = {
     id: 'royal-prestige',
     heroVideo: 'assets/video/royal-prestige.mp4',
     /**
-     * Seconds from intro play start when HTML copy appears (12 = 00:12).
-     * Fine-tune ±0.2 if it must match baked-in video typography.
+     * Seconds from intro play start before HTML copy begins its reveal.
+     * The small delay keeps the text aligned with the video timing.
      */
-    heroTextRevealAt: 0.9,
+    heroTextRevealAt: 5.5,
     /** If true, HTML copy is hidden until heroTextRevealAt. */
     heroHtmlSyncedToVideo: true,
     /**

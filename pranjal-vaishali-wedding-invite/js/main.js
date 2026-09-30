@@ -83,8 +83,8 @@ function renderHero() {
         <p class="hero__welcome">${weddingConfig.hero?.welcomeMessage || 'We are honored to welcome you to the Wedding ceremony of..'}</p>
         <div class="hero__divider" aria-hidden="true"><span></span><span class="hero__divider-heart">♥</span><span></span></div>
         <div class="hero__couple-block">
-          <h1 class="script-names hero__name" data-couple-name="groom">${weddingConfig.couple.groom}</h1>
-          ${(weddingConfig.couple.groomLines || [])
+          <h1 class="script-names hero__name" data-couple-name="bride">${weddingConfig.couple.bride}</h1>
+          ${(weddingConfig.couple.brideLines || [])
             .map((line, i, arr) =>
               `<p class="hero__subline${i === arr.length - 1 ? ' hero__subline--role' : ''}">${line}</p>`
             )
@@ -92,8 +92,8 @@ function renderHero() {
         </div>
         <p class="hero__amp script-amp" data-couple-amp>&</p>
         <div class="hero__couple-block">
-          <h1 class="script-names hero__name" data-couple-name="bride">${weddingConfig.couple.bride}</h1>
-          ${(weddingConfig.couple.brideLines || [])
+          <h1 class="script-names hero__name" data-couple-name="groom">${weddingConfig.couple.groom}</h1>
+          ${(weddingConfig.couple.groomLines || [])
             .map((line, i, arr) =>
               `<p class="hero__subline${i === arr.length - 1 ? ' hero__subline--role' : ''}">${line}</p>`
             )
