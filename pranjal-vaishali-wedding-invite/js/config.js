@@ -35,7 +35,7 @@ export const weddingConfig = {
   },
   music: {
     enabled: true,
-    source: 'assets/audio/wedding-music.mp3'
+    source: 'assets/video/1000265702.mp3'
   },
   share: {
     title: 'Pranjal & Vaishali — Wedding Invitation',
