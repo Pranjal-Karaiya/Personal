@@ -51,10 +51,10 @@ export const weddingConfig = {
     id: 'royal-prestige',
     heroVideo: 'assets/video/royal-prestige.mp4',
     /**
-     * Seconds from intro play start when HTML copy appears (12 = 00:12).
-     * Fine-tune ±0.2 if it must match baked-in video typography.
+     * Seconds from intro play start before HTML copy begins its reveal.
+     * The small delay keeps the text aligned with the video timing.
      */
-    heroTextRevealAt: 0.9,
+    heroTextRevealAt: 1.5,
     /** If true, HTML copy is hidden until heroTextRevealAt. */
     heroHtmlSyncedToVideo: true,
     /**
