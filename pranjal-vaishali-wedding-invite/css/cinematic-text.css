@@ -6,7 +6,7 @@
   --cinematic-col-width: min(92vw, 20.5rem);
   --cinematic-shift-y: -2.5vh;
   --cinematic-reveal-delay: 0.2s;
-  --cinematic-reveal-duration: 0.85s;
+  --cinematic-reveal-duration: 1.4s;
 }
 
 .cinematic-text-stage {
@@ -87,7 +87,7 @@
 }
 
 .cinematic-text-stage--visible .hero__cinematic-inner > * {
-  animation: cinematicItemReveal 0.9s var(--ease-out) both;
+  animation: cinematicItemReveal var(--cinematic-reveal-duration) var(--ease-out) both;
 }
 
 .cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(1) {
@@ -95,19 +95,19 @@
 }
 
 .cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(2) {
-  animation-delay: 0.42s;
+  animation-delay: 0.70s;
 }
 
 .cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(3) {
-  animation-delay: 0.54s;
+  animation-delay: 1.10s;
 }
 
 .cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(4) {
-  animation-delay: 0.66s;
+  animation-delay: 1.50s;
 }
 
 .cinematic-text-stage--visible .hero__cinematic-inner > *:nth-child(5) {
-  animation-delay: 0.78s;
+  animation-delay: 1.90s;
 }
 
 @keyframes cinematicItemReveal {
