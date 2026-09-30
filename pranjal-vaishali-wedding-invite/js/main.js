@@ -425,5 +425,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const musicController = await initControls();
 
-  initEnvelope(weddingConfig, () => bootSite(musicController), () => musicController?.startAfterInteraction?.());
+  initEnvelope(weddingConfig, () => bootSite(musicController), () => musicController?.startFromUserGesture?.());
 });
