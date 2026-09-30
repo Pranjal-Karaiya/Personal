@@ -138,6 +138,16 @@ body.theme-royal-prestige .heading-md {
   background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.65) 100%);
 }
 
+/*
+ * The intro video is shown without any color treatment.
+ * Keep the transferred/paused hero video visually identical to the
+ * video while it is running in the envelope screen.
+ */
+.hero--video .hero__vignette,
+.hero--video .hero__overlay {
+  background: transparent;
+}
+
 .theme-royal-prestige .hero {
   background-color: var(--hero-surface);
 }
