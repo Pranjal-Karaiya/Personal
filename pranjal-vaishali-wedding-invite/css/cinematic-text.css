@@ -53,11 +53,17 @@
 .cinematic-text-stage .hero__content--cinematic .hero__scroll--cinematic,
 .hero--video > .hero__content--cinematic .hero__scroll--cinematic {
   position: absolute;
-  left: 50%;
+  left: 0;
+  right: 0;
   bottom: clamp(1rem, 3.5vh, 1.75rem);
-  transform: translateX(-50%);
+  width: 100%;
   margin: 0;
   padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: none;
   pointer-events: auto;
   animation: cinematicScrollFloat 2.5s ease-in-out infinite;
 }
@@ -65,10 +71,10 @@
 @keyframes cinematicScrollFloat {
   0%,
   100% {
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
   }
   50% {
-    transform: translateX(-50%) translateY(6px);
+    transform: translateY(6px);
   }
 }
 
