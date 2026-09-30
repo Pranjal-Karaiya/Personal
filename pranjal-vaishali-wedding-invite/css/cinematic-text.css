@@ -169,30 +169,7 @@
 }
 
 
-/*
- * The source MP4 contains a baked-in SCROLL label/arrow.
- * Mask only that small area so the HTML scroll control is the single
- * visible control and can be centered responsively.
- */
-.hero--video .hero__media::after {
-  content: '';
-  position: absolute;
-  z-index: 4;
-  left: 50%;
-  bottom: clamp(2.75rem, 7vh, 4.5rem);
-  width: min(13rem, 46vw);
-  height: clamp(5.5rem, 12vh, 7.5rem);
-  transform: translateX(-50%);
-  pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(12, 10, 9, 0.96) 0%,
-    rgba(12, 10, 9, 0.88) 45%,
-    rgba(12, 10, 9, 0.35) 72%,
-    rgba(12, 10, 9, 0) 100%
-  );
-}
+/* The HTML SCROLL control is the only visible scroll control; no dark mask is applied. */
 
 .hero--video > .hero__content--cinematic .hero__scroll--cinematic {
   left: 0 !important;
