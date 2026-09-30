@@ -101,6 +101,7 @@ export function initEnvelope(config, onOpened) {
   let opened = false;
   let introStarted = false;
   let heroTextShown = false;
+  let heroVisualHoldTime = 0;
   let playing = false;
   let rafId = 0;
   let intervalId = 0;
@@ -116,6 +117,8 @@ export function initEnvelope(config, onOpened) {
   function revealHeroTextNow() {
     if (heroTextShown) return;
     heroTextShown = true;
+    heroVisualHoldTime =
+      video && Number.isFinite(video.currentTime) ? Math.max(0, video.currentTime) : textRevealAt;
     showCinematicTextStage();
     stopWatchers();
   }
@@ -203,8 +206,16 @@ export function initEnvelope(config, onOpened) {
     if (opened) return;
     opened = true;
     if (!heroTextShown) showCinematicTextStage({ instant: true });
+    /*
+     * Do not park the hero on the video's final frame. The MP4's final
+     * frames contain a darker transition and a baked-in SCROLL mask.
+     * Freeze on the same frame that was visible when the cinematic text
+     * appeared so the running and stopped states look identical.
+     */
     const endTime =
-      video?.duration && Number.isFinite(video.duration) ? video.duration : video?.currentTime ?? 0;
+      heroVisualHoldTime > 0
+        ? heroVisualHoldTime
+        : video?.currentTime ?? 0;
     video?.pause();
     transferVideoToHero();
     finish(endTime);
