@@ -285,145 +285,142 @@
 }
 
 .date-reveal__panel {
-  max-width: 22rem;
+  width: 100%;
+  max-width: none;
   margin-inline: auto;
-  padding: 1.75rem 1.35rem 2rem;
-  border: 1px solid rgba(255, 248, 250, 0.55);
-  border-radius: 2px;
-  background: linear-gradient(
-    165deg,
-    var(--date-reveal-panel-top, #282e39) 0%,
-    #6d727a 38%,
-    var(--date-reveal-panel-bottom, #f5e5e8) 88%
-  );
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
-}
-
-.date-reveal__panel-heart {
-  margin: 0 0 0.5rem;
-  font-size: 0.55rem;
-  color: var(--gold-dark);
-  line-height: 1;
+  padding: 0.5rem 0 1rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .date-reveal__scratch-title {
   font-family: var(--font-script);
-  font-size: clamp(2.25rem, 8vw, 3.25rem);
+  font-size: clamp(1.8rem, 7vw, 2.7rem);
   font-weight: 400;
   color: var(--gold-dark);
-  margin-bottom: 0.75rem;
-  line-height: 1.1;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
+  margin: 0 0 0.45rem;
+  line-height: 1.05;
 }
 
 .date-reveal__divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
-  margin-bottom: 1.75rem;
+  gap: 0.5rem;
+  margin-bottom: 1.1rem;
 }
 
 .date-reveal__divider-line {
-  width: min(4.5rem, 18vw);
+  width: min(4rem, 18vw);
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
   opacity: 0.85;
 }
 
 .date-reveal__divider-heart {
-  font-size: 0.65rem;
+  font-size: 0.55rem;
   color: var(--gold);
   line-height: 1;
 }
 
 .date-reveal__stage {
-  display: flex;
-  justify-content: center;
-  padding: 0.25rem 0 0.5rem;
+  width: 100%;
+  display: block;
+  padding: 0;
 }
 
 .date-reveal__canvas-wrap {
   position: relative;
-  width: min(16.5rem, 72vw);
-  aspect-ratio: 300 / 280;
-  margin-inline: auto;
+  box-sizing: border-box;
+  width: 100%;
+  height: clamp(10.5rem, 43vw, 14rem);
+  margin: 0;
   user-select: none;
   touch-action: none;
+  overflow: hidden;
+  border: 0;
+  border-radius: 1.25rem;
+  background: transparent;
+  box-shadow: 0 12px 30px rgba(176, 37, 60, 0.12);
 }
 
 .date-reveal__content {
   position: absolute;
   inset: 0;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2.75rem 1rem 2.25rem;
+  gap: 0.35rem;
+  padding: 0.65rem 0.75rem;
   text-align: center;
+  border-radius: inherit;
   background: linear-gradient(165deg, hsl(350, 55%, 98%) 0%, hsl(350, 48%, 94%) 100%);
-  -webkit-mask-image: var(--heart-mask);
-  mask-image: var(--heart-mask);
-  mask-size: 100% 100%;
-  mask-repeat: no-repeat;
-  mask-position: center;
 }
 
 .date-reveal__invited {
-  font-family: var(--font-display);
-  font-size: clamp(0.65rem, 2.8vw, 0.75rem);
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.35rem;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.15rem, 4.8vw, 1.55rem);
+  color: #4a2028;
+}
+
+.date-reveal__date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.12rem;
+  margin: 0;
 }
 
 .date-reveal__day {
+  margin: 0;
   font-family: var(--font-heading);
-  font-size: clamp(3.25rem, 14vw, 4.5rem);
+  font-size: clamp(1.9rem, 7.5vw, 2.5rem);
   line-height: 1;
-  color: var(--gold-dark);
+  padding-bottom: 0.3rem;
+  color: #c21f3a;
 }
 
 .date-reveal__month {
-  font-family: var(--font-display);
-  font-size: clamp(0.62rem, 2.8vw, 0.75rem);
-  letter-spacing: 0.18em;
-  margin-top: 0.35rem;
-  color: var(--text-primary);
-  max-width: 92%;
-  line-height: 1.35;
-}
-
-.date-reveal__city {
-  margin-top: 0.65rem;
-  letter-spacing: 0.14em;
-  font-size: clamp(0.58rem, 2.5vw, 0.68rem);
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.28rem;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 4vw, 1.25rem);
+  line-height: 1.15;
+  color: #4a2028;
   text-transform: uppercase;
-  color: var(--text-secondary);
+  font-variant-numeric: lining-nums;
+  letter-spacing: 0;
   white-space: nowrap;
 }
 
-.date-reveal__region {
-  margin-top: 0.2rem;
-  letter-spacing: 0.12em;
-  font-size: 0.52rem;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  opacity: 0.9;
+.date-reveal__month-name,
+.date-reveal__year {
+  display: inline-block;
+  font: inherit;
+  line-height: inherit;
+  vertical-align: baseline;
 }
 
 .date-reveal__canvas {
   position: absolute;
+  box-sizing: border-box;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  z-index: 2;
+  width: 105%;
+  height: 105%;
   cursor: grab;
-  -webkit-mask-image: var(--heart-mask);
-  mask-image: var(--heart-mask);
-  mask-size: 100% 100%;
-  mask-repeat: no-repeat;
-  mask-position: center;
+  display: block;
+  touch-action: none;
+  pointer-events: auto;
+  border-radius: inherit;
 }
 
 .date-reveal__canvas:active {
@@ -437,10 +434,11 @@
 }
 
 .date-reveal__canvas-wrap.is-revealed {
-  filter: drop-shadow(0 10px 22px rgba(176, 37, 60, 0.12));
+  filter: drop-shadow(0 8px 18px rgba(176, 37, 60, 0.12));
 }
 
 .date-reveal__hint {
+
   margin-top: 1.25rem;
   font-size: 0.82rem;
   letter-spacing: 0.06em;
