@@ -94,14 +94,14 @@ export function initDateReveal() {
   function sizeCanvas() {
     // Use layout dimensions, not getBoundingClientRect(), because this
     // section is animated with transform: scale() via .reveal-scale.
-    const width = wrap.offsetWidth;
-    const height = wrap.offsetHeight;
+    const width = wrap.offsetWidth * 1.05;
+    const height = wrap.offsetHeight * 1.05;
     dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     canvas.width = Math.max(1, Math.round(width * dpr));
     canvas.height = Math.max(1, Math.round(height * dpr));
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
+    canvas.style.width = '105%';
+    canvas.style.height = '105%';
     canvas.style.left = '0px';
     canvas.style.top = '0px';
 
