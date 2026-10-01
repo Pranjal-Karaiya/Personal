@@ -116,26 +116,27 @@ export function initDateReveal() {
   const hint = section.querySelector('#date-reveal-hint');
   if (!wrap || !canvas || !content) return;
 
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
   let revealed = false;
   let painting = false;
+  let dpr = 1;
 
   function sizeCanvas() {
     const rect = wrap.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(rect.height * dpr);
     canvas.style.width = `${rect.width}px`;
     canvas.style.height = `${rect.height}px`;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.globalCompositeOperation = 'source-over';
-    paintScratchSurface(ctx, rect.width, rect.height);
+    paintScratchSurface(ctx, canvas.width, canvas.height);
     ctx.globalCompositeOperation = 'destination-out';
   }
 
   function scratch(x, y) {
     ctx.beginPath();
-    ctx.arc(x, y, 24, 0, Math.PI * 2);
+    ctx.arc(x * dpr, y * dpr, 22 * dpr, 0, Math.PI * 2);
     ctx.fill();
   }
 
@@ -148,17 +149,26 @@ export function initDateReveal() {
   }
 
   function checkReveal() {
-    const { width, height } = canvas;
-    const data = ctx.getImageData(0, 0, width, height).data;
+    const stepX = 15;
+    const stepY = 15;
     let transparent = 0;
-    const step = 28;
-    for (let i = 3; i < data.length; i += 4 * step) {
-      if (data[i] === 0) transparent += 1;
-    }
-    const samples = data.length / (4 * step);
-    if (transparent / samples > 0.42) finishReveal();
-  }
+    let samples = 0;
 
+    for (let y = stepY / 2; y < canvas.clientHeight; y += stepY) {
+      for (let x = stepX / 2; x < canvas.clientWidth; x += stepX) {
+        const pixel = ctx.getImageData(
+          Math.floor(x * dpr),
+          Math.floor(y * dpr),
+          1,
+          1
+        ).data;
+        samples += 1;
+        if (pixel[3] < 32) transparent += 1;
+      }
+    }
+
+    if (samples && transparent / samples >= 0.35) finishReveal();
+  }
   function pointerPos(e) {
     const rect = canvas.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -192,8 +202,15 @@ export function initDateReveal() {
   sizeCanvas();
   window.addEventListener('resize', sizeCanvas);
 
-  canvas.addEventListener('pointerdown', onStart);
-  canvas.addEventListener('pointermove', onMove);
-  canvas.addEventListener('pointerup', onEnd);
-  canvas.addEventListener('pointercancel', onEnd);
+  if (window.PointerEvent) {
+    canvas.addEventListener('pointerdown', onStart);
+    canvas.addEventListener('pointermove', onMove);
+    canvas.addEventListener('pointerup', onEnd);
+    canvas.addEventListener('pointercancel', onEnd);
+  } else {
+    canvas.addEventListener('touchstart', onStart, { passive: false });
+    canvas.addEventListener('touchmove', onMove, { passive: false });
+    canvas.addEventListener('touchend', onEnd);
+    canvas.addEventListener('touchcancel', onEnd);
+  }
 }
