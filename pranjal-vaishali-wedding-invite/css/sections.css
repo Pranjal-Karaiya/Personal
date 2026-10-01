@@ -370,10 +370,13 @@
 .date-reveal__canvas {
   position: absolute;
   inset: 0;
+  z-index: 2;
   width: 100%;
   height: 100%;
   cursor: grab;
   display: block;
+  touch-action: none;
+  pointer-events: auto;
 }
 
 .date-reveal__canvas:active {
