@@ -335,7 +335,7 @@
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  height: clamp(13rem, 58vw, 20rem);
+  height: clamp(10.5rem, 43vw, 14rem);
   margin: 0;
   user-select: none;
   touch-action: none;
@@ -354,8 +354,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
-  padding: 1rem;
+  gap: 0.35rem;
+  padding: 0.65rem 0.75rem;
   text-align: center;
   border-radius: inherit;
   background: linear-gradient(165deg, hsl(350, 55%, 98%) 0%, hsl(350, 48%, 94%) 100%);
@@ -364,7 +364,7 @@
 .date-reveal__invited {
   margin: 0;
   font-family: var(--font-heading);
-  font-size: clamp(1.3rem, 5vw, 1.9rem);
+  font-size: clamp(1.15rem, 4.8vw, 1.55rem);
   color: #4a2028;
 }
 
@@ -372,14 +372,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.12rem;
   margin: 0;
 }
 
 .date-reveal__day {
   margin: 0;
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 8vw, 3rem);
+  font-size: clamp(1.9rem, 7.5vw, 2.5rem);
   line-height: 1;
   color: #c21f3a;
 }
@@ -387,7 +387,7 @@
 .date-reveal__month {
   margin: 0;
   font-family: var(--font-heading);
-  font-size: clamp(1rem, 4vw, 1.4rem);
+  font-size: clamp(0.95rem, 3.8vw, 1.2rem);
   line-height: 1.2;
   color: #4a2028;
   text-transform: uppercase;
