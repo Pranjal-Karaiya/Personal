@@ -1,95 +1,45 @@
 import { weddingConfig } from './config.js';
 
-/** Shared heart geometry — must match SVG mask in CSS */
-export const HEART_VIEWBOX = { w: 300, h: 280 };
-export const HEART_PATH =
-  'M150,238 C150,238 28,168 28,98 C28,52 68,32 108,58 C128,72 142,96 150,112 C158,96 172,72 192,58 C232,32 272,52 272,98 C272,168 150,238 150,238Z';
-
-function traceHeartPath(ctx, width, height) {
-  const sx = width / HEART_VIEWBOX.w;
-  const sy = height / HEART_VIEWBOX.h;
-  ctx.beginPath();
-  ctx.moveTo(150 * sx, 238 * sy);
-  ctx.bezierCurveTo(150 * sx, 238 * sy, 28 * sx, 168 * sy, 28 * sx, 98 * sy);
-  ctx.bezierCurveTo(28 * sx, 52 * sy, 68 * sx, 32 * sy, 108 * sx, 58 * sy);
-  ctx.bezierCurveTo(128 * sx, 72 * sy, 142 * sx, 96 * sy, 150 * sx, 112 * sy);
-  ctx.bezierCurveTo(158 * sx, 96 * sy, 172 * sx, 72 * sy, 192 * sx, 58 * sy);
-  ctx.bezierCurveTo(232 * sx, 32 * sy, 272 * sx, 52 * sy, 272 * sx, 98 * sy);
-  ctx.bezierCurveTo(272 * sx, 168 * sy, 150 * sx, 238 * sy, 150 * sx, 238 * sy);
-  ctx.closePath();
-}
-
-function pointInHeart(ctx, x, y, width, height) {
-  traceHeartPath(ctx, width, height);
-  return ctx.isPointInPath(x, y);
-}
-
-function heartMaskUrl() {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${HEART_VIEWBOX.w} ${HEART_VIEWBOX.h}"><path fill="white" d="${HEART_PATH}"/></svg>`;
-  return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
-}
-
 function readScratchColors() {
   const styles = getComputedStyle(document.body);
   return {
-    heartCenter: styles.getPropertyValue('--scratch-heart-center').trim() || '#e8b4c0',
-    heartEdge: styles.getPropertyValue('--scratch-heart-edge').trim() || '#d68ea2',
-    heartDeep: styles.getPropertyValue('--scratch-heart-deep').trim() || '#c97a8c',
+    center: styles.getPropertyValue('--scratch-heart-center').trim() || '#e8b4c0',
+    edge: styles.getPropertyValue('--scratch-heart-edge').trim() || '#d68ea2',
+    deep: styles.getPropertyValue('--scratch-heart-deep').trim() || '#c97a8c',
     sparkle: styles.getPropertyValue('--scratch-sparkle').trim() || '252, 235, 240',
   };
 }
 
-function paintGlitterHeart(ctx, width, height) {
-  const { heartCenter, heartEdge, heartDeep, sparkle } = readScratchColors();
-  ctx.save();
-  traceHeartPath(ctx, width, height);
-  ctx.clip();
-
-  const base = ctx.createRadialGradient(
-    width * 0.5,
-    height * 0.36,
-    width * 0.06,
-    width * 0.5,
-    height * 0.42,
-    width * 0.58
-  );
-  base.addColorStop(0, heartCenter);
-  base.addColorStop(0.55, heartEdge);
-  base.addColorStop(1, heartDeep);
+function paintScratchSurface(ctx, width, height) {
+  const { center, edge, deep, sparkle } = readScratchColors();
+  const base = ctx.createLinearGradient(0, 0, 0, height);
+  base.addColorStop(0, center);
+  base.addColorStop(0.55, edge);
+  base.addColorStop(1, deep);
   ctx.fillStyle = base;
   ctx.fillRect(0, 0, width, height);
 
-  const shine = ctx.createRadialGradient(width * 0.46, height * 0.28, 0, width * 0.5, height * 0.35, width * 0.45);
-  shine.addColorStop(0, 'rgba(255, 255, 255, 0.5)');
-  shine.addColorStop(0.6, 'rgba(255, 255, 255, 0.12)');
-  shine.addColorStop(1, 'rgba(255, 255, 255, 0)');
+  const shine = ctx.createRadialGradient(width * 0.45, height * 0.2, 0, width * 0.5, height * 0.35, width * 0.75);
+  shine.addColorStop(0, 'rgba(255,255,255,0.45)');
+  shine.addColorStop(0.55, 'rgba(255,255,255,0.12)');
+  shine.addColorStop(1, 'rgba(255,255,255,0)');
   ctx.fillStyle = shine;
   ctx.fillRect(0, 0, width, height);
 
   const specks = [
-    'rgba(255, 255, 255, 0.95)',
-    'rgba(255, 255, 255, 0.6)',
-    `rgba(${sparkle}, 0.9)`,
-    'rgba(230, 190, 200, 0.75)',
-    'rgba(180, 120, 135, 0.35)',
+    'rgba(255,255,255,0.95)',
+    'rgba(255,255,255,0.6)',
+    `rgba(${sparkle},0.9)`,
   ];
-
-  for (let i = 0; i < 1100; i += 1) {
+  for (let i = 0; i < 260; i += 1) {
     const x = Math.random() * width;
     const y = Math.random() * height;
-    if (!pointInHeart(ctx, x, y, width, height)) continue;
-    const r = Math.random() * 1.8 + 0.35;
+    const r = Math.random() * 1.8 + 0.4;
     ctx.fillStyle = specks[Math.floor(Math.random() * specks.length)];
-    if (Math.random() > 0.7) {
-      ctx.fillRect(x, y, r * 2, r * 0.55);
-    } else {
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fill();
-    }
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
   }
-
-  ctx.restore();
 }
 
 function buildGoogleCalendarUrl(config) {
@@ -123,7 +73,6 @@ export function initDateReveal() {
 
   const { day, monthYear, city, region } = formatRevealContent(weddingConfig);
   const calendarUrl = buildGoogleCalendarUrl(weddingConfig);
-  const mask = heartMaskUrl();
 
   section.className = 'section date-reveal';
   section.innerHTML = `
@@ -167,10 +116,6 @@ export function initDateReveal() {
   const hint = section.querySelector('#date-reveal-hint');
   if (!wrap || !canvas || !content) return;
 
-  wrap.style.setProperty('--heart-mask', mask);
-  content.style.setProperty('--heart-mask', mask);
-  canvas.style.setProperty('--heart-mask', mask);
-
   const ctx = canvas.getContext('2d');
   let revealed = false;
   let painting = false;
@@ -184,7 +129,7 @@ export function initDateReveal() {
     canvas.style.height = `${rect.height}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.globalCompositeOperation = 'source-over';
-    paintGlitterHeart(ctx, rect.width, rect.height);
+    paintScratchSurface(ctx, rect.width, rect.height);
     ctx.globalCompositeOperation = 'destination-out';
   }
 
