@@ -65,9 +65,27 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transform: none;
+  transform: translateY(10px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out),
+    visibility 0s linear 0.9s;
+}
+
+.cinematic-text-stage .hero__content--cinematic .hero__scroll--cinematic.is-video-complete,
+.hero--video > .hero__content--cinematic .hero__scroll--cinematic.is-video-complete {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
   pointer-events: auto;
-  animation: cinematicScrollFloat 2.5s ease-in-out infinite;
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out),
+    visibility 0s;
+  animation: cinematicScrollFloat 2.5s ease-in-out 0.9s infinite;
 }
 
 @keyframes cinematicScrollFloat {
@@ -164,6 +182,11 @@
 }
 
 .hero--baked-video-text > .hero__content--cinematic .hero__scroll--cinematic {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.hero--baked-video-text > .hero__content--cinematic .hero__scroll--cinematic.is-video-complete {
   visibility: visible;
   pointer-events: auto;
 }
@@ -176,7 +199,6 @@
   right: 0 !important;
   bottom: clamp(1rem, 3.5vh, 1.75rem);
   width: 100% !important;
-  transform: none !important;
   display: flex !important;
   flex-direction: column;
   align-items: center;

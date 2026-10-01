@@ -207,6 +207,11 @@ export function initEnvelope(config, onOpened, onTapToOpen) {
     if (opened) return;
     opened = true;
     if (!heroTextShown) showCinematicTextStage({ instant: true });
+
+    // SCROLL is intentionally hidden while the video is playing.
+    // Reveal it only after the video has completed, with a soft fade/slide.
+    const scrollControl = document.querySelector('.hero__scroll--cinematic');
+    scrollControl?.classList.add('is-video-complete');
     const endTime =
       heroVisualHoldTime > 0
         ? heroVisualHoldTime
