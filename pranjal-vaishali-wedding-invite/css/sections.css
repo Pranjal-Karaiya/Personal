@@ -342,7 +342,7 @@
   overflow: hidden;
   border: 0;
   border-radius: 1.25rem;
-  background: #fff8fa;
+  background: transparent;
   box-shadow: 0 12px 30px rgba(176, 37, 60, 0.12);
 }
 
