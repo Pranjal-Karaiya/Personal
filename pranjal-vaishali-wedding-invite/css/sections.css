@@ -353,10 +353,43 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.65rem;
   padding: 1rem;
   text-align: center;
   border-radius: inherit;
   background: linear-gradient(165deg, hsl(350, 55%, 98%) 0%, hsl(350, 48%, 94%) 100%);
+}
+
+.date-reveal__invited {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 5vw, 1.9rem);
+  color: #4a2028;
+}
+
+.date-reveal__date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+}
+
+.date-reveal__day {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 8vw, 3rem);
+  line-height: 1;
+  color: var(--gold-dark);
+}
+
+.date-reveal__month {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 4vw, 1.4rem);
+  line-height: 1.2;
+  color: #4a2028;
+  text-transform: uppercase;
 }
 
 .date-reveal__canvas {
