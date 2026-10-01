@@ -47,14 +47,17 @@ function formatRevealContent(config) {
   const dayMatch = config.wedding.date?.match(/-(\d{2})$/);
   const day = dayMatch ? `${dayMatch[1]}th`.replace('11th','11th').replace('12th','12th').replace('13th','13th') : '15th';
   const monthYear = displayDate.replace(/^\d+\s*/, '').trim();
-  return { day, monthYear };
+  const monthMatch = monthYear.match(/^([A-Za-z]+)\s+(\d{4})$/);
+  const month = monthMatch ? monthMatch[1] : monthYear;
+  const year = monthMatch ? monthMatch[2] : '';
+  return { day, month, year };
 }
 
 export function initDateReveal() {
   const section = document.getElementById('date-reveal');
   if (!section) return;
 
-  const { day, monthYear } = formatRevealContent(weddingConfig);
+  const { day, month, year } = formatRevealContent(weddingConfig);
   section.className = 'section date-reveal';
   section.innerHTML = `
     <div class="container reveal-scale">
@@ -71,7 +74,7 @@ export function initDateReveal() {
               <p class="date-reveal__invited">You're Invited</p>
               <div class="date-reveal__date">
                 <span class="date-reveal__day">${day}</span>
-                <span class="date-reveal__month">${monthYear}</span>
+                <span class="date-reveal__month"><span class="date-reveal__month-name">${month}</span><span class="date-reveal__year">${year}</span></span>
               </div>
             </div>
             <canvas class="date-reveal__canvas" id="date-reveal-canvas" aria-label="Scratch to reveal the wedding date"></canvas>
