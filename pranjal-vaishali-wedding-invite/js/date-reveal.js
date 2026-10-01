@@ -92,14 +92,19 @@ export function initDateReveal() {
   let dpr = 1;
 
   function sizeCanvas() {
-    const rect = wrap.getBoundingClientRect();
+    // Use layout dimensions, not getBoundingClientRect(), because this
+    // section is animated with transform: scale() via .reveal-scale.
+    const width = wrap.offsetWidth;
+    const height = wrap.offsetHeight;
     dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.max(1, Math.round(rect.width * dpr));
-    canvas.height = Math.max(1, Math.round(rect.height * dpr));
-    canvas.style.width = `${rect.width}px`;
-    canvas.style.height = `${rect.height}px`;
+
+    canvas.width = Math.max(1, Math.round(width * dpr));
+    canvas.height = Math.max(1, Math.round(height * dpr));
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
     canvas.style.left = '0px';
     canvas.style.top = '0px';
+
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.globalCompositeOperation = 'source-over';
     paintScratchSurface(ctx, canvas.width, canvas.height);
