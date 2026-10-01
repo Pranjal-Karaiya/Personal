@@ -751,3 +751,12 @@
   font-size: 0.8rem;
   color: var(--text-secondary);
 }
+
+/* Story photo placeholders removed; keep the story copy without image slots. */
+.story__grid .story__image {
+  display: none !important;
+}
+
+.story__grid {
+  grid-template-columns: minmax(0, 1fr);
+}
