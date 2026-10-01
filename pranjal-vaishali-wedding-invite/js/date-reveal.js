@@ -42,21 +42,10 @@ function paintScratchSurface(ctx, width, height) {
   }
 }
 
-function buildGoogleCalendarUrl(config) {
-  const { couple, wedding, venue, share } = config;
-  const date = (wedding.date || '').replace(/-/g, '');
-  if (!date) return '#';
-  const title = encodeURIComponent(share?.title || `${couple.displayName} — Wedding`);
-  const details = encodeURIComponent(share?.text || '');
-  const location = encodeURIComponent(venue?.address || config.location?.display || '');
-  const dates = `${date}/${date}`;
-  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
-}
-
 function formatRevealContent(config) {
   const displayDate = config.wedding.displayDate || '';
   const dayMatch = config.wedding.date?.match(/-(\d{2})$/);
-  const day = dayMatch ? dayMatch[1] : '15';
+  const day = dayMatch ? `${dayMatch[1]}th`.replace('11th','11th').replace('12th','12th').replace('13th','13th') : '15th';
   const monthYear = displayDate.replace(/^\d+\s*/, '').trim();
   const city = config.location?.city || config.wedding.displayLocation?.split(',')[0]?.trim() || 'Bilaspur';
   const region =
@@ -72,13 +61,10 @@ export function initDateReveal() {
   if (!section) return;
 
   const { day, monthYear, city, region } = formatRevealContent(weddingConfig);
-  const calendarUrl = buildGoogleCalendarUrl(weddingConfig);
-
   section.className = 'section date-reveal';
   section.innerHTML = `
     <div class="container reveal-scale">
       <div class="date-reveal__panel">
-        <p class="date-reveal__panel-heart" aria-hidden="true">♥</p>
         <h2 class="date-reveal__scratch-title">Scratch to Reveal</h2>
         <div class="date-reveal__divider" aria-hidden="true">
           <span class="date-reveal__divider-line"></span>
@@ -94,19 +80,12 @@ export function initDateReveal() {
               <p class="date-reveal__city">${city}</p>
               ${region ? `<p class="date-reveal__region">${region}</p>` : ''}
             </div>
-            <canvas class="date-reveal__canvas" id="date-reveal-canvas" aria-label="Scratch the heart to reveal the wedding date"></canvas>
+            <canvas class="date-reveal__canvas" id="date-reveal-canvas" aria-label="Scratch to reveal the wedding date"></canvas>
           </div>
         </div>
       </div>
       <p class="date-reveal__hint" id="date-reveal-hint">Scratch the heart to reveal the date</p>
-      <a class="date-reveal__calendar-btn" href="${calendarUrl}" target="_blank" rel="noopener noreferrer">
-        <svg class="date-reveal__calendar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
-          <path d="M8 3v4M16 3v4M3 10h18" stroke="currentColor" stroke-width="1.5"/>
-          <path d="M12 14v4M10 16h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        Save the Date
-      </a>
+>
     </div>
   `;
 
