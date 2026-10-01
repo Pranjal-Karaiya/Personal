@@ -156,7 +156,7 @@ function renderCountdown() {
   section.innerHTML = `
     <div class="container">
       ${sectionHeader('Mark Your Calendar', 'Counting Down')}
-      <div class="countdown__grid reveal" aria-live="polite">
+      <div class="countdown__grid reveal" aria-live="polite" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.35rem;">
         <div class="countdown__unit"><div class="countdown__value" data-unit="days">00</div><div class="countdown__label">Days</div></div>
         <div class="countdown__unit"><div class="countdown__value" data-unit="hours">00</div><div class="countdown__label">Hours</div></div>
         <div class="countdown__unit"><div class="countdown__value" data-unit="minutes">00</div><div class="countdown__label">Minutes</div></div>
