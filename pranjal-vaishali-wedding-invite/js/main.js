@@ -170,25 +170,15 @@ function renderCountdown() {
 function renderStory() {
   const section = document.getElementById('story');
   if (!section) return;
-  const imgs = weddingConfig.images.couple;
 
   section.className = 'section section--alt story';
   section.innerHTML = `
     <div class="container">
       ${sectionHeader('Forever', storyCopy.heading)}
       <div class="story__grid">
-        <div class="story__image reveal" data-side="left">
-          <img src="${imgs[0]}" alt="Placeholder for couple photo" loading="lazy" width="600" height="750">
-        </div>
         <div class="story__text reveal royal-card">
           ${royalCornersHtml()}
-          ${storyCopy.paragraphs.map((p) => `<p>${p}</p>`).join('')}
-        </div>
-        <div class="story__image reveal" data-side="right">
-          <img src="${imgs[1]}" alt="Placeholder for couple photo" loading="lazy" width="600" height="750">
-        </div>
-        <div class="story__image story__mobile-img story__mobile-img--mid reveal">
-          <img src="${imgs[2]}" alt="Placeholder for couple photo" loading="lazy" width="600" height="750">
+          ${storyCopy.paragraphs.map((p) => \`<p>${p}</p>\`).join('')}
         </div>
       </div>
     </div>
