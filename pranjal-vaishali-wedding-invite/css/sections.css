@@ -386,6 +386,10 @@
 }
 
 .date-reveal__month {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.28rem;
   margin: 0;
   font-family: var(--font-heading);
   font-size: clamp(1rem, 4vw, 1.25rem);
@@ -393,8 +397,16 @@
   color: #4a2028;
   text-transform: uppercase;
   font-variant-numeric: lining-nums;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   white-space: nowrap;
+}
+
+.date-reveal__month-name,
+.date-reveal__year {
+  display: inline-block;
+  font: inherit;
+  line-height: inherit;
+  vertical-align: baseline;
 }
 
 .date-reveal__canvas {
