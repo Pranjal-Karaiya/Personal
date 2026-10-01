@@ -47,20 +47,14 @@ function formatRevealContent(config) {
   const dayMatch = config.wedding.date?.match(/-(\d{2})$/);
   const day = dayMatch ? `${dayMatch[1]}th`.replace('11th','11th').replace('12th','12th').replace('13th','13th') : '15th';
   const monthYear = displayDate.replace(/^\d+\s*/, '').trim();
-  const city = config.location?.city || config.wedding.displayLocation?.split(',')[0]?.trim() || 'Bilaspur';
-  const region =
-    config.location?.state ||
-    config.wedding.displayLocation?.split(',').slice(1).join(',').trim() ||
-    '';
-
-  return { day, monthYear, city, region };
+  return { day, monthYear };
 }
 
 export function initDateReveal() {
   const section = document.getElementById('date-reveal');
   if (!section) return;
 
-  const { day, monthYear, city, region } = formatRevealContent(weddingConfig);
+  const { day, monthYear } = formatRevealContent(weddingConfig);
   section.className = 'section date-reveal';
   section.innerHTML = `
     <div class="container reveal-scale">
@@ -75,24 +69,21 @@ export function initDateReveal() {
           <div class="date-reveal__canvas-wrap" id="date-reveal-wrap">
             <div class="date-reveal__content" aria-hidden="false">
               <p class="date-reveal__invited">You're Invited</p>
-              <p class="date-reveal__day">${day}</p>
-              <p class="date-reveal__month">${monthYear}</p>
-              <p class="date-reveal__city">${city}</p>
-              ${region ? `<p class="date-reveal__region">${region}</p>` : ''}
+              <div class="date-reveal__date">
+                <span class="date-reveal__day">${day}</span>
+                <span class="date-reveal__month">${monthYear}</span>
+              </div>
             </div>
             <canvas class="date-reveal__canvas" id="date-reveal-canvas" aria-label="Scratch to reveal the wedding date"></canvas>
           </div>
         </div>
       </div>
-      <p class="date-reveal__hint" id="date-reveal-hint">Scratch the heart to reveal the date</p>
->
     </div>
   `;
 
   const wrap = section.querySelector('#date-reveal-wrap');
   const canvas = section.querySelector('#date-reveal-canvas');
   const content = section.querySelector('.date-reveal__content');
-  const hint = section.querySelector('#date-reveal-hint');
   if (!wrap || !canvas || !content) return;
 
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
@@ -105,8 +96,6 @@ export function initDateReveal() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.round(rect.width * dpr);
     canvas.height = Math.round(rect.height * dpr);
-    canvas.style.width = `${rect.width}px`;
-    canvas.style.height = `${rect.height}px`;
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.globalCompositeOperation = 'source-over';
     paintScratchSurface(ctx, canvas.width, canvas.height);
@@ -124,7 +113,6 @@ export function initDateReveal() {
     revealed = true;
     canvas.classList.add('is-hidden');
     wrap.classList.add('is-revealed');
-    if (hint) hint.textContent = 'See you there!';
   }
 
   function checkReveal() {
@@ -179,7 +167,12 @@ export function initDateReveal() {
   }
 
   sizeCanvas();
-  window.addEventListener('resize', sizeCanvas);
+  if (window.ResizeObserver) {
+    const observer = new ResizeObserver(sizeCanvas);
+    observer.observe(wrap);
+  } else {
+    window.addEventListener('resize', sizeCanvas);
+  }
 
   if (window.PointerEvent) {
     canvas.addEventListener('pointerdown', onStart);
