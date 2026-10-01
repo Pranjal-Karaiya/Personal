@@ -178,7 +178,7 @@ function renderStory() {
       <div class="story__grid">
         <div class="story__text reveal royal-card">
           ${royalCornersHtml()}
-          ${storyCopy.paragraphs.map((p) => \`<p>${p}</p>\`).join('')}
+          ${storyCopy.paragraphs.map((p) => '<p>' + p + '</p>').join('')}
         </div>
       </div>
     </div>
