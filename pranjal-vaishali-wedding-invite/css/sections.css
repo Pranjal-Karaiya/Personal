@@ -778,16 +778,16 @@
 
 .theme-royal-prestige .venue__flourish {
   color: var(--gold);
-  font-size: 1.55rem;
+  font-size: 1.085rem;
   line-height: 1;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.9rem;
 }
 
 .theme-royal-prestige .venue__eyebrow {
   margin: 0;
   color: var(--gold);
   font-family: var(--font-heading);
-  font-size: clamp(1rem, 2.6vw, 1.25rem);
+  font-size: clamp(0.7rem, 1.8vw, 0.875rem);
   letter-spacing: 0.32em;
 }
 
@@ -795,7 +795,7 @@
   margin: 0.3rem 0 0;
   color: var(--text-primary);
   font-family: var(--font-display);
-  font-size: clamp(1.15rem, 3vw, 1.65rem);
+  font-size: clamp(0.805rem, 2.1vw, 1.155rem);
   font-weight: 500;
 }
 
@@ -810,7 +810,7 @@
   margin: 0;
   color: var(--gold);
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 0.665rem;
   letter-spacing: 0.3em;
 }
 
@@ -828,7 +828,7 @@
   margin: 0.5rem 0 2rem;
   color: var(--text-secondary);
   font-family: var(--font-heading);
-  font-size: 0.72rem;
+  font-size: 0.505rem;
   letter-spacing: 0.14em;
 }
 
@@ -841,7 +841,7 @@
   margin-inline: auto;
   color: var(--text-secondary);
   font-family: var(--font-body);
-  font-size: clamp(0.76rem, 1.8vw, 0.86rem);
+  font-size: clamp(0.53rem, 1.25vw, 0.60rem);
   line-height: 1.65;
 }
 
@@ -853,7 +853,7 @@
   flex: 0 0 auto;
   margin-top: 0.45rem;
   color: var(--gold);
-  font-size: 0.8rem;
+  font-size: 0.56rem;
 }
 
 .theme-royal-prestige .venue__actions {
@@ -871,7 +871,7 @@
   background: var(--gold-deep);
   color: var(--ivory);
   font-family: var(--font-heading);
-  font-size: 0.72rem;
+  font-size: 0.505rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   text-decoration: none;
@@ -924,7 +924,7 @@
 }
 
 .theme-royal-prestige #rsvp {
-  padding-top: 0 !important;
+  padding-top: 0.5rem !important;
 }
 
 .theme-royal-prestige #rsvp .royal-card {
