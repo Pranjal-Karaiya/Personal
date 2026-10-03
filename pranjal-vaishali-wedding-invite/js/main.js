@@ -282,11 +282,6 @@ function renderVenue() {
         <h3 class="venue__hotel">${v.name}</h3>
         <p class="venue__city">${v.city}</p>
 
-        <div class="venue__address">
-          <span class="venue__pin" aria-hidden="true">●</span>
-          <p>${v.address}</p>
-        </div>
-
         <div class="venue__actions">${mapBtn}</div>
       </div>
     </div>
