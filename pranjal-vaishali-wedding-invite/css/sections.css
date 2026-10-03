@@ -898,3 +898,20 @@
     text-align: left;
   }
 }
+
+
+/* Compact spacing for the venue-to-gallery-to-celebration flow */
+.theme-royal-prestige #venue,
+.theme-royal-prestige #gallery,
+.theme-royal-prestige #rsvp {
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.theme-royal-prestige #gallery .gallery__grid {
+  margin-top: 1.25rem;
+}
+
+.theme-royal-prestige #rsvp .royal-card {
+  margin-top: 0;
+}
