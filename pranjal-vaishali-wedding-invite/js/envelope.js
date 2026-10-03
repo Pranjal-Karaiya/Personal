@@ -56,7 +56,6 @@ function buildVideoEnvelopeHtml(config) {
       playsinline
       webkit-playsinline
       muted
-      autoplay
       preload="auto"
       disablePictureInPicture
     ></video>
@@ -272,8 +271,12 @@ export function initEnvelope(config, onOpened, onTapToOpen) {
     };
 
     try {
-      video.pause();
-      video.currentTime = 0;
+      // Normally the video is at the beginning because autoplay is disabled.
+      // If an older cached page already started it, keep the current position
+      // instead of restarting the intro when the user taps.
+      if (video.currentTime <= 0.05 && video.paused) {
+        video.currentTime = 0;
+      }
       if (video.seeking) {
         video.addEventListener('seeked', onSeeked);
       } else {
