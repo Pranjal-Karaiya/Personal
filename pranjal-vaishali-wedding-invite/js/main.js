@@ -275,7 +275,7 @@ function renderVenue() {
         ${royalCornersHtml()}
         <div class="venue__flourish" aria-hidden="true">♥</div>
         <p class="venue__eyebrow">LOCATION</p>
-        <h2 class="venue__title">Venue</h2>
+        <h2 class="venue__title">The place where we celebrate it.</h2>
         <div class="venue__rule" aria-hidden="true"></div>
 
         <p class="venue__label">HOTEL</p>
