@@ -214,7 +214,6 @@ export function initEnvelope(config, onOpened, onTapToOpen) {
   function playIntro() {
     if (opened || introStarted || !video) return;
     introStarted = true;
-    onTapToOpen?.();
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) {
