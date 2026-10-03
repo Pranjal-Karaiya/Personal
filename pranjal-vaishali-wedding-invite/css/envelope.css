@@ -324,6 +324,12 @@ body.envelope-active #main-content {
   cursor: default;
 }
 
+.envelope-screen__tap.is-playing .envelope-video-ui {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .envelope-screen__tap .envelope-video-ui {
   transition: opacity 0.5s ease;
 }
