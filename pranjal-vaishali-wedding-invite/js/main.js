@@ -1,15 +1,15 @@
-import { weddingConfig } from './config.js';
-import { events, storyCopy, invitationCopy } from './data.js';
-import { initCountdown } from './countdown.js';
-import { initGallery } from './gallery.js';
-import { initMusicControl } from './music.js';
-import { initShare } from './share.js';
-import { initScrollReveals } from './animations.js';
-import { initBackToTop } from './navigation.js';
-import { initHeroSlideshow, initHeroVideoPaused } from './hero.js';
-import { initEnvelope } from './envelope.js';
-import { initDateReveal } from './date-reveal.js';
-import { mountCinematicContentInStage } from './cinematic-text.js';
+import { weddingConfig } from './config.js?v=20261003-2';
+import { events, storyCopy, invitationCopy } from './data.js?v=20261003-2';
+import { initCountdown } from './countdown.js?v=20261003-2';
+import { initGallery } from './gallery.js?v=20261003-2';
+import { initMusicControl } from './music.js?v=20261003-2';
+import { initShare } from './share.js?v=20261003-2';
+import { initScrollReveals } from './animations.js?v=20261003-2';
+import { initBackToTop } from './navigation.js?v=20261003-2';
+import { initHeroSlideshow, initHeroVideoPaused } from './hero.js?v=20261003-2';
+import { initEnvelope } from './envelope.js?v=20261003-2';
+import { initDateReveal } from './date-reveal.js?v=20261003-2';
+import { mountCinematicContentInStage } from './cinematic-text.js?v=20261003-2';
 
 function el(tag, className, html) {
   const node = document.createElement(tag);
