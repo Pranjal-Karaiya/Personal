@@ -23,10 +23,10 @@ export const weddingConfig = {
     display: 'Bilaspur, Chhattisgarh, India'
   },
   venue: {
-    name: 'VENUE NAME',
-    address: 'VENUE ADDRESS',
+    name: 'Red Diamond',
+    address: 'Hotel Red Diamond, Old Power House, Road, Torwa, Bilaspur, Chhattisgarh 495004',
     city: 'Bilaspur, Chhattisgarh',
-    mapUrl: '',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Hotel%20Red%20Diamond%2C%20Old%20Power%20House%20Road%2C%20Torwa%2C%20Bilaspur%2C%20Chhattisgarh%20495004',
     image: 'assets/images/venue/venue.svg'
   },
   contact: {

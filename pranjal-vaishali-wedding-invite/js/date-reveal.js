@@ -1,4 +1,4 @@
-import { weddingConfig } from './config.js';
+import { weddingConfig } from './config.js?v=20261003-2';
 
 function readScratchColors() {
   const styles = getComputedStyle(document.body);
