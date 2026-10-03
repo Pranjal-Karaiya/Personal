@@ -1,7 +1,7 @@
 import {
   attachCinematicContentToHero,
   showCinematicTextStage,
-} from './cinematic-text.js';
+} from './cinematic-text.js?v=20261003-2';
 
 function getVideoSrc(config) {
   return config.theme?.heroVideo || config.envelope?.video || '';
