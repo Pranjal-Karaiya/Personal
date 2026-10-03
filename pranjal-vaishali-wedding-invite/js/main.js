@@ -265,33 +265,29 @@ function renderVenue() {
   const v = weddingConfig.venue;
   const mapBtn =
     v.mapUrl
-      ? `<a class="btn" href="${v.mapUrl}" target="_blank" rel="noopener noreferrer">View Location</a>`
+      ? `<a class="venue__map-btn" href="${v.mapUrl}" target="_blank" rel="noopener noreferrer">Take Me There <span aria-hidden="true">↗</span></a>`
       : '';
-
-  const nameBlock =
-    v.name && v.name !== 'VENUE NAME'
-      ? `<h3 class="heading-md">${v.name}</h3>`
-      : `<p class="venue__placeholder">Venue name to be announced</p>`;
-  const addressBlock =
-    v.address && v.address !== 'VENUE ADDRESS'
-      ? `<p class="body-muted" style="margin-top:0.75rem">${v.address}</p>`
-      : `<p class="venue__placeholder" style="margin-top:0.75rem">Full address will be shared soon</p>`;
 
   section.className = 'section venue';
   section.innerHTML = `
     <div class="container">
-      <div class="venue__grid reveal">
-        <div class="venue__image">
-          <img src="${v.image}" alt="Venue placeholder — add your venue photo" loading="lazy" width="800" height="500">
+      <div class="venue__card royal-card reveal">
+        ${royalCornersHtml()}
+        <div class="venue__flourish" aria-hidden="true">♥</div>
+        <p class="venue__eyebrow">LOCATION</p>
+        <h2 class="venue__title">Venue</h2>
+        <div class="venue__rule" aria-hidden="true"></div>
+
+        <p class="venue__label">HOTEL</p>
+        <h3 class="venue__hotel">${v.name}</h3>
+        <p class="venue__city">${v.city}</p>
+
+        <div class="venue__address">
+          <span class="venue__pin" aria-hidden="true">●</span>
+          <p>${v.address}</p>
         </div>
-        <div class="royal-card">
-          ${royalCornersHtml()}
-          ${sectionHeader('Location', 'Venue')}
-          ${nameBlock}
-          ${addressBlock}
-          <p class="body-lg" style="margin-top:1rem">${v.city}, ${weddingConfig.location.country}</p>
-          <div class="venue__actions">${mapBtn}</div>
-        </div>
+
+        <div class="venue__actions">${mapBtn}</div>
       </div>
     </div>
   `;
