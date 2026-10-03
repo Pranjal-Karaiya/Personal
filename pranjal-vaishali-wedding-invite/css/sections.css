@@ -769,10 +769,10 @@
 }
 
 .theme-royal-prestige .venue__card {
-  max-width: 720px;
+  max-width: 600px;
   margin-inline: auto;
   text-align: center;
-  padding: clamp(2.5rem, 7vw, 4.5rem) clamp(1.5rem, 6vw, 3.5rem);
+  padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2.25rem);
   background: linear-gradient(145deg, #fcf8f9 0%, var(--bg-card) 100%);
 }
 
@@ -795,7 +795,7 @@
   margin: 0.3rem 0 0;
   color: var(--text-primary);
   font-family: var(--font-display);
-  font-size: clamp(1.45rem, 4vw, 2.1rem);
+  font-size: clamp(1.15rem, 3vw, 1.65rem);
   font-weight: 500;
 }
 
@@ -818,7 +818,7 @@
   margin: 0.35rem 0 0;
   color: var(--text-primary);
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 4vw, 2rem);
+  font-size: clamp(1.15rem, 3vw, 1.65rem);
   font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -828,8 +828,8 @@
   margin: 0.5rem 0 2rem;
   color: var(--text-secondary);
   font-family: var(--font-heading);
-  font-size: 0.82rem;
-  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
 }
 
 .theme-royal-prestige .venue__address {
@@ -837,11 +837,11 @@
   align-items: flex-start;
   justify-content: center;
   gap: 0.75rem;
-  max-width: 520px;
+  max-width: 420px;
   margin-inline: auto;
   color: var(--text-secondary);
   font-family: var(--font-body);
-  font-size: clamp(0.82rem, 2vw, 0.92rem);
+  font-size: clamp(0.76rem, 1.8vw, 0.86rem);
   line-height: 1.65;
 }
 
@@ -865,14 +865,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: min(230px, 78%);
-  padding: 0.68rem 1.15rem;
+  min-width: min(190px, 68%);
+  padding: 0.55rem 0.9rem;
   border-radius: 999px;
   background: var(--gold-deep);
   color: var(--ivory);
   font-family: var(--font-heading);
-  font-size: 0.82rem;
-  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   text-decoration: none;
   box-shadow: 0 8px 18px var(--shadow);
