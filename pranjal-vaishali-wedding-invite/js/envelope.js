@@ -56,26 +56,17 @@ function buildVideoEnvelopeHtml(config) {
       playsinline
       webkit-playsinline
       muted
+      autoplay
       preload="auto"
       disablePictureInPicture
     ></video>
     <div class="envelope-screen__shade" aria-hidden="true"></div>
-    <button type="button" class="envelope-screen__tap" id="envelope-tap" aria-label="Tap to play invitation video"></button>
+    <button type="button" class="envelope-screen__tap" id="envelope-tap" aria-label="Tap to open wedding invitation">
+      <span class="envelope-video-ui" aria-hidden="true">
+        <span class="envelope-video-ui__seal-text">Tap to open</span>
+      </span>
+    </button>
   `;
-}
-
-function primeVideoFrame(video) {
-  if (!video) return;
-  const seek = () => {
-    try {
-      video.currentTime = 0.01;
-    } catch {
-      /* ignore */
-    }
-    video.pause();
-  };
-  if (video.readyState >= 2) seek();
-  else video.addEventListener('loadeddata', seek, { once: true });
 }
 
 export function initEnvelope(config, onOpened, onTapToOpen) {
@@ -292,7 +283,9 @@ export function initEnvelope(config, onOpened, onTapToOpen) {
     }
   }
 
-  primeVideoFrame(video);
+  video?.addEventListener('error', () => {
+    tapTarget?.classList.remove('is-playing');
+  });
 
   tapTarget?.addEventListener('click', (e) => {
     e.stopPropagation();
