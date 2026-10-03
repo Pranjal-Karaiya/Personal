@@ -3,7 +3,6 @@ import { events, storyCopy, invitationCopy } from './data.js?v=20261003-2';
 import { initCountdown } from './countdown.js?v=20261003-2';
 import { initGallery } from './gallery.js?v=20261003-2';
 import { initMusicControl } from './music.js?v=20261003-2';
-import { initShare } from './share.js?v=20261003-2';
 import { initScrollReveals } from './animations.js?v=20261003-2';
 import { initBackToTop } from './navigation.js?v=20261003-2';
 import { initHeroSlideshow, initHeroVideoPaused } from './hero.js?v=20261003-2';
@@ -358,7 +357,6 @@ function renderFooter() {
 
 async function initControls() {
   const musicBtn = document.getElementById('music-control');
-  const shareBtn = document.getElementById('share-control');
   const toast = document.getElementById('toast');
   const backTop = document.getElementById('back-to-top');
 
@@ -366,12 +364,6 @@ async function initControls() {
   if (musicBtn) {
     musicBtn.innerHTML = '<img src="assets/icons/music.svg" alt="" width="22" height="22">';
     musicController = await initMusicControl(musicBtn, weddingConfig);
-  }
-
-  if (shareBtn) {
-    shareBtn.innerHTML = '<img src="assets/icons/share.svg" alt="" width="22" height="22">';
-    shareBtn.setAttribute('aria-label', 'Share invitation');
-    initShare(shareBtn, weddingConfig, toast);
   }
 
   if (backTop) {
