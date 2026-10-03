@@ -254,7 +254,24 @@ export function initEnvelope(config, onOpened, onTapToOpen) {
 
     const beginFromStart = () => {
       if (syncHtmlToVideo) startRevealWatchers();
-      video.play().catch(() => handoff());
+
+      // Start the video first while the tap gesture is still active.
+      // Safari can reject video.play() if another media element consumes
+      // the transient user activation first.
+      const playPromise = video.play();
+
+      if (playPromise && typeof playPromise.then === 'function') {
+        playPromise
+          .then(() => {
+            onTapToOpen?.();
+          })
+          .catch(() => {
+            introStarted = false;
+            tapTarget?.classList.remove('is-playing');
+          });
+      } else {
+        onTapToOpen?.();
+      }
     };
 
     const onSeeked = () => {
