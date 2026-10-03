@@ -778,7 +778,7 @@
 
 .theme-royal-prestige .venue__flourish {
   color: var(--gold);
-  font-size: 1.085rem;
+  font-size: 1.3rem;
   line-height: 1;
   margin-bottom: 0.9rem;
 }
@@ -787,7 +787,7 @@
   margin: 0;
   color: var(--gold);
   font-family: var(--font-heading);
-  font-size: clamp(0.7rem, 1.8vw, 0.875rem);
+  font-size: clamp(0.85rem, 2.1vw, 1rem);
   letter-spacing: 0.32em;
 }
 
@@ -795,7 +795,7 @@
   margin: 0.3rem 0 0;
   color: var(--text-primary);
   font-family: var(--font-display);
-  font-size: clamp(0.805rem, 2.1vw, 1.155rem);
+  font-size: clamp(1rem, 2.7vw, 1.45rem);
   font-weight: 500;
 }
 
@@ -810,12 +810,12 @@
   margin: 0;
   color: var(--gold);
   font-family: var(--font-heading);
-  font-size: 0.665rem;
+  font-size: 0.82rem;
   letter-spacing: 0.3em;
 }
 
 .theme-royal-prestige .venue__hotel {
-  margin: 0.35rem 0 0;
+  margin: 0.15rem 0 0;
   color: var(--text-primary);
   font-family: var(--font-display);
   font-size: clamp(1.15rem, 3vw, 1.65rem);
@@ -825,10 +825,10 @@
 }
 
 .theme-royal-prestige .venue__city {
-  margin: 0.5rem 0 2rem;
+  margin: 0.25rem 0 1.25rem;
   color: var(--text-secondary);
   font-family: var(--font-heading);
-  font-size: 0.505rem;
+  font-size: 0.65rem;
   letter-spacing: 0.14em;
 }
 
@@ -841,7 +841,7 @@
   margin-inline: auto;
   color: var(--text-secondary);
   font-family: var(--font-body);
-  font-size: clamp(0.53rem, 1.25vw, 0.60rem);
+  font-size: clamp(0.78rem, 1.8vw, 0.9rem);
   line-height: 1.65;
 }
 
@@ -908,7 +908,7 @@
 }
 
 .theme-royal-prestige #venue {
-  padding-bottom: 0 !important;
+  padding-bottom: 1rem !important;
 }
 
 .theme-royal-prestige #gallery {
