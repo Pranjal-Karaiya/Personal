@@ -904,12 +904,27 @@
 .theme-royal-prestige #venue,
 .theme-royal-prestige #gallery,
 .theme-royal-prestige #rsvp {
-  padding-top: clamp(1rem, 2.5vw, 1.75rem);
-  padding-bottom: clamp(1rem, 2.5vw, 1.75rem);
+  padding-block: 0.5rem !important;
+}
+
+.theme-royal-prestige #venue {
+  padding-bottom: 0 !important;
+}
+
+.theme-royal-prestige #gallery {
+  padding-top: 0 !important;
+}
+
+.theme-royal-prestige #gallery .royal-section-head {
+  margin-bottom: 1rem;
 }
 
 .theme-royal-prestige #gallery .gallery__grid {
-  margin-top: 0.65rem;
+  margin-top: 0.5rem;
+}
+
+.theme-royal-prestige #rsvp {
+  padding-top: 0 !important;
 }
 
 .theme-royal-prestige #rsvp .royal-card {
