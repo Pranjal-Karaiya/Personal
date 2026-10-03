@@ -230,6 +230,7 @@ export function initEnvelope(config, onOpened, onTapToOpen) {
     }
 
     tapTarget?.classList.add('is-playing');
+    tapTarget?.querySelector('.envelope-video-ui')?.classList.add('is-hidden');
     video.muted = true;
     video.playsInline = true;
 
