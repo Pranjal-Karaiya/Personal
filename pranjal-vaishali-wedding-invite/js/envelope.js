@@ -259,6 +259,17 @@ export function initEnvelope(config, onOpened, onTapToOpen) {
     tapTarget?.classList.remove('is-playing');
   });
 
+  // iOS WebKit is more reliable when playback is initiated directly from
+  // the touch event. Keep click as the desktop/accessibility fallback.
+  tapTarget?.addEventListener(
+    'touchend',
+    (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      playIntro();
+    },
+    { passive: false }
+  );
   tapTarget?.addEventListener('click', (e) => {
     e.stopPropagation();
     playIntro();
