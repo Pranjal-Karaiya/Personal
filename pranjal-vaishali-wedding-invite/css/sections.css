@@ -857,3 +857,193 @@
 .theme-royal-prestige #rsvp .royal-card {
   margin-top: 0;
 }
+
+
+/* Wedding Events — reference-inspired editorial layout */
+.events {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5efe4;
+  color: #5b3036;
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.events .container {
+  width: min(100% - 2rem, 980px);
+}
+
+.events .royal-section-head {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.events .royal-flourish {
+  color: #b92d45;
+  font-size: 1.35rem;
+  margin-bottom: .65rem;
+}
+
+.events .eyebrow {
+  color: #b92d45;
+  letter-spacing: .34em;
+  font-size: .8rem;
+}
+
+.events .royal-title {
+  color: #4b2027;
+  font-size: clamp(2.25rem, 5vw, 3.35rem);
+  letter-spacing: .04em;
+}
+
+.events .royal-title-line {
+  width: min(190px, 45%);
+  margin-top: 1.25rem;
+  background: linear-gradient(90deg, transparent, #e3b8a7, transparent);
+}
+
+.events__visual-timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-block: .5rem;
+}
+
+.events__visual-timeline::before {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent 0%, #d2a04a 5%, #d2a04a 95%, transparent 100%);
+}
+
+.event-item,
+.event-item--reverse {
+  grid-template-columns: minmax(0, 1fr) 58px minmax(0, 1fr);
+  min-height: 285px;
+  margin-bottom: 1.25rem;
+}
+
+.event-item__copy {
+  padding: .75rem clamp(1rem, 3vw, 2.25rem);
+}
+
+.event-item--reverse .event-item__copy {
+  padding-left: clamp(1rem, 3vw, 2.25rem);
+  padding-right: clamp(1rem, 3vw, 2.25rem);
+}
+
+.event-item__art {
+  padding: .5rem clamp(.5rem, 2vw, 1.25rem);
+}
+
+.event-item__art img {
+  width: min(100%, 285px);
+  max-width: 285px;
+  max-height: 235px;
+  object-fit: contain;
+  margin: 0 auto;
+  mix-blend-mode: multiply;
+  filter: saturate(.92);
+}
+
+.event-item__node {
+  width: 48px;
+  height: 48px;
+  border-color: #dda944;
+  background: #fffaf0;
+  color: #c58a28;
+  box-shadow: 0 2px 8px rgba(126, 82, 20, .08);
+}
+
+.event-item__node span {
+  font-size: 1.15rem;
+}
+
+.event-item__date {
+  color: #b72b43;
+  font-size: clamp(.64rem, 1.25vw, .78rem);
+  letter-spacing: .28em;
+}
+
+.event-item__title {
+  color: #6b3d2b;
+  font-size: clamp(1.45rem, 2.8vw, 2.15rem);
+  line-height: 1.08;
+}
+
+.event-item__time {
+  color: #b78228;
+  font-size: clamp(.82rem, 1.7vw, 1rem);
+  letter-spacing: .18em;
+}
+
+.event-item__rule {
+  width: 92px;
+  margin-top: .7rem;
+  margin-bottom: .75rem;
+}
+
+.event-item__desc {
+  max-width: 250px;
+  color: #79575b;
+  font-size: clamp(.74rem, 1.45vw, .9rem);
+  line-height: 1.45;
+}
+
+@media (max-width: 620px) {
+  .events {
+    padding-block: 3rem 4rem;
+  }
+
+  .events .container {
+    width: min(100% - 1.25rem, 560px);
+  }
+
+  .events .royal-title {
+    font-size: clamp(2rem, 9vw, 2.65rem);
+  }
+
+  .events__visual-timeline::before {
+    left: 1rem;
+  }
+
+  .event-item,
+  .event-item--reverse {
+    grid-template-columns: 42px minmax(0, 1fr);
+    min-height: 0;
+    margin-bottom: 2.5rem;
+  }
+
+  .event-item__node,
+  .event-item--reverse .event-item__node {
+    width: 40px;
+    height: 40px;
+  }
+
+  .event-item__copy,
+  .event-item--reverse .event-item__copy {
+    padding: 0 .25rem .25rem 1rem;
+    text-align: left;
+  }
+
+  .event-item__art,
+  .event-item--reverse .event-item__art {
+    grid-column: 2;
+    grid-row: 2;
+    padding: .5rem 0 0 .75rem;
+  }
+
+  .event-item__art img {
+    width: min(100%, 250px);
+    max-width: 250px;
+    max-height: 210px;
+  }
+
+  .event-item__title {
+    font-size: clamp(1.4rem, 7vw, 2rem);
+  }
+
+  .event-item__desc,
+  .event-item--reverse .event-item__desc {
+    max-width: 280px;
+  }
+}
