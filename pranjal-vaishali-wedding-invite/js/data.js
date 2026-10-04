@@ -1,14 +1,9 @@
 export const events = [
-  { date: '14 February 2027', session: 'Morning', title: 'Haldi', guests: null, description: 'A joyful morning of turmeric and blessings.', image: 'assets/images/events/haldi.svg' },
-  { date: '14 February 2027', session: 'Lunch', title: 'Lunch', guests: 150, description: 'A shared meal with family and friends.', image: 'assets/images/events/haldi.svg' },
-  { date: '14 February 2027', session: 'Evening', title: 'Hi-Tea', guests: null, description: 'Light refreshments and warm conversation.', image: 'assets/images/events/mehendi.svg' },
-  { date: '14 February 2027', session: 'Evening / Night', title: 'Ring Ceremony + Sangeet', guests: null, description: 'Music, dance, and the exchange of rings.', image: 'assets/images/events/sangeet.svg' },
-  { date: '14 February 2027', session: 'Dinner', title: 'Dinner', guests: 200, description: 'An evening feast to celebrate together.', image: 'assets/images/events/sangeet.svg' },
-  { date: '15 February 2027', session: 'Morning', title: 'Breakfast', guests: 200, description: 'Start the wedding day with a hearty breakfast.', image: 'assets/images/events/wedding.svg' },
-  { date: '15 February 2027', session: 'Afternoon', title: 'Lunch', guests: 150, description: 'Midday refreshments for our guests.', image: 'assets/images/events/wedding.svg' },
-  { date: '15 February 2027', session: 'Afternoon', title: 'Hi-Tea', guests: 200, description: 'Afternoon tea before the evening celebrations.', image: 'assets/images/events/reception.svg' },
-  { date: '15 February 2027', session: 'Evening / Night', title: 'Reception', guests: '250–300', description: 'An elegant reception to honour our union.', image: 'assets/images/events/reception.svg' },
-  { date: '16 February 2027', session: '12:00 PM', title: 'Checkout', guests: null, description: 'Safe travels and heartfelt thanks.', image: 'assets/images/events/reception.svg' }
+  { date: '14 February 2027', time: '7:30 PM', title: 'Ring Ceremony + Sangeet', description: 'A promise, followed by an evening of music, dance and celebration.', image: 'assets/images/events/ring-sangeet.svg', icon: '♪' },
+  { date: '15 February 2027', time: '10:00 AM', title: 'Haldi', description: 'Wrapped in sunshine, blessings and new beginnings.', image: 'assets/images/events/haldi.svg', icon: '✦' },
+  { date: '15 February 2027', time: '7:30 PM', title: 'Barat', description: 'The groom arrives with music, lights and celebration.', image: 'assets/images/events/barat.svg', icon: '♞' },
+  { date: '15 February 2027', time: '8:00 PM', title: 'Reception + Varmala', description: 'Two souls, one beautiful journey.', image: 'assets/images/events/reception-varmala.svg', icon: '◯' },
+  { date: '16 February 2027', time: '4:00 PM', title: 'Shaadi', description: 'Seven vows, a lifetime together.', image: 'assets/images/events/shaadi.svg', icon: '♨' }
 ];
 
 export const storyCopy = {
