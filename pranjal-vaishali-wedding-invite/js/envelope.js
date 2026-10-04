@@ -217,11 +217,6 @@ export function initEnvelope(config, onOpened, onTapToOpen) {
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) {
-      try {
-        video.currentTime = video.duration ? video.duration - 0.05 : 0;
-      } catch {
-        /* ignore */
-      }
       showCinematicTextStage({ instant: true });
       handoff();
       return;
@@ -230,59 +225,31 @@ export function initEnvelope(config, onOpened, onTapToOpen) {
     tapTarget?.classList.add('is-playing');
     tapTarget?.querySelector('.envelope-video-ui')?.classList.add('is-hidden');
     video.muted = true;
+    video.defaultMuted = true;
     video.playsInline = true;
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+
+    const syncHtmlToVideo = config.theme?.heroHtmlSyncedToVideo !== false;
+    if (syncHtmlToVideo) startRevealWatchers();
 
     video.addEventListener(
       'ended',
-      () => {
-        handoff();
-      },
+      () => handoff(),
       { once: true }
     );
 
-    const syncHtmlToVideo = config.theme?.heroHtmlSyncedToVideo !== false;
+    // Keep the iOS tap gesture exclusively for the video. Do not seek,
+    // pause, or start another media element before calling play().
+    const playPromise = video.play();
 
-    const beginFromStart = () => {
-      if (syncHtmlToVideo) startRevealWatchers();
-
-      // Start the video first while the tap gesture is still active.
-      // Safari can reject video.play() if another media element consumes
-      // the transient user activation first.
-      const playPromise = video.play();
-
-      if (playPromise && typeof playPromise.then === 'function') {
-        playPromise
-          .then(() => {
-            onTapToOpen?.();
-          })
-          .catch(() => {
-            introStarted = false;
-            tapTarget?.classList.remove('is-playing');
-          });
-      } else {
-        onTapToOpen?.();
-      }
-    };
-
-    const onSeeked = () => {
-      video.removeEventListener('seeked', onSeeked);
-      beginFromStart();
-    };
-
-    try {
-      // Normally the video is at the beginning because autoplay is disabled.
-      // If an older cached page already started it, keep the current position
-      // instead of restarting the intro when the user taps.
-      if (video.currentTime <= 0.05 && video.paused) {
-        video.currentTime = 0;
-      }
-      if (video.seeking) {
-        video.addEventListener('seeked', onSeeked);
-      } else {
-        beginFromStart();
-      }
-    } catch {
-      beginFromStart();
+    if (playPromise && typeof playPromise.then === 'function') {
+      playPromise.catch(() => {
+        introStarted = false;
+        stopWatchers();
+        tapTarget?.classList.remove('is-playing');
+        tapTarget?.querySelector('.envelope-video-ui')?.classList.remove('is-hidden');
+      });
     }
   }
 
