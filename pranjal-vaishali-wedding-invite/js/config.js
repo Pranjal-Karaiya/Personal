@@ -49,7 +49,7 @@ export const weddingConfig = {
   },
   theme: {
     id: 'royal-prestige',
-    heroVideo: 'assets/video/royal-prestige.mp4',
+    heroVideo: 'assets/video/Generated Video.mp4',
     /**
      * Seconds from intro play start before HTML copy begins its reveal.
      * The small delay keeps the text aligned with the video timing.
