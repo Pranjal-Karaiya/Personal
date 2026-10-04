@@ -241,6 +241,10 @@ export function initEnvelope(config, onOpened, onTapToOpen) {
     // pause, or start another media element before calling play().
     const playPromise = video.play();
 
+    // Use the same tap gesture for both media elements. Video gets the
+    // gesture first, then background audio is requested immediately.
+    onTapToOpen?.();
+
     if (playPromise && typeof playPromise.then === 'function') {
       playPromise.catch(() => {
         introStarted = false;
