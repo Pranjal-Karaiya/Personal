@@ -213,6 +213,12 @@ export function initEnvelope(config, onOpened, onTapToOpen) {
     if (opened || introStarted || !video) return;
     introStarted = true;
 
+    // Both media elements are started directly from the same user gesture.
+    // This is the cross-browser-safe path for audible audio: desktop browsers,
+    // Android browsers, and iOS WebKit all permit media playback when it is
+    // initiated by an explicit tap/click.
+    onTapToOpen?.();
+
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) {
       showCinematicTextStage({ instant: true });
@@ -236,11 +242,6 @@ export function initEnvelope(config, onOpened, onTapToOpen) {
       () => handoff(),
       { once: true }
     );
-
-    // Use the same user gesture to start the background song as well.
-    // Safari/iOS blocks audible autoplay on a fresh page load, so this is
-    // the earliest reliable point at which the song can start with sound.
-    onTapToOpen?.();
 
     const playPromise = video.play();
 
