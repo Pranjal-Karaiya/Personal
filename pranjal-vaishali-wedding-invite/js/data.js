@@ -1,5 +1,5 @@
 export const events = [
-  { date: '14 February 2027', time: '7:30 PM', title: 'Ring Ceremony + Sangeet', description: 'A promise, followed by an evening of music, dance and celebration.', image: 'assets/images/events/ring-sangeet.svg', icon: '♪' },
+  { date: '14 February 2027', time: '7:30 PM', title: 'Ring Ceremony + Sangeet', description: 'A promise, followed by an evening of music, dance and celebration.', image: 'assets/images/events/Ornate Ring Ceremony Sangeet Still Life.png', icon: '♪' },
   { date: '15 February 2027', time: '10:00 AM', title: 'Haldi', description: 'Wrapped in sunshine, blessings and new beginnings.', image: 'assets/images/events/haldi.svg', icon: '✦' },
   { date: '15 February 2027', time: '7:30 PM', title: 'Barat', description: 'The groom arrives with music, lights and celebration.', image: 'assets/images/events/barat.svg', icon: '♞' },
   { date: '15 February 2027', time: '8:00 PM', title: 'Reception + Varmala', description: 'Two souls, one beautiful journey.', image: 'assets/images/events/reception-varmala.svg', icon: '◯' },
