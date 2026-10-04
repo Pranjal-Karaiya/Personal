@@ -61,9 +61,7 @@ function buildVideoEnvelopeHtml(config) {
     ></video>
     <div class="envelope-screen__shade" aria-hidden="true"></div>
     <button type="button" class="envelope-screen__tap" id="envelope-tap" aria-label="Tap to open wedding invitation">
-      <span class="envelope-video-ui" aria-hidden="true">
-        <span class="envelope-video-ui__seal-text">Tap to open</span>
-      </span>
+      <span class="envelope-video-ui" aria-hidden="true"></span>
     </button>
   `;
 }
