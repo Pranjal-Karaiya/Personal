@@ -1,5 +1,3 @@
-const STORAGE_KEY = 'pv-wedding-music-muted';
-
 export async function initMusicControl(button, config) {
   if (!button || !config.music?.enabled || !config.music?.source) {
     button?.remove();
@@ -10,6 +8,7 @@ export async function initMusicControl(button, config) {
   audio.loop = true;
   audio.preload = 'auto';
   audio.src = config.music.source;
+  audio.muted = false;
 
   const labelMuted = 'Unmute background music';
   const labelPlaying = 'Mute background music';
@@ -23,10 +22,13 @@ export async function initMusicControl(button, config) {
   }
 
   async function startMusic() {
+    audio.muted = false;
     try {
       await audio.play();
+      setMuted(false);
       return true;
     } catch {
+      setMuted(false);
       return false;
     }
   }
@@ -35,37 +37,17 @@ export async function initMusicControl(button, config) {
     event.stopPropagation();
 
     if (audio.paused) {
-      audio.muted = false;
-      const started = await startMusic();
-
-      if (started) {
-        localStorage.setItem(STORAGE_KEY, '0');
-        setMuted(false);
-      }
-
+      await startMusic();
       return;
     }
 
-    const muted = !audio.muted;
-    setMuted(muted);
-    localStorage.setItem(STORAGE_KEY, muted ? '1' : '0');
+    setMuted(!audio.muted);
   });
 
-  // Start unmuted by default. Preserve an explicit mute choice from
-  // a previous visit.
-  const initiallyMuted = localStorage.getItem(STORAGE_KEY) === '1';
-  setMuted(initiallyMuted);
-  audio.muted = initiallyMuted;
-
-  if (!initiallyMuted) {
-    const started = await startMusic();
-
-    // Safari may block audible autoplay. The visible control remains
-    // ready so the first tap can start the song audibly.
-    if (!started) {
-      setMuted(false);
-    }
-  }
+  // Always start every new visit unmuted.
+  // The user's mute click only affects the current visit.
+  setMuted(false);
+  await startMusic();
 
   return {
     async startAfterInteraction() {
@@ -74,26 +56,15 @@ export async function initMusicControl(button, config) {
     },
 
     async startFromUserGesture() {
-      audio.muted = false;
-      const started = await startMusic();
-
-      if (started) {
-        localStorage.setItem(STORAGE_KEY, '0');
-        setMuted(false);
-      }
-
-      return started;
+      return startMusic();
     },
 
     setMuted(muted) {
       setMuted(muted);
-      localStorage.setItem(STORAGE_KEY, muted ? '1' : '0');
     },
 
     pause() {
       audio.pause();
-      setMuted(true);
-      localStorage.setItem(STORAGE_KEY, '1');
     }
   };
 }
