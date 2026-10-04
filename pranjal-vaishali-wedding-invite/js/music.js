@@ -10,7 +10,6 @@ export async function initMusicControl(button, config) {
   audio.loop = true;
   audio.preload = 'auto';
   audio.src = config.music.source;
-  audio.muted = true;
 
   const labelMuted = 'Unmute background music';
   const labelPlaying = 'Mute background music';
@@ -38,13 +37,12 @@ export async function initMusicControl(button, config) {
     if (audio.paused) {
       audio.muted = false;
       const started = await startMusic();
+
       if (started) {
         localStorage.setItem(STORAGE_KEY, '0');
         setMuted(false);
-      } else {
-        audio.muted = true;
-        setMuted(true);
       }
+
       return;
     }
 
@@ -53,35 +51,49 @@ export async function initMusicControl(button, config) {
     localStorage.setItem(STORAGE_KEY, muted ? '1' : '0');
   });
 
-  setMuted(true);
+  // Start unmuted by default. Preserve an explicit mute choice from
+  // a previous visit.
+  const initiallyMuted = localStorage.getItem(STORAGE_KEY) === '1';
+  setMuted(initiallyMuted);
+  audio.muted = initiallyMuted;
 
-  // Start the song immediately, but muted. Safari/WebKit permits muted
-  // media autoplay without a user gesture. The visible control can unmute
-  // it independently of the intro video's click gesture.
-  await startMusic();
+  if (!initiallyMuted) {
+    const started = await startMusic();
+
+    // Safari may block audible autoplay. The visible control remains
+    // ready so the first tap can start the song audibly.
+    if (!started) {
+      setMuted(false);
+    }
+  }
 
   return {
     async startAfterInteraction() {
+      if (!audio.paused) return true;
       return startMusic();
     },
 
     async startFromUserGesture() {
       audio.muted = false;
       const started = await startMusic();
+
       if (started) {
         localStorage.setItem(STORAGE_KEY, '0');
         setMuted(false);
       }
+
       return started;
     },
 
     setMuted(muted) {
       setMuted(muted);
+      localStorage.setItem(STORAGE_KEY, muted ? '1' : '0');
     },
 
     pause() {
       audio.pause();
       setMuted(true);
+      localStorage.setItem(STORAGE_KEY, '1');
     }
   };
 }
