@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'pv-wedding-music-playing';
+const STORAGE_KEY = 'pv-wedding-music-muted';
 
 export async function initMusicControl(button, config) {
   if (!button || !config.music?.enabled || !config.music?.source) {
@@ -10,56 +10,78 @@ export async function initMusicControl(button, config) {
   audio.loop = true;
   audio.preload = 'auto';
   audio.src = config.music.source;
+  audio.muted = true;
 
-  const labelOn = 'Pause background music';
-  const labelOff = 'Play background music';
+  const labelMuted = 'Unmute background music';
+  const labelPlaying = 'Mute background music';
 
-  function setPlaying(playing) {
-    button.setAttribute('aria-pressed', playing ? 'true' : 'false');
-    button.setAttribute('aria-label', playing ? labelOn : labelOff);
-    button.classList.toggle('is-playing', playing);
+  function setMuted(muted) {
+    audio.muted = muted;
+    button.setAttribute('aria-pressed', muted ? 'false' : 'true');
+    button.setAttribute('aria-label', muted ? labelMuted : labelPlaying);
+    button.classList.toggle('is-muted', muted);
+    button.classList.toggle('is-playing', !muted);
   }
 
   async function startMusic() {
     try {
-      audio.volume = 1;
       await audio.play();
-      localStorage.setItem(STORAGE_KEY, '1');
-      setPlaying(true);
       return true;
     } catch {
-      setPlaying(false);
       return false;
     }
   }
 
-  button.addEventListener('click', async () => {
+  button.addEventListener('click', async (event) => {
+    event.stopPropagation();
+
     if (audio.paused) {
-      await startMusic();
-    } else {
-      audio.pause();
-      localStorage.setItem(STORAGE_KEY, '0');
-      setPlaying(false);
+      audio.muted = false;
+      const started = await startMusic();
+      if (started) {
+        localStorage.setItem(STORAGE_KEY, '0');
+        setMuted(false);
+      } else {
+        audio.muted = true;
+        setMuted(true);
+      }
+      return;
     }
+
+    const muted = !audio.muted;
+    setMuted(muted);
+    localStorage.setItem(STORAGE_KEY, muted ? '1' : '0');
   });
 
-  setPlaying(false);
+  setMuted(true);
+
+  // Start the song immediately, but muted. Safari/WebKit permits muted
+  // media autoplay without a user gesture. The visible control can unmute
+  // it independently of the intro video's click gesture.
+  await startMusic();
 
   return {
     async startAfterInteraction() {
-      if (localStorage.getItem(STORAGE_KEY) === '0') return false;
       return startMusic();
     },
 
-    // Explicit user gesture: always start music, regardless of the
-    // previous music-control preference stored in localStorage.
     async startFromUserGesture() {
-      return startMusic();
+      audio.muted = false;
+      const started = await startMusic();
+      if (started) {
+        localStorage.setItem(STORAGE_KEY, '0');
+        setMuted(false);
+      }
+      return started;
+    },
+
+    setMuted(muted) {
+      setMuted(muted);
     },
 
     pause() {
       audio.pause();
-      setPlaying(false);
+      setMuted(true);
     }
   };
 }
