@@ -12,7 +12,7 @@
 #events.events .event-item--reverse .event-item__copy { grid-column:3!important; grid-row:1!important; padding:.75rem 1rem .75rem 2rem!important; text-align:left!important; }
 #events.events .event-item__art { grid-column:3!important; grid-row:1!important; display:flex!important; align-items:center!important; justify-content:center!important; padding:.25rem 1rem!important; }
 #events.events .event-item--reverse .event-item__art { grid-column:1!important; grid-row:1!important; }
-#events.events .event-item__art img { display:block!important; width:286px!important; max-width:286px!important; height:221px!important; max-height:221px!important; object-fit:contain!important; margin:0 auto!important; mix-blend-mode:multiply!important; filter:saturate(.92)!important; }
+#events.events .event-item__art img { display:block!important; width:343px!important; max-width:343px!important; height:265px!important; max-height:265px!important; object-fit:contain!important; margin:0 auto!important; mix-blend-mode:multiply!important; filter:saturate(.92)!important; }
 /* Baraat is the third timeline event: 30% larger than the standard illustration. */
 #events.events .event-item:nth-child(3) .event-item__art img { width:343px!important; max-width:343px!important; height:265px!important; max-height:265px!important; transform:none!important; }
 #events.events .event-item__node { grid-column:2!important; grid-row:1!important; z-index:3!important; width:44px!important; height:44px!important; margin:auto!important; display:grid!important; place-items:center!important; box-sizing:border-box!important; border:1px solid #d7a447!important; border-radius:50%!important; background:#fffaf0!important; color:#bd8425!important; box-shadow:0 2px 8px rgba(126,82,20,.08)!important; }
@@ -38,7 +38,7 @@
  #events.events .event-item__art { grid-column:3!important; grid-row:1!important; display:flex!important; align-items:center!important; justify-content:center!important; padding:.25rem .25rem .25rem .65rem!important; }
  #events.events .event-item--reverse .event-item__copy { grid-column:3!important; grid-row:1!important; padding:.35rem .35rem .35rem .65rem!important; text-align:left!important; }
  #events.events .event-item--reverse .event-item__art { grid-column:1!important; grid-row:1!important; padding:.25rem .65rem .25rem .25rem!important; }
- #events.events .event-item__art img { width:120px!important; max-width:120px!important; height:99px!important; max-height:99px!important; object-fit:contain!important; }
+ #events.events .event-item__art img { width:144px!important; max-width:144px!important; height:119px!important; max-height:119px!important; object-fit:contain!important; }
  /* Baraat is 30% larger than the standard mobile illustration. */
  #events.events .event-item:nth-child(3) .event-item__art img { width:144px!important; max-width:144px!important; height:119px!important; max-height:119px!important; transform:none!important; }
  #events.events .event-item__date { font-size:.54rem!important; letter-spacing:.13em!important; line-height:1.45!important; }
@@ -51,7 +51,7 @@
 }
 @media (max-width:380px) {
  #events.events .event-item,#events.events .event-item.event-item--reverse { grid-template-columns:minmax(0,1fr) 26px minmax(0,1fr)!important; grid-template-rows:minmax(135px,auto)!important; min-height:135px!important; }
- #events.events .event-item__art img { width:99px!important; max-width:99px!important; height:83px!important; max-height:83px!important; }
+ #events.events .event-item__art img { width:119px!important; max-width:119px!important; height:100px!important; max-height:100px!important; }
  /* Baraat is 30% larger than the standard compact-mobile illustration. */
  #events.events .event-item:nth-child(3) .event-item__art img { width:119px!important; max-width:119px!important; height:100px!important; max-height:100px!important; }
  #events.events .event-item__node,#events.events .event-item--reverse .event-item__node { width:8px!important; height:8px!important; }
