@@ -1,5 +1,5 @@
 import { weddingConfig } from './config.js?v=20261003-2';
-import { events, storyCopy, invitationCopy } from './data.js?v=20261003-2';
+import { events, storyCopy, invitationCopy } from './data.js?v=20261004-1';
 import { initCountdown } from './countdown.js?v=20261003-2';
 import { initGallery } from './gallery.js?v=20261003-2';
 import { initMusicControl } from './music.js?v=20261003-2';
@@ -194,42 +194,28 @@ function renderStory() {
   `;
 }
 
-function groupEventsByDate(list) {
-  return list.reduce((acc, item) => {
-    if (!acc[item.date]) acc[item.date] = [];
-    acc[item.date].push(item);
-    return acc;
-  }, {});
-}
-
 function renderEvents() {
   const section = document.getElementById('events');
   if (!section) return;
 
-  const grouped = groupEventsByDate(events);
-  const timeline = el('div', 'events__timeline');
-
-  Object.entries(grouped).forEach(([date, items]) => {
-    timeline.appendChild(el('h3', 'events__day-title reveal', date));
-    items.forEach((ev) => {
-      const guests =
-        ev.guests != null
-          ? `<p class="event-card__guests">Guests: ${ev.guests}</p>`
-          : '';
-      const card = el(
-        'article',
-        'event-card reveal',
-        `
-        <p class="event-card__date">${ev.date}</p>
-        <p class="event-card__session">${ev.session}</p>
-        <h3 class="event-card__title">${ev.title}</h3>
-        <p class="event-card__desc">${ev.description}</p>
-        ${guests}
-      `
-      );
-      timeline.appendChild(card);
-    });
-  });
+  const timeline = el('div', 'events__visual-timeline');
+  timeline.innerHTML = events
+    .map((ev, index) => `
+      <article class="event-item ${index % 2 ? 'event-item--reverse' : ''} reveal">
+        <div class="event-item__copy">
+          <p class="event-item__date">${ev.date}</p>
+          <h3 class="event-item__title">${ev.title}</h3>
+          <p class="event-item__time">${ev.time}</p>
+          <div class="event-item__rule" aria-hidden="true"></div>
+          <p class="event-item__desc">${ev.description}</p>
+        </div>
+        <div class="event-item__node" aria-hidden="true"><span>${ev.icon}</span></div>
+        <div class="event-item__art">
+          <img src="${ev.image}" alt="" loading="lazy" width="800" height="560">
+        </div>
+      </article>
+    `)
+    .join('');
 
   section.className = 'section events';
   section.innerHTML = `<div class="container">${sectionHeader('Celebrations', 'Wedding Events')}</div>`;
