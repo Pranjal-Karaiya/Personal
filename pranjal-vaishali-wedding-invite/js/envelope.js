@@ -237,11 +237,14 @@ export function initEnvelope(config, onOpened, onTapToOpen) {
       { once: true }
     );
 
-    // Keep the iOS tap gesture exclusively for the video. Do not seek,
-    // pause, or start another media element before calling play().
+    // Use the same user gesture to start the background song as well.
+    // Safari/iOS blocks audible autoplay on a fresh page load, so this is
+    // the earliest reliable point at which the song can start with sound.
+    onTapToOpen?.();
+
     const playPromise = video.play();
 
-    // Background music is started independently in a muted state.
+    // The video and background song remain independent media elements.
     // Do not start a second media element from the video gesture.
     if (playPromise && typeof playPromise.then === 'function') {
       playPromise.catch(() => {
