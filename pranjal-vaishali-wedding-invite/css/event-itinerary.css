@@ -287,3 +287,12 @@
     height: clamp(11rem, 43vw, 14rem) !important;
   }
 }
+
+
+/* Shared scratch surface colors — keep the canvas-painted coating in the same wedding palette. */
+body.theme-royal-prestige {
+  --scratch-heart-center: #eadfcd;
+  --scratch-heart-edge: #d9c7a8;
+  --scratch-heart-deep: #b9914f;
+  --scratch-sparkle: 255, 248, 232;
+}
