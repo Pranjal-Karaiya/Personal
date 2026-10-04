@@ -58,3 +58,87 @@
  #events.events .event-item__title { font-size:.95rem!important; }
  #events.events .event-item__desc { font-size:.6rem!important; }
 }
+
+
+/* Invitation — carry the Wedding Events ivory / burgundy / antique-gold theme */
+#invitation.invitation {
+  background: #f5efe4 !important;
+  color: #5b3036 !important;
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0 !important;
+  text-align: center !important;
+}
+
+#invitation.invitation .container {
+  width: min(calc(100% - 2rem), 980px) !important;
+  margin-inline: auto !important;
+}
+
+#invitation.invitation .royal-section-head {
+  margin-bottom: clamp(2rem, 4vw, 3rem) !important;
+}
+
+#invitation.invitation .royal-flourish,
+#invitation.invitation .eyebrow {
+  color: #b72b43 !important;
+}
+
+#invitation.invitation .royal-title {
+  color: #4b2027 !important;
+  font-size: clamp(2.1rem, 5vw, 3.2rem) !important;
+  letter-spacing: .04em !important;
+}
+
+#invitation.invitation .royal-title-line {
+  width: min(190px, 45%) !important;
+  margin: 1rem auto 0 !important;
+  background: linear-gradient(90deg, transparent, #d9a5a0, transparent) !important;
+}
+
+#invitation.invitation .royal-card {
+  max-width: 760px !important;
+  margin-inline: auto !important;
+  padding: clamp(2.5rem, 7vw, 4.5rem) clamp(1.5rem, 6vw, 4rem) !important;
+  border: 1px solid #d1a04a !important;
+  background: #fcf8f0 !important;
+  box-shadow: 0 12px 30px rgba(91, 48, 54, .07) !important;
+}
+
+#invitation.invitation .royal-card__corner {
+  opacity: .55 !important;
+}
+
+#invitation.invitation .invitation__poem {
+  max-width: 600px !important;
+  color: #6b3d2b !important;
+  font-family: var(--font-heading) !important;
+  font-size: clamp(1rem, 2.4vw, 1.25rem) !important;
+  line-height: 1.85 !important;
+  letter-spacing: .025em !important;
+}
+
+#invitation.invitation .invitation__poem p {
+  margin-bottom: .2rem !important;
+}
+
+#invitation.invitation .invitation__poem p:nth-last-child(-n+3) {
+  color: #79575b !important;
+}
+
+@media (max-width: 767px) {
+  #invitation.invitation {
+    padding: 3rem 0 3.5rem !important;
+  }
+
+  #invitation.invitation .royal-title {
+    font-size: clamp(1.9rem, 8vw, 2.5rem) !important;
+  }
+
+  #invitation.invitation .royal-card {
+    padding: 2.5rem 1.35rem !important;
+  }
+
+  #invitation.invitation .invitation__poem {
+    font-size: .95rem !important;
+    line-height: 1.8 !important;
+  }
+}
