@@ -6,7 +6,7 @@ import { initMusicControl } from './music.js?v=20261004-6';
 import { initScrollReveals } from './animations.js?v=20261003-2';
 import { initBackToTop } from './navigation.js?v=20261003-2';
 import { initHeroSlideshow, initHeroVideoPaused } from './hero.js?v=20261003-2';
-import { initEnvelope } from './envelope.js?v=20261004-1';
+import { initEnvelope } from './envelope.js?v=20261004-2';
 import { initDateReveal } from './date-reveal.js?v=20261003-2';
 import { mountCinematicContentInStage } from './cinematic-text.js?v=20261003-2';
 
