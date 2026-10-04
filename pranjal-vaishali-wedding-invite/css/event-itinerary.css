@@ -142,3 +142,148 @@
     line-height: 1.8 !important;
   }
 }
+
+
+/* Countdown — same ivory, burgundy and antique-gold wedding palette */
+#countdown.countdown {
+  background: #f5efe4 !important;
+  color: #5b3036 !important;
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0 !important;
+}
+
+#countdown.countdown .royal-flourish,
+#countdown.countdown .eyebrow {
+  color: #b72b43 !important;
+}
+
+#countdown.countdown .royal-title {
+  color: #4b2027 !important;
+  font-size: clamp(2.1rem, 5vw, 3.2rem) !important;
+  letter-spacing: .04em !important;
+}
+
+#countdown.countdown .royal-title-line {
+  background: linear-gradient(90deg, transparent, #d9a5a0, transparent) !important;
+}
+
+#countdown.countdown .countdown__grid {
+  max-width: 760px !important;
+  margin: 2rem auto 0 !important;
+  gap: .6rem !important;
+}
+
+#countdown.countdown .countdown__unit {
+  position: relative !important;
+  padding: 1.1rem .5rem !important;
+  border: 1px solid #d1a04a !important;
+  background: #fcf8f0 !important;
+  box-shadow: 0 8px 22px rgba(91, 48, 54, .055) !important;
+}
+
+#countdown.countdown .countdown__unit::after {
+  inset: 5px !important;
+  border: 1px solid rgba(183, 45, 67, .12) !important;
+}
+
+#countdown.countdown .countdown__value {
+  color: #6b3d2b !important;
+  font-family: var(--font-display) !important;
+  font-weight: 500 !important;
+}
+
+#countdown.countdown .countdown__label {
+  color: #79575b !important;
+  font-family: var(--font-heading) !important;
+  letter-spacing: .14em !important;
+}
+
+#countdown.countdown .countdown__passed {
+  color: #b78228 !important;
+}
+
+/* Scratch card — convert the dark/blush panel into the same ivory wedding palette */
+#date-reveal.date-reveal {
+  background: #f5efe4 !important;
+  color: #5b3036 !important;
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0 !important;
+}
+
+#date-reveal.date-reveal .date-reveal__panel {
+  max-width: 760px !important;
+  margin-inline: auto !important;
+  padding: 0 !important;
+}
+
+#date-reveal.date-reveal .date-reveal__scratch-title {
+  color: #4b2027 !important;
+  font-family: var(--font-display) !important;
+  font-size: clamp(2rem, 5vw, 3rem) !important;
+  letter-spacing: .04em !important;
+}
+
+#date-reveal.date-reveal .date-reveal__divider-line {
+  background: linear-gradient(90deg, transparent, #d9a5a0, transparent) !important;
+}
+
+#date-reveal.date-reveal .date-reveal__divider-heart {
+  color: #b72b43 !important;
+}
+
+#date-reveal.date-reveal .date-reveal__canvas-wrap {
+  max-width: 760px !important;
+  height: clamp(12rem, 34vw, 18rem) !important;
+  margin-inline: auto !important;
+  border: 1px solid #d1a04a !important;
+  border-radius: 0 !important;
+  background: #fcf8f0 !important;
+  box-shadow: 0 12px 30px rgba(91, 48, 54, .07) !important;
+}
+
+#date-reveal.date-reveal .date-reveal__content {
+  background: #fcf8f0 !important;
+  border-radius: 0 !important;
+  border: 1px solid rgba(217, 165, 160, .35) !important;
+}
+
+#date-reveal.date-reveal .date-reveal__invited {
+  color: #6b3d2b !important;
+  font-family: var(--font-heading) !important;
+  letter-spacing: .08em !important;
+}
+
+#date-reveal.date-reveal .date-reveal__day {
+  color: #b72b43 !important;
+}
+
+#date-reveal.date-reveal .date-reveal__month {
+  color: #4b2027 !important;
+}
+
+#date-reveal.date-reveal .date-reveal__hint {
+  color: #79575b !important;
+}
+
+#date-reveal.date-reveal .date-reveal__calendar-btn {
+  background: #6b3d2b !important;
+  color: #fcf8f0 !important;
+  box-shadow: 0 8px 18px rgba(91, 48, 54, .14) !important;
+}
+
+@media (max-width: 767px) {
+  #countdown.countdown,
+  #date-reveal.date-reveal {
+    padding: 3rem 0 3.5rem !important;
+  }
+
+  #countdown.countdown .countdown__grid {
+    gap: .35rem !important;
+  }
+
+  #countdown.countdown .countdown__unit {
+    padding: .85rem .2rem !important;
+  }
+
+  #date-reveal.date-reveal .date-reveal__canvas-wrap {
+    height: clamp(11rem, 43vw, 14rem) !important;
+  }
+}
