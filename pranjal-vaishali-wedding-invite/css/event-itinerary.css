@@ -296,3 +296,172 @@ body.theme-royal-prestige {
   --scratch-heart-deep: #b9914f;
   --scratch-sparkle: 255, 248, 232;
 }
+
+
+/* Remaining sections — extend the Wedding Events ivory / burgundy / antique-gold system. */
+#story.story,
+#gallery.gallery,
+#rsvp.rsvp {
+  background: #f5efe4 !important;
+  color: #5b3036 !important;
+}
+
+#story.story .royal-flourish,
+#story.story .eyebrow,
+#gallery.gallery .royal-flourish,
+#gallery.gallery .eyebrow,
+#rsvp.rsvp .royal-flourish,
+#rsvp.rsvp .eyebrow {
+  color: #b72b43 !important;
+}
+
+#story.story .royal-title,
+#gallery.gallery .royal-title,
+#rsvp.rsvp .royal-title {
+  color: #4b2027 !important;
+  letter-spacing: .04em !important;
+}
+
+#story.story .royal-title-line,
+#gallery.gallery .royal-title-line,
+#rsvp.rsvp .royal-title-line {
+  background: linear-gradient(90deg, transparent, #d9a5a0, transparent) !important;
+}
+
+#story.story .royal-card,
+#rsvp.rsvp .royal-card {
+  background: #fcf8f0 !important;
+  border: 1px solid #d1a04a !important;
+  color: #6b3d2b !important;
+  box-shadow: 0 12px 30px rgba(91, 48, 54, .07) !important;
+}
+
+#story.story .royal-card__corner,
+#rsvp.rsvp .royal-card__corner {
+  opacity: .55 !important;
+}
+
+#story.story .story__text,
+#story.story .story__text p {
+  color: #6b3d2b !important;
+}
+
+#story.story .story__image img {
+  border: 1px solid rgba(193, 138, 40, .5) !important;
+  box-shadow: 0 10px 24px rgba(91, 48, 54, .08) !important;
+}
+
+#gallery.gallery .gallery__item {
+  border: 1px solid #d1a04a !important;
+  background: #fcf8f0 !important;
+  box-shadow: 0 10px 24px rgba(91, 48, 54, .07) !important;
+}
+
+#gallery.gallery .gallery__item::after {
+  background: linear-gradient(180deg, transparent 45%, rgba(75, 32, 39, .28)) !important;
+}
+
+#venue.venue {
+  background: #f5efe4 !important;
+  color: #5b3036 !important;
+}
+
+#venue.venue .venue__card {
+  background: #fcf8f0 !important;
+  border: 1px solid #d1a04a !important;
+  color: #6b3d2b !important;
+  box-shadow: 0 12px 30px rgba(91, 48, 54, .07) !important;
+}
+
+#venue.venue .venue__flourish {
+  color: #b72b43 !important;
+}
+
+#venue.venue .venue__eyebrow,
+#venue.venue .venue__label {
+  color: #b72b43 !important;
+}
+
+#venue.venue .venue__title {
+  color: #4b2027 !important;
+}
+
+#venue.venue .venue__hotel {
+  color: #6b3d2b !important;
+}
+
+#venue.venue .venue__city {
+  color: #79575b !important;
+}
+
+#venue.venue .venue__rule {
+  background: linear-gradient(90deg, transparent, #d9a5a0, transparent) !important;
+}
+
+#venue.venue .venue__map-btn {
+  background: #6b3d2b !important;
+  color: #fcf8f0 !important;
+  border-color: #6b3d2b !important;
+  box-shadow: 0 8px 18px rgba(91, 48, 54, .14) !important;
+}
+
+#rsvp.rsvp .body-lg {
+  color: #6b3d2b !important;
+}
+
+#rsvp.rsvp .rsvp__actions .btn {
+  border-color: #d1a04a !important;
+  color: #6b3d2b !important;
+  background: #fcf8f0 !important;
+}
+
+#rsvp.rsvp .rsvp__actions .btn.btn--primary {
+  background: #6b3d2b !important;
+  color: #fcf8f0 !important;
+}
+
+#rsvp.rsvp .rsvp__actions .btn:hover {
+  background: #4b2027 !important;
+  color: #fcf8f0 !important;
+  border-color: #4b2027 !important;
+}
+
+.theme-royal-prestige .site-footer {
+  background: #4b2027 !important;
+  color: #fcf8f0 !important;
+  border-top: 1px solid #d1a04a !important;
+}
+
+.theme-royal-prestige .site-footer__closing {
+  color: #fcf8f0 !important;
+}
+
+.theme-royal-prestige .site-footer__sign {
+  color: #d9a5a0 !important;
+}
+
+.theme-royal-prestige .site-footer__copy {
+  color: #d9c7a8 !important;
+}
+
+.theme-royal-prestige .floating-btn {
+  background: #fcf8f0 !important;
+  color: #6b3d2b !important;
+  border-color: #d1a04a !important;
+  box-shadow: 0 8px 20px rgba(75, 32, 39, .14) !important;
+}
+
+@media (max-width: 767px) {
+  #story.story,
+  #gallery.gallery,
+  #venue.venue,
+  #rsvp.rsvp {
+    padding: 3rem 0 3.5rem !important;
+  }
+
+  #story.story .royal-card,
+  #rsvp.rsvp .royal-card,
+  #venue.venue .venue__card {
+    border-color: #d1a04a !important;
+  }
+}
