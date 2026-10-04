@@ -91,6 +91,11 @@
   grid-row: 1 !important;
 }
 
+#events.events .event-item:nth-child(3) .event-item__art img {
+  transform: scale(1.2) !important;
+  transform-origin: center !important;
+}
+
 #events.events .event-item__art img {
   display: block !important;
   width: 220px !important;
