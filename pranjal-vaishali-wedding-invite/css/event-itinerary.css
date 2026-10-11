@@ -1,68 +1,278 @@
-/* Event itinerary layout only. Colors inherit the active Royal Prestige theme from variables.css. */
+/* Wedding Events — reference timeline layout.
+ * Keeps the existing event data intact while presenting only the four
+ * principal wedding moments shown in the approved reference.
+ */
 #events.events {
   width: 100% !important;
   min-height: 100vh !important;
   box-sizing: border-box !important;
-  padding: clamp(3rem, 6vw, 5rem) 0 !important;
-  background: var(--bg-primary) !important;
-  color: var(--text-secondary) !important;
+  padding: clamp(3rem, 6vw, 5rem) 0 4rem !important;
+  background: #f8f1e9 !important;
+  color: #6f4b4c !important;
 }
-#events.events .container { width: min(calc(100% - 2rem), 980px) !important; margin-inline: auto !important; }
-#events.events .royal-section-head { margin-bottom: clamp(2rem, 4vw, 3.25rem) !important; }
-#events.events .royal-flourish,
-#events.events .eyebrow { color: var(--gold) !important; }
-#events.events .royal-title { color: var(--text-primary) !important; font-size: clamp(2.1rem, 5vw, 3.2rem) !important; }
-#events.events .royal-title-line { width: 180px !important; margin: 1rem auto 0 !important; background: linear-gradient(90deg, transparent, var(--gold-light), transparent) !important; }
-#events.events .events__visual-timeline { position: relative !important; width: 100% !important; max-width: 900px !important; margin: 0 auto !important; padding: 0 !important; }
-#events.events .events__visual-timeline::before { content: '' !important; position: absolute !important; top: 0 !important; bottom: 0 !important; left: 50% !important; width: 1px !important; transform: translateX(-50%) !important; background: var(--gold-light) !important; }
-#events.events .event-item,
-#events.events .event-item.event-item--reverse { position: relative !important; display: grid !important; grid-template-columns: minmax(0,1fr) 54px minmax(0,1fr) !important; grid-template-rows: 1fr !important; align-items: center !important; min-height: 240px !important; margin: 0 0 1.1rem !important; }
-#events.events .event-item__copy { grid-column: 1 !important; grid-row: 1 !important; padding: .75rem 2rem .75rem 1rem !important; text-align: right !important; }
-#events.events .event-item--reverse .event-item__copy { grid-column: 3 !important; grid-row: 1 !important; padding: .75rem 1rem .75rem 2rem !important; text-align: left !important; }
-#events.events .event-item__art { grid-column: 3 !important; grid-row: 1 !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: .25rem 1rem !important; }
-#events.events .event-item--reverse .event-item__art { grid-column: 1 !important; grid-row: 1 !important; }
-#events.events .event-item__art img { display: block !important; width: 343px !important; max-width: 343px !important; height: 265px !important; max-height: 265px !important; object-fit: contain !important; margin: 0 auto !important; mix-blend-mode: multiply !important; filter: saturate(.92) !important; }
-#events.events .event-item__node { grid-column: 2 !important; grid-row: 1 !important; z-index: 3 !important; width: 44px !important; height: 44px !important; margin: auto !important; display: grid !important; place-items: center !important; box-sizing: border-box !important; border: 1px solid var(--gold-light) !important; border-radius: 50% !important; background: var(--bg-secondary) !important; color: var(--gold) !important; box-shadow: 0 2px 8px var(--shadow) !important; }
-#events.events .event-item__node span { font-family: Georgia, serif !important; font-size: 1.05rem !important; line-height: 1 !important; }
-#events.events .event-item__date { margin: 0 !important; color: var(--gold) !important; font-size: .7rem !important; letter-spacing: .25em !important; text-transform: uppercase !important; }
-#events.events .event-item__title { margin: .4rem 0 0 !important; color: var(--text-primary) !important; font-size: clamp(1.35rem, 2.7vw, 2rem) !important; line-height: 1.08 !important; letter-spacing: .02em !important; text-transform: uppercase !important; }
-#events.events .event-item__time { margin: .65rem 0 0 !important; color: var(--gold-light) !important; font-size: .92rem !important; letter-spacing: .16em !important; font-weight: 600 !important; }
-#events.events .event-item__rule { width: 82px !important; height: 1px !important; margin: .65rem 0 .7rem auto !important; background: linear-gradient(90deg, transparent, var(--gold-light)) !important; }
-#events.events .event-item--reverse .event-item__rule { margin-left: 0 !important; margin-right: auto !important; background: linear-gradient(90deg, var(--gold-light), transparent) !important; }
-#events.events .event-item__desc { max-width: 240px !important; margin: 0 0 0 auto !important; color: var(--text-secondary) !important; font-size: .82rem !important; line-height: 1.45 !important; }
-#events.events .event-item--reverse .event-item__desc { margin-left: 0 !important; margin-right: auto !important; }
+
+#events.events .container {
+  width: min(calc(100% - 2rem), 980px) !important;
+  margin-inline: auto !important;
+}
+
+#events.events .royal-section-head {
+  margin-bottom: clamp(3rem, 6vw, 4.5rem) !important;
+}
+
+#events.events .royal-flourish {
+  color: #b92d48 !important;
+  font-size: 1.65rem !important;
+  margin-bottom: .7rem !important;
+}
+
+#events.events .eyebrow {
+  color: #b92d48 !important;
+  letter-spacing: .42em !important;
+}
+
+#events.events .royal-title {
+  color: #4b2027 !important;
+  font-size: clamp(2.35rem, 5vw, 3.35rem) !important;
+  letter-spacing: .01em !important;
+}
+
+#events.events .royal-title-line {
+  width: 190px !important;
+  height: 1px !important;
+  margin: 1.25rem auto 0 !important;
+  background: linear-gradient(90deg, transparent, #e4b8bb, transparent) !important;
+}
+
+/* Hide the old grouped-card presentation. */
+#events.events .events__day-title,
+#events.events .event-card { display: none !important; }
+
+#events.events .events__timeline {
+  position: relative !important;
+  width: min(100%, 900px) !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+
+/* The old DOM contains 10 cards. The reference intentionally presents
+   Ring Ceremony + Sangeet, Haldi, Barat and Reception + Varmala only. */
+#events.events .events__timeline .event-card:nth-of-type(4),
+#events.events .events__timeline .event-card:nth-of-type(1),
+#events.events .events__timeline .event-card:nth-of-type(6),
+#events.events .events__timeline .event-card:nth-of-type(9) {
+  display: grid !important;
+}
+
+#events.events .events__timeline {
+  counter-reset: wedding-event;
+}
+
+#events.events .events__timeline .event-card {
+  position: relative !important;
+  width: 100% !important;
+  min-height: 300px !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 1.25rem 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  grid-template-columns: minmax(0,1fr) 44px minmax(0,1fr) !important;
+  align-items: center !important;
+  order: 99 !important;
+}
+
+/* DOM nth-of-type counts h3 day headings too, so target cards by their
+   actual card position using these selectors. */
+#events.events .events__timeline .event-card:nth-of-type(4) { order: 1 !important; }
+#events.events .events__timeline .event-card:nth-of-type(1) { order: 2 !important; }
+#events.events .events__timeline .event-card:nth-of-type(6) { order: 3 !important; }
+#events.events .events__timeline .event-card:nth-of-type(9) { order: 4 !important; }
+
+/* Centre gold timeline. */
+#events.events .events__timeline::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  width: 1px !important;
+  transform: translateX(-50%) !important;
+  background: #cfa44f !important;
+  z-index: 0 !important;
+}
+
+#events.events .events__timeline .event-card::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 15px !important;
+  height: 15px !important;
+  transform: translate(-50%, -50%) !important;
+  border-radius: 50% !important;
+  background: #cfa44f !important;
+  box-shadow: 0 0 0 5px #f8f1e9 !important;
+  z-index: 4 !important;
+}
+
+/* Every card gets an artwork on the side opposite its text. */
+#events.events .events__timeline .event-card::before {
+  content: '' !important;
+  grid-row: 1 !important;
+  width: min(88%, 330px) !important;
+  height: 235px !important;
+  justify-self: center !important;
+  align-self: center !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  z-index: 1 !important;
+}
+
+#events.events .events__timeline .event-card:nth-of-type(4)::before {
+  grid-column: 3 !important;
+  background-image: url('../assets/images/events/sangeet.svg') !important;
+}
+#events.events .events__timeline .event-card:nth-of-type(1)::before {
+  grid-column: 1 !important;
+  background-image: url('../assets/images/events/haldi.svg') !important;
+}
+#events.events .events__timeline .event-card:nth-of-type(6)::before {
+  grid-column: 3 !important;
+  background-image: url('../assets/images/events/wedding.svg') !important;
+}
+#events.events .events__timeline .event-card:nth-of-type(9)::before {
+  grid-column: 1 !important;
+  background-image: url('../assets/images/events/reception.svg') !important;
+}
+
+#events.events .events__timeline .event-card__date,
+#events.events .events__timeline .event-card__session,
+#events.events .events__timeline .event-card__title,
+#events.events .events__timeline .event-card__desc,
+#events.events .events__timeline .event-card__guests {
+  grid-column: 1 !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+#events.events .events__timeline .event-card:nth-of-type(4) > *,
+#events.events .events__timeline .event-card:nth-of-type(6) > * {
+  grid-column: 1 !important;
+}
+
+#events.events .events__timeline .event-card:nth-of-type(1) > *,
+#events.events .events__timeline .event-card:nth-of-type(9) > * {
+  grid-column: 3 !important;
+}
+
+#events.events .events__timeline .event-card__date {
+  align-self: end !important;
+  margin: 0 0 .35rem !important;
+  color: #9d5360 !important;
+  font-family: Georgia, 'Times New Roman', serif !important;
+  font-size: .72rem !important;
+  letter-spacing: .25em !important;
+  text-transform: uppercase !important;
+}
+
+#events.events .events__timeline .event-card__session {
+  margin: 0 0 .45rem !important;
+  color: #9b7850 !important;
+  font-size: .85rem !important;
+  letter-spacing: .16em !important;
+  text-transform: uppercase !important;
+}
+
+#events.events .events__timeline .event-card__title {
+  margin: 0 !important;
+  color: #6a4545 !important;
+  font-family: Georgia, 'Times New Roman', serif !important;
+  font-size: clamp(1.35rem, 3vw, 2rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: .04em !important;
+  text-transform: uppercase !important;
+}
+
+#events.events .events__timeline .event-card__desc {
+  max-width: 290px !important;
+  margin: .85rem 0 0 !important;
+  color: #795d5d !important;
+  font-family: Georgia, 'Times New Roman', serif !important;
+  font-size: .9rem !important;
+  line-height: 1.45 !important;
+}
+
+#events.events .events__timeline .event-card__guests { display: none !important; }
+
+/* Replace the data-only meal entries with the exact names/times from the
+   approved reference without changing the underlying event data. */
+#events.events .events__timeline .event-card:nth-of-type(4) .event-card__date::after,
+#events.events .events__timeline .event-card:nth-of-type(1) .event-card__date::after,
+#events.events .events__timeline .event-card:nth-of-type(6) .event-card__date::after,
+#events.events .events__timeline .event-card:nth-of-type(9) .event-card__date::after {
+  content: '';
+}
+
+#events.events .events__timeline .event-card:nth-of-type(4) .event-card__session,
+#events.events .events__timeline .event-card:nth-of-type(1) .event-card__session,
+#events.events .events__timeline .event-card:nth-of-type(6) .event-card__session,
+#events.events .events__timeline .event-card:nth-of-type(9) .event-card__session {
+  font-size: 0 !important;
+}
+#events.events .events__timeline .event-card:nth-of-type(4) .event-card__session::after { content: '7:30 PM'; font-size: .85rem; }
+#events.events .events__timeline .event-card:nth-of-type(1) .event-card__session::after { content: '10:00 AM'; font-size: .85rem; }
+#events.events .events__timeline .event-card:nth-of-type(6) .event-card__session::after { content: '7:30 PM'; font-size: .85rem; }
+#events.events .events__timeline .event-card:nth-of-type(9) .event-card__session::after { content: '8:00 PM'; font-size: .85rem; }
+
+#events.events .events__timeline .event-card:nth-of-type(6) .event-card__title { font-size: 0 !important; }
+#events.events .events__timeline .event-card:nth-of-type(6) .event-card__title::after {
+  content: 'BARAT';
+  font-size: clamp(1.35rem, 3vw, 2rem);
+}
+#events.events .events__timeline .event-card:nth-of-type(9) .event-card__title { font-size: 0 !important; }
+#events.events .events__timeline .event-card:nth-of-type(9) .event-card__title::after {
+  content: 'RECEPTION + VARMALA';
+  font-size: clamp(1.35rem, 3vw, 2rem);
+}
+#events.events .events__timeline .event-card:nth-of-type(4) .event-card__desc { font-size: 0 !important; }
+#events.events .events__timeline .event-card:nth-of-type(4) .event-card__desc::after { content: 'A promise, followed by an evening of music, dance and celebration.'; font-size: .9rem; }
+#events.events .events__timeline .event-card:nth-of-type(1) .event-card__desc { font-size: 0 !important; }
+#events.events .events__timeline .event-card:nth-of-type(1) .event-card__desc::after { content: 'Wrapped in sunshine, blessings and new beginnings.'; font-size: .9rem; }
+#events.events .events__timeline .event-card:nth-of-type(6) .event-card__desc { font-size: 0 !important; }
+#events.events .events__timeline .event-card:nth-of-type(6) .event-card__desc::after { content: 'The groom arrives with music, lights and celebration.'; font-size: .9rem; }
+#events.events .events__timeline .event-card:nth-of-type(9) .event-card__desc { font-size: 0 !important; }
+#events.events .events__timeline .event-card:nth-of-type(9) .event-card__desc::after { content: 'Two souls, one beautiful journey.'; font-size: .9rem; }
+
 @media (max-width: 767px) {
-  #events.events { padding: 2.5rem 0 3.5rem !important; }
-  #events.events .container { width: min(calc(100% - 1rem), 620px) !important; max-width: none !important; }
-  #events.events .royal-section-head { margin-bottom: 2rem !important; }
-  #events.events .royal-title { font-size: clamp(1.9rem, 8vw, 2.5rem) !important; }
-  #events.events .events__visual-timeline { width: 100% !important; max-width: none !important; }
-  #events.events .events__visual-timeline::before { left: 50% !important; right: auto !important; top: 0 !important; bottom: 0 !important; width: 1px !important; transform: translateX(-50%) !important; background: var(--gold-light) !important; }
-  #events.events .event-item,
-  #events.events .event-item.event-item--reverse { grid-template-columns: minmax(0,1fr) 30px minmax(0,1fr) !important; grid-template-rows: minmax(150px,auto) !important; min-height: 150px !important; height: auto !important; margin: 0 0 .9rem !important; align-items: center !important; }
-  #events.events .event-item__node,
-  #events.events .event-item--reverse .event-item__node { grid-column: 2 !important; grid-row: 1 !important; width: 9px !important; height: 9px !important; margin: auto !important; padding: 0 !important; border: 0 !important; border-radius: 50% !important; background: var(--gold) !important; box-shadow: 0 0 0 3px var(--bg-primary) !important; display: block !important; z-index: 4 !important; }
-  #events.events .event-item__node span { display: none !important; }
-  #events.events .event-item__copy { grid-column: 1 !important; grid-row: 1 !important; padding: .35rem .65rem .35rem .35rem !important; text-align: right !important; }
-  #events.events .event-item__art { grid-column: 3 !important; grid-row: 1 !important; display: flex !important; align-items: center !important; justify-content: center !important; padding: .25rem .25rem .25rem .65rem !important; }
-  #events.events .event-item--reverse .event-item__copy { grid-column: 3 !important; grid-row: 1 !important; padding: .35rem .35rem .35rem .65rem !important; text-align: left !important; }
-  #events.events .event-item--reverse .event-item__art { grid-column: 1 !important; grid-row: 1 !important; padding: .25rem .65rem .25rem .25rem !important; }
-  #events.events .event-item__art img { width: 144px !important; max-width: 144px !important; height: 119px !important; max-height: 119px !important; object-fit: contain !important; }
-  #events.events .event-item__date { font-size: .54rem !important; letter-spacing: .13em !important; line-height: 1.45 !important; }
-  #events.events .event-item__title { font-size: clamp(.98rem, 5vw, 1.3rem) !important; line-height: 1.06 !important; letter-spacing: .012em !important; }
-  #events.events .event-item__time { margin-top: .38rem !important; font-size: .68rem !important; letter-spacing: .11em !important; }
-  #events.events .event-item__rule,
-  #events.events .event-item--reverse .event-item__rule { width: 52px !important; margin: .38rem 0 .42rem auto !important; }
-  #events.events .event-item--reverse .event-item__rule { margin-left: 0 !important; margin-right: auto !important; }
-  #events.events .event-item__desc { max-width: 180px !important; margin: 0 0 0 auto !important; font-size: .66rem !important; line-height: 1.3 !important; }
-  #events.events .event-item--reverse .event-item__desc { margin-left: 0 !important; margin-right: auto !important; }
-}
-@media (max-width: 380px) {
-  #events.events .event-item,
-  #events.events .event-item.event-item--reverse { grid-template-columns: minmax(0,1fr) 26px minmax(0,1fr) !important; grid-template-rows: minmax(135px,auto) !important; min-height: 135px !important; }
-  #events.events .event-item__art img { width: 119px !important; max-width: 119px !important; height: 100px !important; max-height: 100px !important; }
-  #events.events .event-item__node,
-  #events.events .event-item--reverse .event-item__node { width: 8px !important; height: 8px !important; }
-  #events.events .event-item__title { font-size: .95rem !important; }
-  #events.events .event-item__desc { font-size: .6rem !important; }
+  #events.events { padding: 2.75rem 0 3rem !important; }
+  #events.events .container { width: min(calc(100% - 1rem), 620px) !important; }
+  #events.events .royal-section-head { margin-bottom: 2.5rem !important; }
+  #events.events .royal-title { font-size: clamp(2rem, 8vw, 2.65rem) !important; }
+  #events.events .events__timeline .event-card {
+    min-height: 255px !important;
+    grid-template-columns: minmax(0,1fr) 28px minmax(0,1fr) !important;
+    padding: .5rem 0 !important;
+  }
+  #events.events .events__timeline .event-card::before {
+    width: 100% !important;
+    height: 170px !important;
+  }
+  #events.events .events__timeline .event-card::after {
+    width: 14px !important;
+    height: 14px !important;
+    box-shadow: 0 0 0 4px #f8f1e9 !important;
+  }
+  #events.events .events__timeline .event-card__date { font-size: .56rem !important; letter-spacing: .14em !important; }
+  #events.events .events__timeline .event-card__session { margin-bottom: .3rem !important; letter-spacing: .11em !important; }
+  #events.events .events__timeline .event-card__title { font-size: 1.15rem !important; line-height: 1.08 !important; }
+  #events.events .events__timeline .event-card__desc { max-width: 155px !important; font-size: .68rem !important; line-height: 1.35 !important; margin-top: .65rem !important; }
+  #events.events .events__timeline .event-card:nth-of-type(6) .event-card__title::after,
+  #events.events .events__timeline .event-card:nth-of-type(9) .event-card__title::after { font-size: 1.15rem !important; }
 }
