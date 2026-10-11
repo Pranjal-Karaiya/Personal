@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="css/royal-prestige.css">
     <link rel="stylesheet" href="css/envelope.css">
     <link rel="stylesheet" href="css/countdown-frames.css">
+    <link rel="stylesheet" href="css/event-itinerary.css?v=20261011-restore">
     <link rel="stylesheet" href="css/cinematic-text.css">
   </head>
   <body class="theme-royal-prestige">
@@ -59,4 +60,31 @@
       <button type="button" class="lightbox__nav lightbox__nav--next" aria-label="Next image">&#8250;</button>
     </div>
 
-    <script>\n      (() => {\n        const screen = document.getElementById("envelope-screen");\n        if (!screen || screen.children.length) return;\n        screen.classList.add("envelope-screen--video");\n        const video = document.createElement("video");\n        video.className = "envelope-screen__video";\n        video.src = "assets/video/royal-prestige.mp4";\n        video.muted = true;\n        video.playsInline = true;\n        video.setAttribute("playsinline", "");\n        video.setAttribute("webkit-playsinline", "");\n        video.preload = "auto";\n        const tap = document.createElement("button");\n        tap.type = "button";\n        tap.className = "envelope-screen__tap";\n        tap.setAttribute("aria-label", "Tap to play invitation video");\n        tap.addEventListener("click", () => {\n          video.play().catch(() => {});\n          tap.classList.add("is-playing");\n        }, { once: true });\n        screen.append(video, tap);\n      })();\n    </script>\n    <script type="module" src="js/main.js?v=20261003-2"></script>\n  </body>\n</html>\n
+    <script>
+      (() => {
+        const screen = document.getElementById("envelope-screen");
+        if (!screen || screen.children.length) return;
+        screen.classList.add("envelope-screen--video");
+        const video = document.createElement("video");
+        video.className = "envelope-screen__video";
+        video.src = "assets/video/royal-prestige.mp4";
+        video.muted = true;
+        video.playsInline = true;
+        video.setAttribute("playsinline", "");
+        video.setAttribute("webkit-playsinline", "");
+        video.preload = "auto";
+        const tap = document.createElement("button");
+        tap.type = "button";
+        tap.className = "envelope-screen__tap";
+        tap.setAttribute("aria-label", "Tap to play invitation video");
+        tap.addEventListener("click", () => {
+          video.play().catch(() => {});
+          tap.classList.add("is-playing");
+        }, { once: true });
+        screen.append(video, tap);
+      })();
+    </script>
+    <script type="module" src="js/main.js?v=20261003-2"></script>
+    <script type="module" src="js/event-itinerary-restore.js?v=20261011-1"></script>
+  </body>
+</html>
