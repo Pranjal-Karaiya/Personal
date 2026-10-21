@@ -48,3 +48,13 @@ body.theme-royal-prestige #invitation.invitation::after{
   background:var(--bg-primary)!important;
   background-image:none!important;
 }
+
+/* Scratch-to-reveal: use the same solid blush theme as the invitation; remove the dark-to-light section gradient. */
+body.theme-royal-prestige #date-reveal.date-reveal,
+body.theme-royal-prestige #date-reveal.date-reveal::before,
+body.theme-royal-prestige #date-reveal.date-reveal::after{
+  background:var(--bg-primary)!important;
+  background-image:none!important;
+}
+body.theme-royal-prestige #date-reveal .date-reveal__panel{background:transparent!important}
+body.theme-royal-prestige #date-reveal .date-reveal__content{background:var(--bg-card)!important;background-image:none!important}
