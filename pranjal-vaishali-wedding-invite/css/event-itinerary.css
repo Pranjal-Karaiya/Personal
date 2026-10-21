@@ -40,3 +40,11 @@
 #events.events .events__timeline .event-card:nth-of-type(1) .event-card__desc:after{content:'Wrapped in sunshine, blessings and new beginnings.';font-size:.66rem}
 #events.events .events__timeline .event-card:nth-of-type(6) .event-card__desc:after{content:'The groom arrives with music, lights and celebration.';font-size:.66rem}
 #events.events .events__timeline .event-card:nth-of-type(9) .event-card__desc:after{content:'Two souls, one beautiful journey.';font-size:.66rem}
+
+/* Invitation must use the same solid blush surface as the rest of the Royal Prestige invite. */
+body.theme-royal-prestige #invitation.invitation,
+body.theme-royal-prestige #invitation.invitation::before,
+body.theme-royal-prestige #invitation.invitation::after{
+  background:var(--bg-primary)!important;
+  background-image:none!important;
+}
