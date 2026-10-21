@@ -1,0 +1,64 @@
+/* Countdown — use the supplied Ornate Blush Gold Arch Frame once for each live unit. */
+body.theme-royal-prestige #countdown .countdown__grid {
+  gap: clamp(0.35rem, 1.2vw, 0.9rem) !important;
+}
+
+body.theme-royal-prestige #countdown .countdown__unit {
+  position: relative;
+  min-width: 0;
+  min-height: clamp(9rem, 18vw, 14rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 4vw, 3.5rem) 0.5rem 1.25rem !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: url("../assets/images/hero/Ornate Blush Gold Arch Frame.png") center / 100% 100% no-repeat !important;
+  box-shadow: none !important;
+  overflow: visible;
+}
+
+body.theme-royal-prestige #countdown .countdown__value {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3.4vw, 2.7rem) !important;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+body.theme-royal-prestige #countdown .countdown__label {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.45rem !important;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(0.45rem, 1vw, 0.65rem) !important;
+  font-weight: 500;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+  body.theme-royal-prestige #countdown .countdown__grid {
+    gap: 0.25rem !important;
+  }
+
+  body.theme-royal-prestige #countdown .countdown__unit {
+    min-height: clamp(7.5rem, 25vw, 10rem);
+    padding: 1.75rem 0.2rem 0.75rem !important;
+  }
+
+  body.theme-royal-prestige #countdown .countdown__value {
+    font-size: clamp(1rem, 5vw, 1.55rem) !important;
+  }
+
+  body.theme-royal-prestige #countdown .countdown__label {
+    margin-top: 0.3rem !important;
+    font-size: clamp(0.34rem, 1.5vw, 0.48rem) !important;
+    letter-spacing: 0.06em !important;
+  }
+}
