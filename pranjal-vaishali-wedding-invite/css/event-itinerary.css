@@ -1,6 +1,6 @@
-/* Wedding Events — reference timeline layout.
- * Keeps the existing event data intact while presenting only the four
- * principal wedding moments shown in the approved reference.
+/* Wedding Events — approved reference layout.
+ * Keeps the existing event data intact while presenting the four
+ * principal wedding moments shown in the reference.
  */
 #events.events {
   width: 100% !important;
@@ -44,7 +44,8 @@
   background: linear-gradient(90deg, transparent, #e4b8bb, transparent) !important;
 }
 
-/* Hide the old grouped-card presentation. */
+/* The original data contains meals and supporting entries. The approved
+   visual presents only Ring Ceremony + Sangeet, Haldi, Barat and Reception. */
 #events.events .events__day-title,
 #events.events .event-card { display: none !important; }
 
@@ -58,8 +59,6 @@
   gap: 0 !important;
 }
 
-/* The old DOM contains 10 cards. The reference intentionally presents
-   Ring Ceremony + Sangeet, Haldi, Barat and Reception + Varmala only. */
 #events.events .events__timeline .event-card:nth-of-type(4),
 #events.events .events__timeline .event-card:nth-of-type(1),
 #events.events .events__timeline .event-card:nth-of-type(6),
@@ -67,14 +66,17 @@
   display: grid !important;
 }
 
-#events.events .events__timeline {
-  counter-reset: wedding-event;
-}
+/* Keep the four moments in reference order: Ring/Sangeet, Haldi, Barat,
+   Reception/Varmala. */
+#events.events .events__timeline .event-card:nth-of-type(4) { order: 1 !important; }
+#events.events .events__timeline .event-card:nth-of-type(1) { order: 2 !important; }
+#events.events .events__timeline .event-card:nth-of-type(6) { order: 3 !important; }
+#events.events .events__timeline .event-card:nth-of-type(9) { order: 4 !important; }
 
 #events.events .events__timeline .event-card {
   position: relative !important;
   width: 100% !important;
-  min-height: 300px !important;
+  min-height: 360px !important;
   box-sizing: border-box !important;
   margin: 0 !important;
   padding: 1.25rem 0 !important;
@@ -83,16 +85,10 @@
   box-shadow: none !important;
   border-radius: 0 !important;
   grid-template-columns: minmax(0,1fr) 44px minmax(0,1fr) !important;
+  grid-template-rows: auto auto auto 1fr !important;
+  column-gap: 0 !important;
   align-items: center !important;
-  order: 99 !important;
 }
-
-/* DOM nth-of-type counts h3 day headings too, so target cards by their
-   actual card position using these selectors. */
-#events.events .events__timeline .event-card:nth-of-type(4) { order: 1 !important; }
-#events.events .events__timeline .event-card:nth-of-type(1) { order: 2 !important; }
-#events.events .events__timeline .event-card:nth-of-type(6) { order: 3 !important; }
-#events.events .events__timeline .event-card:nth-of-type(9) { order: 4 !important; }
 
 /* Centre gold timeline. */
 #events.events .events__timeline::before {
@@ -121,12 +117,12 @@
   z-index: 4 !important;
 }
 
-/* Every card gets an artwork on the side opposite its text. */
+/* Artwork sits opposite the copy and spans the complete card height. */
 #events.events .events__timeline .event-card::before {
   content: '' !important;
-  grid-row: 1 !important;
+  grid-row: 1 / span 4 !important;
   width: min(88%, 330px) !important;
-  height: 235px !important;
+  height: 275px !important;
   justify-self: center !important;
   align-self: center !important;
   background-repeat: no-repeat !important;
@@ -135,44 +131,37 @@
   z-index: 1 !important;
 }
 
+/* Reference artwork mapping. */
 #events.events .events__timeline .event-card:nth-of-type(4)::before {
   grid-column: 3 !important;
-  background-image: url('../assets/images/events/sangeet.svg') !important;
+  background-image: url('../assets/images/events/Golden%20Rings%20and%20Floral%20Engagement%20Celebration.png') !important;
 }
 #events.events .events__timeline .event-card:nth-of-type(1)::before {
   grid-column: 1 !important;
-  background-image: url('../assets/images/events/haldi.svg') !important;
+  background-image: url('../assets/images/events/Luxurious%20Haldi%20Ceremony%20Mandap%20Decor.png') !important;
 }
 #events.events .events__timeline .event-card:nth-of-type(6)::before {
   grid-column: 3 !important;
-  background-image: url('../assets/images/events/wedding.svg') !important;
+  background-image: url('../assets/images/events/Festive%20Indian%20Wedding%20Baraat%20Cutout.png') !important;
 }
 #events.events .events__timeline .event-card:nth-of-type(9)::before {
   grid-column: 1 !important;
-  background-image: url('../assets/images/events/reception.svg') !important;
+  background-image: url('../assets/images/events/Ornate%20Indian%20Wedding%20Mandap%20with%20Sacred%20Fire.png') !important;
 }
 
+/* Explicit grid rows fix the previous alignment problem where all copy
+   elements were auto-placed into different rows independently of the art. */
 #events.events .events__timeline .event-card__date,
 #events.events .events__timeline .event-card__session,
 #events.events .events__timeline .event-card__title,
-#events.events .events__timeline .event-card__desc,
-#events.events .events__timeline .event-card__guests {
-  grid-column: 1 !important;
+#events.events .events__timeline .event-card__desc {
   position: relative !important;
   z-index: 2 !important;
-}
-
-#events.events .events__timeline .event-card:nth-of-type(4) > *,
-#events.events .events__timeline .event-card:nth-of-type(6) > * {
-  grid-column: 1 !important;
-}
-
-#events.events .events__timeline .event-card:nth-of-type(1) > *,
-#events.events .events__timeline .event-card:nth-of-type(9) > * {
-  grid-column: 3 !important;
+  min-width: 0 !important;
 }
 
 #events.events .events__timeline .event-card__date {
+  grid-row: 1 !important;
   align-self: end !important;
   margin: 0 0 .35rem !important;
   color: #9d5360 !important;
@@ -183,14 +172,16 @@
 }
 
 #events.events .events__timeline .event-card__session {
+  grid-row: 2 !important;
   margin: 0 0 .45rem !important;
   color: #9b7850 !important;
+  font-family: Georgia, 'Times New Roman', serif !important;
   font-size: .85rem !important;
-  letter-spacing: .16em !important;
-  text-transform: uppercase !important;
+  letter-spacing: .08em !important;
 }
 
 #events.events .events__timeline .event-card__title {
+  grid-row: 3 !important;
   margin: 0 !important;
   color: #6a4545 !important;
   font-family: Georgia, 'Times New Roman', serif !important;
@@ -201,8 +192,10 @@
 }
 
 #events.events .events__timeline .event-card__desc {
+  grid-row: 4 !important;
   max-width: 290px !important;
   margin: .85rem 0 0 !important;
+  align-self: start !important;
   color: #795d5d !important;
   font-family: Georgia, 'Times New Roman', serif !important;
   font-size: .9rem !important;
@@ -211,68 +204,122 @@
 
 #events.events .events__timeline .event-card__guests { display: none !important; }
 
-/* Replace the data-only meal entries with the exact names/times from the
-   approved reference without changing the underlying event data. */
-#events.events .events__timeline .event-card:nth-of-type(4) .event-card__date::after,
-#events.events .events__timeline .event-card:nth-of-type(1) .event-card__date::after,
-#events.events .events__timeline .event-card:nth-of-type(6) .event-card__date::after,
-#events.events .events__timeline .event-card:nth-of-type(9) .event-card__date::after {
-  content: '';
+/* Left-copy / right-art cards. */
+#events.events .events__timeline .event-card:nth-of-type(4) > *,
+#events.events .events__timeline .event-card:nth-of-type(6) > * {
+  grid-column: 1 !important;
 }
 
+/* Right-copy / left-art cards. */
+#events.events .events__timeline .event-card:nth-of-type(1) > *,
+#events.events .events__timeline .event-card:nth-of-type(9) > * {
+  grid-column: 3 !important;
+}
+
+/* Exact presentation text from the reference. */
 #events.events .events__timeline .event-card:nth-of-type(4) .event-card__session,
 #events.events .events__timeline .event-card:nth-of-type(1) .event-card__session,
 #events.events .events__timeline .event-card:nth-of-type(6) .event-card__session,
 #events.events .events__timeline .event-card:nth-of-type(9) .event-card__session {
   font-size: 0 !important;
 }
+
 #events.events .events__timeline .event-card:nth-of-type(4) .event-card__session::after { content: '7:30 PM'; font-size: .85rem; }
 #events.events .events__timeline .event-card:nth-of-type(1) .event-card__session::after { content: '10:00 AM'; font-size: .85rem; }
 #events.events .events__timeline .event-card:nth-of-type(6) .event-card__session::after { content: '7:30 PM'; font-size: .85rem; }
 #events.events .events__timeline .event-card:nth-of-type(9) .event-card__session::after { content: '8:00 PM'; font-size: .85rem; }
 
-#events.events .events__timeline .event-card:nth-of-type(6) .event-card__title { font-size: 0 !important; }
+#events.events .events__timeline .event-card:nth-of-type(6) .event-card__title,
+#events.events .events__timeline .event-card:nth-of-type(9) .event-card__title,
+#events.events .events__timeline .event-card:nth-of-type(4) .event-card__desc,
+#events.events .events__timeline .event-card:nth-of-type(1) .event-card__desc,
+#events.events .events__timeline .event-card:nth-of-type(6) .event-card__desc,
+#events.events .events__timeline .event-card:nth-of-type(9) .event-card__desc {
+  font-size: 0 !important;
+}
+
 #events.events .events__timeline .event-card:nth-of-type(6) .event-card__title::after {
   content: 'BARAT';
   font-size: clamp(1.35rem, 3vw, 2rem);
 }
-#events.events .events__timeline .event-card:nth-of-type(9) .event-card__title { font-size: 0 !important; }
 #events.events .events__timeline .event-card:nth-of-type(9) .event-card__title::after {
   content: 'RECEPTION + VARMALA';
   font-size: clamp(1.35rem, 3vw, 2rem);
 }
-#events.events .events__timeline .event-card:nth-of-type(4) .event-card__desc { font-size: 0 !important; }
-#events.events .events__timeline .event-card:nth-of-type(4) .event-card__desc::after { content: 'A promise, followed by an evening of music, dance and celebration.'; font-size: .9rem; }
-#events.events .events__timeline .event-card:nth-of-type(1) .event-card__desc { font-size: 0 !important; }
-#events.events .events__timeline .event-card:nth-of-type(1) .event-card__desc::after { content: 'Wrapped in sunshine, blessings and new beginnings.'; font-size: .9rem; }
-#events.events .events__timeline .event-card:nth-of-type(6) .event-card__desc { font-size: 0 !important; }
-#events.events .events__timeline .event-card:nth-of-type(6) .event-card__desc::after { content: 'The groom arrives with music, lights and celebration.'; font-size: .9rem; }
-#events.events .events__timeline .event-card:nth-of-type(9) .event-card__desc { font-size: 0 !important; }
-#events.events .events__timeline .event-card:nth-of-type(9) .event-card__desc::after { content: 'Two souls, one beautiful journey.'; font-size: .9rem; }
+#events.events .events__timeline .event-card:nth-of-type(4) .event-card__desc::after {
+  content: 'A promise, followed by an evening of music, dance and celebration.';
+  font-size: .9rem;
+}
+#events.events .events__timeline .event-card:nth-of-type(1) .event-card__desc::after {
+  content: 'Wrapped in sunshine, blessings and new beginnings.';
+  font-size: .9rem;
+}
+#events.events .events__timeline .event-card:nth-of-type(6) .event-card__desc::after {
+  content: 'The groom arrives with music, lights and celebration.';
+  font-size: .9rem;
+}
+#events.events .events__timeline .event-card:nth-of-type(9) .event-card__desc::after {
+  content: 'Two souls, one beautiful journey.';
+  font-size: .9rem;
+}
 
 @media (max-width: 767px) {
   #events.events { padding: 2.75rem 0 3rem !important; }
   #events.events .container { width: min(calc(100% - 1rem), 620px) !important; }
   #events.events .royal-section-head { margin-bottom: 2.5rem !important; }
+  #events.events .royal-flourish { font-size: 1.5rem !important; }
+  #events.events .eyebrow { letter-spacing: .34em !important; }
   #events.events .royal-title { font-size: clamp(2rem, 8vw, 2.65rem) !important; }
+
   #events.events .events__timeline .event-card {
-    min-height: 255px !important;
+    min-height: 390px !important;
     grid-template-columns: minmax(0,1fr) 28px minmax(0,1fr) !important;
+    grid-template-rows: auto auto auto 1fr !important;
     padding: .5rem 0 !important;
   }
+
   #events.events .events__timeline .event-card::before {
     width: 100% !important;
-    height: 170px !important;
+    height: 225px !important;
   }
+
   #events.events .events__timeline .event-card::after {
     width: 14px !important;
     height: 14px !important;
     box-shadow: 0 0 0 4px #f8f1e9 !important;
   }
-  #events.events .events__timeline .event-card__date { font-size: .56rem !important; letter-spacing: .14em !important; }
-  #events.events .events__timeline .event-card__session { margin-bottom: .3rem !important; letter-spacing: .11em !important; }
-  #events.events .events__timeline .event-card__title { font-size: 1.15rem !important; line-height: 1.08 !important; }
-  #events.events .events__timeline .event-card__desc { max-width: 155px !important; font-size: .68rem !important; line-height: 1.35 !important; margin-top: .65rem !important; }
+
+  #events.events .events__timeline .event-card__date {
+    font-size: .56rem !important;
+    letter-spacing: .14em !important;
+  }
+
+  #events.events .events__timeline .event-card__session {
+    margin-bottom: .3rem !important;
+    letter-spacing: .03em !important;
+  }
+
+  #events.events .events__timeline .event-card__title {
+    font-size: 1.15rem !important;
+    line-height: 1.08 !important;
+  }
+
+  #events.events .events__timeline .event-card__desc {
+    max-width: 165px !important;
+    font-size: .68rem !important;
+    line-height: 1.35 !important;
+    margin-top: .65rem !important;
+  }
+
   #events.events .events__timeline .event-card:nth-of-type(6) .event-card__title::after,
-  #events.events .events__timeline .event-card:nth-of-type(9) .event-card__title::after { font-size: 1.15rem !important; }
+  #events.events .events__timeline .event-card:nth-of-type(9) .event-card__title::after {
+    font-size: 1.15rem !important;
+  }
+
+  #events.events .events__timeline .event-card:nth-of-type(4) .event-card__desc::after,
+  #events.events .events__timeline .event-card:nth-of-type(1) .event-card__desc::after,
+  #events.events .events__timeline .event-card:nth-of-type(6) .event-card__desc::after,
+  #events.events .events__timeline .event-card:nth-of-type(9) .event-card__desc::after {
+    font-size: .68rem !important;
+  }
 }
