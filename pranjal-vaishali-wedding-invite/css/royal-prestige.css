@@ -96,13 +96,6 @@ body.theme-royal-prestige .heading-md {
   transform: scale(-1);
 }
 
-/* Remove the card treatment from the invitation copy so it blends into the section. */
-body.theme-royal-prestige #invitation .royal-card {
-  border: 0 !important;
-  background: var(--bg-primary) !important;
-  box-shadow: none !important;
-}
-
 /* Hero slideshow */
 .hero__slideshow {
   position: absolute;
