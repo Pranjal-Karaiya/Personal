@@ -22,9 +22,9 @@ body.theme-royal-prestige #countdown::after {
   transform: none;
 }
 
-/* LEFT: Golden Botanical Branch Flourish.png */
+/* LEFT: move farther outward to compensate for the asset's visual bounds and match the right-side text gap. */
 body.theme-royal-prestige #countdown::before {
-  left: clamp(1.6rem, 5vw, 4.5rem);
+  left: clamp(-1rem, 5vw, 4.5rem);
   background-image: url("../assets/icons/Golden%20Botanical%20Branch%20Flourish.png");
 }
 
@@ -185,7 +185,7 @@ body.theme-royal-prestige #countdown .countdown__passed {
   }
 
   body.theme-royal-prestige #countdown::before {
-    left: 1.5rem;
+    left: 0.75rem;
   }
 
   body.theme-royal-prestige #countdown::after {
@@ -218,7 +218,7 @@ body.theme-royal-prestige #countdown .countdown__passed {
   }
 
   body.theme-royal-prestige #countdown::before {
-    left: 1rem;
+    left: 0.5rem;
   }
 
   body.theme-royal-prestige #countdown::after {
