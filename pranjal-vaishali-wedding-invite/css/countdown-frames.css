@@ -11,7 +11,7 @@ body.theme-royal-prestige #countdown::after {
   content: "";
   position: absolute;
   z-index: 0;
-  top: clamp(5.5rem, 12vw, 8.5rem);
+  top: clamp(4.8rem, 10vw, 7rem);
   width: clamp(10rem, 25vw, 26rem);
   height: clamp(12rem, 31vw, 21rem);
   background-repeat: no-repeat;
@@ -39,12 +39,11 @@ body.theme-royal-prestige #countdown .container {
   z-index: 1;
 }
 
-/* Keep the header and countdown positions close to the supplied reference. */
 body.theme-royal-prestige #countdown .royal-section-head {
   margin-bottom: clamp(4.5rem, 8vw, 6.5rem);
 }
 
-/* Header order: heart → eyebrow → floral divider → Counting Down. */
+/* Header order: heart → eyebrow → Counting Down → divider. */
 body.theme-royal-prestige #countdown .royal-section-head .royal-title {
   display: flex;
   flex-direction: column;
@@ -56,29 +55,30 @@ body.theme-royal-prestige #countdown .royal-section-head .royal-title {
   line-height: 1;
 }
 
-/* Keep the ornamental divider, but do not render the date. */
+/* Remove the divider above the title. */
 body.theme-royal-prestige #countdown .royal-section-head .royal-title::before {
   content: "";
   display: block;
-  width: min(48rem, 80vw);
-  height: clamp(1.2rem, 2.4vw, 1.8rem);
-  border-bottom: 1px solid rgba(184, 154, 112, 0.34);
-  background-image: url("../assets/decorations/floral-divider.svg");
-  background-repeat: no-repeat;
-  background-position: center bottom -0.32rem;
-  background-size: 2rem auto;
+  width: 0;
+  height: 0;
+  border: 0;
+  background: none;
 }
 
+/* Put the divider directly below Counting Down. */
 body.theme-royal-prestige #countdown .royal-section-head .royal-title::after {
   content: "Counting Down";
   display: block;
-  margin-top: clamp(1.2rem, 2.5vw, 1.7rem);
+  position: relative;
+  margin-top: 0;
+  padding-bottom: clamp(1rem, 2vw, 1.35rem);
   color: var(--text-primary);
   font-family: var(--font-heading);
   font-size: clamp(2.15rem, 5vw, 3.65rem);
   font-weight: 500;
   line-height: 1.05;
   letter-spacing: 0.01em;
+  border-bottom: 1px solid rgba(184, 154, 112, 0.34);
 }
 
 body.theme-royal-prestige #countdown .royal-section-head .royal-title-line {
@@ -147,20 +147,18 @@ body.theme-royal-prestige #countdown .countdown__passed {
 @media (max-width: 900px) {
   body.theme-royal-prestige #countdown::before,
   body.theme-royal-prestige #countdown::after {
-    top: 5.5rem;
+    top: 5rem;
     width: 8.5rem;
     height: 11rem;
     opacity: 0.65;
   }
 
-  /* Bring each botanical inward so the inner tip starts beside the
-     "Counting" / "Down" words instead of hugging the section edges. */
   body.theme-royal-prestige #countdown::before {
-    left: 1rem;
+    left: -1.5rem;
   }
 
   body.theme-royal-prestige #countdown::after {
-    right: 1rem;
+    right: -1.5rem;
   }
 
   body.theme-royal-prestige #countdown .countdown__grid {
@@ -176,7 +174,7 @@ body.theme-royal-prestige #countdown .countdown__passed {
 
   body.theme-royal-prestige #countdown::before,
   body.theme-royal-prestige #countdown::after {
-    top: 7rem;
+    top: 6.5rem;
     bottom: auto;
     width: 7rem;
     height: 9rem;
@@ -185,11 +183,11 @@ body.theme-royal-prestige #countdown .countdown__passed {
   }
 
   body.theme-royal-prestige #countdown::before {
-    left: 0.75rem;
+    left: -2rem;
   }
 
   body.theme-royal-prestige #countdown::after {
-    right: 0.75rem;
+    right: -2rem;
   }
 
   body.theme-royal-prestige #countdown .royal-section-head {
@@ -201,14 +199,13 @@ body.theme-royal-prestige #countdown .countdown__passed {
   }
 
   body.theme-royal-prestige #countdown .royal-section-head .royal-title::before {
-    width: min(22rem, 82vw);
-    height: 1.1rem;
-    background-size: 1.55rem auto;
-    background-position: center bottom -0.25rem;
+    width: 0;
+    height: 0;
   }
 
   body.theme-royal-prestige #countdown .royal-section-head .royal-title::after {
-    margin-top: 1.1rem;
+    margin-top: 0;
+    padding-bottom: 0.9rem;
     font-size: clamp(2rem, 9vw, 2.8rem);
   }
 
