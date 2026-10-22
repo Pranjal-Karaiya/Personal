@@ -153,12 +153,14 @@ body.theme-royal-prestige #countdown .countdown__passed {
     opacity: 0.65;
   }
 
+  /* Bring each botanical inward so the inner tip starts beside the
+     "Counting" / "Down" words instead of hugging the section edges. */
   body.theme-royal-prestige #countdown::before {
-    left: -1.5rem;
+    left: 1rem;
   }
 
   body.theme-royal-prestige #countdown::after {
-    right: -1.5rem;
+    right: 1rem;
   }
 
   body.theme-royal-prestige #countdown .countdown__grid {
@@ -183,11 +185,11 @@ body.theme-royal-prestige #countdown .countdown__passed {
   }
 
   body.theme-royal-prestige #countdown::before {
-    left: -2rem;
+    left: 0.75rem;
   }
 
   body.theme-royal-prestige #countdown::after {
-    right: -2rem;
+    right: 0.75rem;
   }
 
   body.theme-royal-prestige #countdown .royal-section-head {
