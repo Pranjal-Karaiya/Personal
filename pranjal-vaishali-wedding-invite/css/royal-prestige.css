@@ -270,8 +270,21 @@ body.theme-royal-prestige .heading-md {
   opacity: 1;
 }
 
+/* Final closing section — deep maroon with high-contrast white typography. */
 .theme-royal-prestige .site-footer {
-  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  background: linear-gradient(180deg, #3a171d 0%, #4b2027 100%);
+  color: #ffffff;
+  border-top: 1px solid rgba(209, 160, 74, 0.42);
+}
+
+.theme-royal-prestige .site-footer__closing,
+.theme-royal-prestige .site-footer__closing p,
+.theme-royal-prestige .site-footer__copy {
+  color: #ffffff;
+}
+
+.theme-royal-prestige .site-footer__sign {
+  color: #ffffff;
 }
 
 .theme-royal-prestige .floating-btn {
