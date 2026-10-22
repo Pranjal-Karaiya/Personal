@@ -5,30 +5,32 @@ body.theme-royal-prestige #countdown {
   isolation: isolate;
 }
 
+/* Use the supplied golden botanical PNG assets from the icons folder. */
 body.theme-royal-prestige #countdown::before,
 body.theme-royal-prestige #countdown::after {
   content: "";
   position: absolute;
   z-index: 0;
   top: 50%;
-  width: clamp(8.5rem, 22vw, 16rem);
-  height: clamp(11rem, 30vw, 20rem);
+  width: clamp(10rem, 25vw, 19rem);
+  height: clamp(12rem, 31vw, 21rem);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   pointer-events: none;
-  opacity: 0.82;
+  opacity: 0.9;
   transform: translateY(-34%);
 }
 
 body.theme-royal-prestige #countdown::before {
-  left: clamp(0rem, 5vw, 4.5rem);
-  background-image: url("../assets/decorations/countdown-branch-left.svg");
+  left: clamp(-1rem, 3vw, 2.5rem);
+  background-image: url("../assets/icons/Golden%20Botanical%20Branch%20Flourish.png");
 }
 
 body.theme-royal-prestige #countdown::after {
-  right: clamp(0rem, 5vw, 4.5rem);
-  background-image: url("../assets/decorations/countdown-branch-right.svg");
+  right: clamp(-1rem, 3vw, 2.5rem);
+  background-image: url("../assets/icons/Elegant%20Golden%20Botanical%20Branch.png");
+  transform: translateY(-34%) scaleX(-1);
 }
 
 body.theme-royal-prestige #countdown .container {
@@ -40,7 +42,7 @@ body.theme-royal-prestige #countdown .royal-section-head {
   margin-bottom: clamp(2.8rem, 6vw, 4.5rem);
 }
 
-/* Header order: heart → eyebrow → date → floral divider → Counting Down. */
+/* Header order: heart → eyebrow → floral divider → Counting Down. */
 body.theme-royal-prestige #countdown .royal-section-head .royal-title {
   display: flex;
   flex-direction: column;
@@ -52,18 +54,12 @@ body.theme-royal-prestige #countdown .royal-section-head .royal-title {
   line-height: 1;
 }
 
+/* Keep the ornamental divider, but remove the 15 FEBRUARY 2027 date. */
 body.theme-royal-prestige #countdown .royal-section-head .royal-title::before {
-  content: "15 FEBRUARY 2027";
+  content: "";
   display: block;
   width: min(48rem, 80vw);
-  padding-bottom: clamp(1rem, 2vw, 1.35rem);
-  color: var(--gold-dark);
-  font-family: var(--font-heading);
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.13em;
-  white-space: nowrap;
+  height: clamp(1.2rem, 2.4vw, 1.8rem);
   border-bottom: 1px solid rgba(184, 154, 112, 0.34);
   background-image: url("../assets/decorations/floral-divider.svg");
   background-repeat: no-repeat;
@@ -149,9 +145,9 @@ body.theme-royal-prestige #countdown .countdown__passed {
 @media (max-width: 900px) {
   body.theme-royal-prestige #countdown::before,
   body.theme-royal-prestige #countdown::after {
-    width: 7.5rem;
-    height: 10rem;
-    opacity: 0.58;
+    width: 8.5rem;
+    height: 11rem;
+    opacity: 0.65;
   }
 
   body.theme-royal-prestige #countdown::before {
@@ -177,9 +173,9 @@ body.theme-royal-prestige #countdown .countdown__passed {
   body.theme-royal-prestige #countdown::after {
     top: auto;
     bottom: 0.5rem;
-    width: 6.5rem;
-    height: 8.5rem;
-    opacity: 0.5;
+    width: 7rem;
+    height: 9rem;
+    opacity: 0.55;
     transform: none;
   }
 
@@ -189,6 +185,7 @@ body.theme-royal-prestige #countdown .countdown__passed {
 
   body.theme-royal-prestige #countdown::after {
     right: -2rem;
+    transform: scaleX(-1);
   }
 
   body.theme-royal-prestige #countdown .royal-section-head {
@@ -201,9 +198,7 @@ body.theme-royal-prestige #countdown .countdown__passed {
 
   body.theme-royal-prestige #countdown .royal-section-head .royal-title::before {
     width: min(22rem, 82vw);
-    padding-bottom: 0.9rem;
-    font-size: clamp(1.55rem, 7vw, 2.25rem);
-    letter-spacing: 0.1em;
+    height: 1.1rem;
     background-size: 1.55rem auto;
     background-position: center bottom -0.25rem;
   }
