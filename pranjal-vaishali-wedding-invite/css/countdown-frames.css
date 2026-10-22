@@ -1,36 +1,37 @@
-/* Premium countdown layout — inspired by the supplied botanical reference. */
+/* Premium countdown layout — aligned to the supplied botanical reference. */
 body.theme-royal-prestige #countdown {
   position: relative;
   overflow: hidden;
   isolation: isolate;
 }
 
-/* Use the supplied golden botanical PNG assets from the icons folder. */
+/* Use the two supplied golden botanical PNG assets independently. */
 body.theme-royal-prestige #countdown::before,
 body.theme-royal-prestige #countdown::after {
   content: "";
   position: absolute;
   z-index: 0;
-  top: 50%;
-  width: clamp(10rem, 25vw, 19rem);
+  top: clamp(5.5rem, 12vw, 8.5rem);
+  width: clamp(10rem, 25vw, 26rem);
   height: clamp(12rem, 31vw, 21rem);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   pointer-events: none;
   opacity: 0.9;
-  transform: translateY(-34%);
+  transform: none;
 }
 
+/* LEFT: Golden Botanical Branch Flourish.png */
 body.theme-royal-prestige #countdown::before {
-  left: clamp(-1rem, 3vw, 2.5rem);
+  left: clamp(-1.5rem, 3vw, 4.5rem);
   background-image: url("../assets/icons/Golden%20Botanical%20Branch%20Flourish.png");
 }
 
+/* RIGHT: Elegant Golden Botanical Branch.png — use as supplied, no mirroring. */
 body.theme-royal-prestige #countdown::after {
-  right: clamp(-1rem, 3vw, 2.5rem);
+  right: clamp(-1.5rem, 3vw, 4.5rem);
   background-image: url("../assets/icons/Elegant%20Golden%20Botanical%20Branch.png");
-  transform: translateY(-34%) scaleX(-1);
 }
 
 body.theme-royal-prestige #countdown .container {
@@ -38,8 +39,9 @@ body.theme-royal-prestige #countdown .container {
   z-index: 1;
 }
 
+/* Keep the header and countdown positions close to the supplied reference. */
 body.theme-royal-prestige #countdown .royal-section-head {
-  margin-bottom: clamp(2.8rem, 6vw, 4.5rem);
+  margin-bottom: clamp(4.5rem, 8vw, 6.5rem);
 }
 
 /* Header order: heart → eyebrow → floral divider → Counting Down. */
@@ -54,7 +56,7 @@ body.theme-royal-prestige #countdown .royal-section-head .royal-title {
   line-height: 1;
 }
 
-/* Keep the ornamental divider, but remove the 15 FEBRUARY 2027 date. */
+/* Keep the ornamental divider, but do not render the date. */
 body.theme-royal-prestige #countdown .royal-section-head .royal-title::before {
   content: "";
   display: block;
@@ -145,6 +147,7 @@ body.theme-royal-prestige #countdown .countdown__passed {
 @media (max-width: 900px) {
   body.theme-royal-prestige #countdown::before,
   body.theme-royal-prestige #countdown::after {
+    top: 5.5rem;
     width: 8.5rem;
     height: 11rem;
     opacity: 0.65;
@@ -171,8 +174,8 @@ body.theme-royal-prestige #countdown .countdown__passed {
 
   body.theme-royal-prestige #countdown::before,
   body.theme-royal-prestige #countdown::after {
-    top: auto;
-    bottom: 0.5rem;
+    top: 7rem;
+    bottom: auto;
     width: 7rem;
     height: 9rem;
     opacity: 0.55;
@@ -185,7 +188,6 @@ body.theme-royal-prestige #countdown .countdown__passed {
 
   body.theme-royal-prestige #countdown::after {
     right: -2rem;
-    transform: scaleX(-1);
   }
 
   body.theme-royal-prestige #countdown .royal-section-head {
