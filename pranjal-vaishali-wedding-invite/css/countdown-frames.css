@@ -262,3 +262,8 @@ body.theme-royal-prestige #countdown .countdown__passed {
     letter-spacing: 0.07em !important;
   }
 }
+
+/* Hide the RSVP fallback text from the Celebrate With You section. */
+body.theme-royal-prestige #rsvp .body-muted {
+  display: none !important;
+}
