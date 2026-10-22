@@ -65,7 +65,7 @@ body.theme-royal-prestige #countdown .royal-section-head .royal-title::before {
   background: none;
 }
 
-/* Put the divider directly below Counting Down. */
+/* Put a softly faded divider directly below Counting Down. */
 body.theme-royal-prestige #countdown .royal-section-head .royal-title::after {
   content: "Counting Down";
   display: block;
@@ -78,7 +78,19 @@ body.theme-royal-prestige #countdown .royal-section-head .royal-title::after {
   font-weight: 500;
   line-height: 1.05;
   letter-spacing: 0.01em;
-  border-bottom: 1px solid rgba(184, 154, 112, 0.34);
+  border-bottom: 0;
+  background-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(184, 154, 112, 0.28) 16%,
+    rgba(184, 154, 112, 0.42) 36%,
+    rgba(184, 154, 112, 0.42) 64%,
+    rgba(184, 154, 112, 0.28) 84%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100% 1px;
 }
 
 body.theme-royal-prestige #countdown .royal-section-head .royal-title-line {
@@ -113,6 +125,25 @@ body.theme-royal-prestige #countdown .countdown__unit {
   background: transparent !important;
   box-shadow: none !important;
   overflow: visible;
+  position: relative;
+}
+
+/* Fine vertical separators between each countdown value. */
+body.theme-royal-prestige #countdown .countdown__unit:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  left: calc(clamp(1.25rem, 5vw, 4.5rem) / -2);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(184, 154, 112, 0.52) 18%,
+    rgba(184, 154, 112, 0.52) 82%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 body.theme-royal-prestige #countdown .countdown__value {
@@ -164,6 +195,10 @@ body.theme-royal-prestige #countdown .countdown__passed {
   body.theme-royal-prestige #countdown .countdown__grid {
     gap: clamp(0.7rem, 4vw, 1.5rem) !important;
   }
+
+  body.theme-royal-prestige #countdown .countdown__unit:not(:first-child)::before {
+    left: calc(clamp(0.7rem, 4vw, 1.5rem) / -2);
+  }
 }
 
 @media (max-width: 600px) {
@@ -211,6 +246,10 @@ body.theme-royal-prestige #countdown .countdown__passed {
 
   body.theme-royal-prestige #countdown .countdown__grid {
     gap: 0.5rem !important;
+  }
+
+  body.theme-royal-prestige #countdown .countdown__unit:not(:first-child)::before {
+    left: -0.25rem;
   }
 
   body.theme-royal-prestige #countdown .countdown__value {
