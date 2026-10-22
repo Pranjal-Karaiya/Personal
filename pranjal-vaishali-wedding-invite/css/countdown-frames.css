@@ -24,13 +24,13 @@ body.theme-royal-prestige #countdown::after {
 
 /* LEFT: Golden Botanical Branch Flourish.png */
 body.theme-royal-prestige #countdown::before {
-  left: clamp(-1.5rem, 3vw, 4.5rem);
+  left: clamp(1.25rem, 5vw, 4.5rem);
   background-image: url("../assets/icons/Golden%20Botanical%20Branch%20Flourish.png");
 }
 
 /* RIGHT: Elegant Golden Botanical Branch.png — use as supplied, no mirroring. */
 body.theme-royal-prestige #countdown::after {
-  right: clamp(-1.5rem, 3vw, 4.5rem);
+  right: clamp(1.25rem, 5vw, 4.5rem);
   background-image: url("../assets/icons/Elegant%20Golden%20Botanical%20Branch.png");
 }
 
@@ -154,11 +154,11 @@ body.theme-royal-prestige #countdown .countdown__passed {
   }
 
   body.theme-royal-prestige #countdown::before {
-    left: -1.5rem;
+    left: 1.25rem;
   }
 
   body.theme-royal-prestige #countdown::after {
-    right: -1.5rem;
+    right: 1.25rem;
   }
 
   body.theme-royal-prestige #countdown .countdown__grid {
@@ -183,11 +183,11 @@ body.theme-royal-prestige #countdown .countdown__passed {
   }
 
   body.theme-royal-prestige #countdown::before {
-    left: -2rem;
+    left: 0.75rem;
   }
 
   body.theme-royal-prestige #countdown::after {
-    right: -2rem;
+    right: 0.75rem;
   }
 
   body.theme-royal-prestige #countdown .royal-section-head {
