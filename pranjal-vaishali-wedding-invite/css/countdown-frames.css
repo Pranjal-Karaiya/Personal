@@ -11,7 +11,7 @@ body.theme-royal-prestige #countdown::after {
   content: "";
   position: absolute;
   z-index: 0;
-  top: clamp(4.8rem, 10vw, 7rem);
+  top: clamp(3.2rem, 7vw, 5rem);
   width: clamp(10rem, 25vw, 26rem);
   height: clamp(12rem, 31vw, 21rem);
   background-repeat: no-repeat;
@@ -147,7 +147,7 @@ body.theme-royal-prestige #countdown .countdown__passed {
 @media (max-width: 900px) {
   body.theme-royal-prestige #countdown::before,
   body.theme-royal-prestige #countdown::after {
-    top: 5rem;
+    top: 3.5rem;
     width: 8.5rem;
     height: 11rem;
     opacity: 0.65;
@@ -174,7 +174,7 @@ body.theme-royal-prestige #countdown .countdown__passed {
 
   body.theme-royal-prestige #countdown::before,
   body.theme-royal-prestige #countdown::after {
-    top: 6.5rem;
+    top: 4.5rem;
     bottom: auto;
     width: 7rem;
     height: 9rem;
