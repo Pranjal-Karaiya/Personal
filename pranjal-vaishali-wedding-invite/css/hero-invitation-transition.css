@@ -15,7 +15,7 @@
   right: 0;
   bottom: clamp(-52px, -7vw, -38px);
   height: clamp(190px, 30vh, 310px);
-  z-index: 6;
+  z-index: 4;
   pointer-events: none;
   background-image: url('../assets/decorations/Candlelit Rose Petals on Reflective Water.png');
   background-repeat: no-repeat;
