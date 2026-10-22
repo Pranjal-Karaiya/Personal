@@ -14,9 +14,10 @@ export const events = [
 export const storyCopy = {
   heading: 'Our Story',
   paragraphs: [
-    'Every love story is beautiful, but ours is our favourite chapter — written in quiet moments, shared laughter, and dreams we chose to build together.',
-    'From the first hello to the promise of forever, we have grown side by side. We are grateful for the love that surrounds us and excited to begin this new journey as one.',
-    'Thank you for being part of our story. Your presence means the world to us.'
+    'What began as a meeting arranged by our parents slowly became something neither of us expected.',
+    'Through disagreements, silence, laughter, and countless little moments, we learned that love isn\'t about a perfect journey — it’s about choosing each other, even when the journey isn\'t easy.',
+    'From two people brought together by their families, we became two people choosing to build a life together.',
+    'And now, after all the conversations, weekend meetings, and ups and downs, we are ready to begin our forever.'
   ]
 };
 
