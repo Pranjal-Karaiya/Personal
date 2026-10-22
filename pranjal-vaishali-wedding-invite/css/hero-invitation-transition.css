@@ -1,0 +1,49 @@
+/* Banaras-inspired Hero → Invitation transition */
+.hero {
+  overflow: visible;
+  z-index: 1;
+}
+
+.hero__media {
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(-52px, -7vw, -38px);
+  height: clamp(190px, 30vh, 310px);
+  z-index: 6;
+  pointer-events: none;
+  background-image: url('../assets/decorations/Candlelit Rose Petals on Reflective Water.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+}
+
+.invitation {
+  position: relative;
+  z-index: 2;
+  background: #F5EFE4;
+}
+
+@media (max-width: 768px) {
+  .hero::after {
+    bottom: -45px;
+    height: 30vh;
+    min-height: 180px;
+    max-height: 270px;
+    background-position: center bottom;
+    background-size: cover;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero::after {
+    height: 28vh;
+    min-height: 165px;
+    max-height: 235px;
+  }
+}
