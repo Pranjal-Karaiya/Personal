@@ -1,64 +1,264 @@
-/* Countdown — use the supplied Ornate Blush Gold Arch Frame once for each live unit. */
+/* Premium countdown layout — aligned to the supplied botanical reference. */
+body.theme-royal-prestige #countdown {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Use the two supplied golden botanical PNG assets independently. */
+body.theme-royal-prestige #countdown::before,
+body.theme-royal-prestige #countdown::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: clamp(3.2rem, 7vw, 5rem);
+  width: clamp(10rem, 25vw, 26rem);
+  height: clamp(12rem, 31vw, 21rem);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+  opacity: 0.9;
+  transform: none;
+}
+
+/* LEFT: move farther outward to compensate for the asset's visual bounds and match the right-side text gap. */
+body.theme-royal-prestige #countdown::before {
+  left: clamp(-1rem, 5vw, 4.5rem);
+  background-image: url("../assets/icons/Golden%20Botanical%20Branch%20Flourish.png");
+}
+
+/* RIGHT: Elegant Golden Botanical Branch.png — use as supplied, no mirroring. */
+body.theme-royal-prestige #countdown::after {
+  right: clamp(1.25rem, 5vw, 4.5rem);
+  background-image: url("../assets/icons/Elegant%20Golden%20Botanical%20Branch.png");
+}
+
+body.theme-royal-prestige #countdown .container {
+  position: relative;
+  z-index: 1;
+}
+
+body.theme-royal-prestige #countdown .royal-section-head {
+  margin-bottom: clamp(4.5rem, 8vw, 6.5rem);
+}
+
+/* Header order: heart → eyebrow → Counting Down → divider. */
+body.theme-royal-prestige #countdown .royal-section-head .royal-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  color: transparent;
+  font-size: 0 !important;
+  line-height: 1;
+}
+
+/* Remove the divider above the title. */
+body.theme-royal-prestige #countdown .royal-section-head .royal-title::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border: 0;
+  background: none;
+}
+
+/* Put a softly faded divider directly below Counting Down. */
+body.theme-royal-prestige #countdown .royal-section-head .royal-title::after {
+  content: "Counting Down";
+  display: block;
+  position: relative;
+  margin-top: 0;
+  padding-bottom: clamp(1rem, 2vw, 1.35rem);
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(2.15rem, 5vw, 3.65rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  border-bottom: 0;
+  background-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(184, 154, 112, 0.28) 16%,
+    rgba(184, 154, 112, 0.42) 36%,
+    rgba(184, 154, 112, 0.42) 64%,
+    rgba(184, 154, 112, 0.28) 84%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100% 1px;
+}
+
+body.theme-royal-prestige #countdown .royal-section-head .royal-title-line {
+  display: none;
+}
+
+body.theme-royal-prestige #countdown .royal-section-head .eyebrow {
+  color: var(--gold-dark);
+  letter-spacing: 0.22em;
+  margin-bottom: clamp(0.9rem, 2vw, 1.25rem);
+}
+
 body.theme-royal-prestige #countdown .countdown__grid {
-  gap: clamp(0.35rem, 1.2vw, 0.9rem) !important;
+  position: relative;
+  z-index: 2;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: clamp(1.25rem, 5vw, 4.5rem) !important;
+  margin-top: 0 !important;
 }
 
 body.theme-royal-prestige #countdown .countdown__unit {
-  position: relative;
   min-width: 0;
-  min-height: clamp(9rem, 18vw, 14rem);
+  min-height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(2rem, 4vw, 3.5rem) 0.5rem 1.25rem !important;
+  padding: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;
-  background: url("../assets/images/hero/Ornate Blush Gold Arch Frame.png") center / 100% 100% no-repeat !important;
+  background: transparent !important;
   box-shadow: none !important;
   overflow: visible;
+  position: relative;
+}
+
+/* Fine vertical separators between each countdown value. */
+body.theme-royal-prestige #countdown .countdown__unit:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  left: calc(clamp(1.25rem, 5vw, 4.5rem) / -2);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(184, 154, 112, 0.52) 18%,
+    rgba(184, 154, 112, 0.52) 82%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 body.theme-royal-prestige #countdown .countdown__value {
   position: relative;
   z-index: 1;
   font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 3.4vw, 2.7rem) !important;
+  font-size: clamp(2.35rem, 5vw, 4rem) !important;
   font-weight: 500;
-  line-height: 1;
-  color: var(--gold);
+  line-height: 0.95;
+  color: var(--gold-dark) !important;
   white-space: nowrap;
+  font-variant-numeric: lining-nums;
 }
 
 body.theme-royal-prestige #countdown .countdown__label {
   position: relative;
   z-index: 1;
-  margin-top: 0.45rem !important;
-  color: var(--text-primary);
+  margin-top: clamp(0.65rem, 1.3vw, 0.9rem) !important;
+  color: var(--text-primary) !important;
   font-family: var(--font-display);
-  font-size: clamp(0.45rem, 1vw, 0.65rem) !important;
+  font-size: clamp(0.55rem, 1vw, 0.75rem) !important;
   font-weight: 500;
   letter-spacing: 0.1em !important;
   text-transform: uppercase;
 }
 
-@media (max-width: 700px) {
-  body.theme-royal-prestige #countdown .countdown__grid {
-    gap: 0.25rem !important;
+body.theme-royal-prestige #countdown .countdown__passed {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  body.theme-royal-prestige #countdown::before,
+  body.theme-royal-prestige #countdown::after {
+    top: 3.5rem;
+    width: 8.5rem;
+    height: 11rem;
+    opacity: 0.65;
   }
 
-  body.theme-royal-prestige #countdown .countdown__unit {
-    min-height: clamp(7.5rem, 25vw, 10rem);
-    padding: 1.75rem 0.2rem 0.75rem !important;
+  body.theme-royal-prestige #countdown::before {
+    left: 0.75rem;
+  }
+
+  body.theme-royal-prestige #countdown::after {
+    right: 1.25rem;
+  }
+
+  body.theme-royal-prestige #countdown .countdown__grid {
+    gap: clamp(0.7rem, 4vw, 1.5rem) !important;
+  }
+
+  body.theme-royal-prestige #countdown .countdown__unit:not(:first-child)::before {
+    left: calc(clamp(0.7rem, 4vw, 1.5rem) / -2);
+  }
+}
+
+@media (max-width: 600px) {
+  body.theme-royal-prestige #countdown {
+    padding-top: clamp(3.5rem, 10vw, 5rem);
+    padding-bottom: clamp(4.5rem, 12vw, 6rem);
+  }
+
+  body.theme-royal-prestige #countdown::before,
+  body.theme-royal-prestige #countdown::after {
+    top: 4.5rem;
+    bottom: auto;
+    width: 7rem;
+    height: 9rem;
+    opacity: 0.55;
+    transform: none;
+  }
+
+  body.theme-royal-prestige #countdown::before {
+    left: 0.5rem;
+  }
+
+  body.theme-royal-prestige #countdown::after {
+    right: 0.75rem;
+  }
+
+  body.theme-royal-prestige #countdown .royal-section-head {
+    margin-bottom: 3.5rem;
+  }
+
+  body.theme-royal-prestige #countdown .royal-section-head .eyebrow {
+    letter-spacing: 0.19em;
+  }
+
+  body.theme-royal-prestige #countdown .royal-section-head .royal-title::before {
+    width: 0;
+    height: 0;
+  }
+
+  body.theme-royal-prestige #countdown .royal-section-head .royal-title::after {
+    margin-top: 0;
+    padding-bottom: 0.9rem;
+    font-size: clamp(2rem, 9vw, 2.8rem);
+  }
+
+  body.theme-royal-prestige #countdown .countdown__grid {
+    gap: 0.5rem !important;
+  }
+
+  body.theme-royal-prestige #countdown .countdown__unit:not(:first-child)::before {
+    left: -0.25rem;
   }
 
   body.theme-royal-prestige #countdown .countdown__value {
-    font-size: clamp(1rem, 5vw, 1.55rem) !important;
+    font-size: clamp(1.65rem, 8vw, 2.15rem) !important;
   }
 
   body.theme-royal-prestige #countdown .countdown__label {
-    margin-top: 0.3rem !important;
-    font-size: clamp(0.34rem, 1.5vw, 0.48rem) !important;
-    letter-spacing: 0.06em !important;
+    margin-top: 0.45rem !important;
+    font-size: clamp(0.42rem, 2vw, 0.55rem) !important;
+    letter-spacing: 0.07em !important;
   }
 }
